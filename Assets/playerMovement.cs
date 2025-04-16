@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour
 {
@@ -9,10 +7,8 @@ public class playerMovement : MonoBehaviour
     private float moveSpeedVar;
     public float acceleration = 20f;
     public float deceleration = 25f;
-    public float airControlMultiplier = 0.5f;
     public float runSpeed = 10f;
     private float runSpeedVar;
-    public float runStaminaCostPerSecond = 20f;
     public float maxHorizontalSpeed = 15f;
     public float maxVerticalSpeed = 25f;
 
@@ -21,7 +17,6 @@ public class playerMovement : MonoBehaviour
     public float currentStamina;
     public float staminaRegenRate = 15f;
     public float staminaDrainRate = 20f;
-    private float moveInput;
     public float jumpStaminaConsumption = 5f;
     public float wallJumpStaminaConsumption = 15f;
 
@@ -41,11 +36,13 @@ public class playerMovement : MonoBehaviour
     public float wallJumpPush = 10f;
     public float wallJumpControlDelay = 1f;
     private int blockedDirection = 0;
-    private bool wasTouchingWall = false;
     private bool wallReadyToJump = false;
     public float wallJumpReadyDelay = 0.5f;
     private float wallContactTime = 0f;
-
+    private float wallJumpHorizontalForce = 7f;
+    private float wallJumpControlLock = 0.2f;
+    private float wallJumpControlTimer = 0f;
+    private float wallJumpDirection = 0f;
 
     [Header("Gravity Settings")]
     public float fallMultiplier = 2.5f;
@@ -53,18 +50,18 @@ public class playerMovement : MonoBehaviour
 
     [Header("Wall-Sticking")]
     public float wallStickDuration = 1f;
-    public float wallSlideSpeed = -2f;
     public float wallSlideAcceleration = 10f;
     private float wallStickTimer = 0f;
     private bool isStickingToWall = false;
 
     [Header("Exhaust Settings")]
-    public float exhaustMoveSpeed;
-    public float exhaustRunSpeed;
-    public float exhaustJumpForce;
+    public float exhaustMoveSpeed = 3f;
+    public float exhaustRunSpeed = 4f;
+    public float exhaustJumpForce = 6f;
     private bool isExhausted = false;
 
     private Rigidbody rb;
+    private float moveInput;
     private bool jumpPressed;
     private bool isGrounded;
     private bool isTouchingWallLeft;
@@ -73,13 +70,11 @@ public class playerMovement : MonoBehaviour
     private bool isRunning = false;
     private bool isWallJumping = false;
     private float wallJumpTimer = 0f;
-
-    Animator animator;
+    public bool isGrabbingBox = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
         currentStamina = maxStamina;
         moveSpeedVar = moveSpeed;
         runSpeedVar = runSpeed;
@@ -118,7 +113,10 @@ public class playerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        handleMovement();
+        if (!isGrabbingBox)
+        {
+            handleMovement();
+        }
         handleJump();
         applyExtraGravity();
         handleWallStick();
@@ -128,16 +126,27 @@ public class playerMovement : MonoBehaviour
     void handleMovement()
     {
         float baseSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeedVar : moveSpeedVar;
-        float desiredVelocity = moveInput * baseSpeed;
 
-        if (isWallJumping && !isGrounded)
+        if (wallJumpControlTimer > 0f)
         {
-            if ((blockedDirection == -1 && moveInput < 0f) || (blockedDirection == 1 && moveInput > 0f))
+            wallJumpControlTimer -= Time.fixedDeltaTime;
+            moveInput = wallJumpDirection; // Forceer beweging weg van muur
+        }
+        else
+        {
+            moveInput = Input.GetAxisRaw("Horizontal");
+
+            // Als wallJump nog actief is, blokkeer alleen input naar de muur
+            if (isWallJumping && !isGrounded)
             {
-                desiredVelocity = 0f;
+                if ((blockedDirection == -1 && moveInput < 0f) || (blockedDirection == 1 && moveInput > 0f))
+                {
+                    moveInput = 0f;
+                }
             }
         }
 
+        float desiredVelocity = moveInput * baseSpeed;
         float speedDiff = desiredVelocity - rb.linearVelocity.x;
         float accelRate = Mathf.Abs(desiredVelocity) > 0.01f ? acceleration : deceleration;
         float movement = speedDiff * accelRate * Time.fixedDeltaTime;
@@ -163,15 +172,13 @@ public class playerMovement : MonoBehaviour
         currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         if (currentStamina <= 2f)
         {
-            Debug.Log("Speler is uitgeput!");
             isExhausted = true;
             moveSpeedVar = exhaustMoveSpeed;
             runSpeedVar = exhaustRunSpeed;
             jumpForceVar = exhaustJumpForce;
         }
-        else if (currentStamina >= 20f && currentStamina <= 25f)
+        else if (currentStamina >= 20f && isExhausted)
         {
-            Debug.Log("Speler is hersteld van uitputting!");
             isExhausted = false;
             moveSpeedVar = moveSpeed;
             runSpeedVar = runSpeed;
@@ -191,18 +198,22 @@ public class playerMovement : MonoBehaviour
 
             if (isTouchingWallLeft)
             {
-                jumpDirection += Vector3.right * wallJumpPush;
+                jumpDirection += Vector3.right;
                 blockedDirection = -1;
+                wallJumpDirection = 1f; // Rechts
             }
             else if (isTouchingWallRight)
             {
-                jumpDirection += Vector3.left * wallJumpPush;
+                jumpDirection += Vector3.left;
                 blockedDirection = 1;
+                wallJumpDirection = -1f; // Links
             }
 
-            rb.linearVelocity = new Vector3(jumpDirection.x, wallJumpForce, 0f);
+            rb.linearVelocity = new Vector3(jumpDirection.x * wallJumpHorizontalForce, wallJumpForce, 0f);
+
             isWallJumping = true;
             wallJumpTimer = wallJumpControlDelay;
+            wallJumpControlTimer = wallJumpControlLock;
             currentStamina -= wallJumpStaminaConsumption;
             Debug.Log(currentStamina);
         }
@@ -237,7 +248,6 @@ public class playerMovement : MonoBehaviour
 
         if (touchingWall && falling)
         {
-            // Zet timer alleen als we net beginnen te plakken
             if (!isStickingToWall)
             {
                 isStickingToWall = true;
@@ -246,14 +256,12 @@ public class playerMovement : MonoBehaviour
                 wallReadyToJump = false;
             }
 
-            // Tel hoe lang speler aan muur plakt
             wallContactTime += Time.deltaTime;
             if (wallContactTime >= wallJumpReadyDelay)
             {
                 wallReadyToJump = true;
             }
 
-            // Stick timer zorgt ervoor dat speler blijft plakken
             if (wallStickTimer > 0f)
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, 0f);
@@ -261,7 +269,6 @@ public class playerMovement : MonoBehaviour
             }
             else
             {
-                // Begin met glijden na plaktijd
                 float newY = rb.linearVelocity.y - wallSlideAcceleration * Time.deltaTime;
                 newY = Mathf.Clamp(newY, -maxVerticalSpeed, 0f);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, newY, 0f);
