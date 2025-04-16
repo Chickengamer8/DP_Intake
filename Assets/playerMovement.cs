@@ -70,7 +70,11 @@ public class playerMovement : MonoBehaviour
     private bool isRunning = false;
     private bool isWallJumping = false;
     private float wallJumpTimer = 0f;
-    public bool isGrabbingBox = false;
+
+    // Box dragging settings
+    [HideInInspector] public bool isGrabbing = false;
+    [HideInInspector] public bool nearBox = false;
+    public float boxMoveSpeed = 3f;
 
     void Start()
     {
@@ -79,6 +83,8 @@ public class playerMovement : MonoBehaviour
         moveSpeedVar = moveSpeed;
         runSpeedVar = runSpeed;
         jumpForceVar = jumpForce;
+
+        groundLayer = LayerMask.GetMask("Ground", "Box"); // Add or remove jumpable layers here!
     }
 
     void Update()
@@ -109,11 +115,13 @@ public class playerMovement : MonoBehaviour
             if (wallJumpTimer <= 0f)
                 isWallJumping = false;
         }
+
+        isGrabbing = Input.GetMouseButton(1) && nearBox;
     }
 
     void FixedUpdate()
     {
-        if (!isGrabbingBox)
+        if (!isGrabbing)
         {
             handleMovement();
         }
@@ -125,7 +133,7 @@ public class playerMovement : MonoBehaviour
 
     void handleMovement()
     {
-        float baseSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeedVar : moveSpeedVar;
+        float baseSpeed = isGrabbing ? boxMoveSpeed : (Input.GetKey(KeyCode.LeftShift) ? runSpeedVar : moveSpeedVar);
 
         if (wallJumpControlTimer > 0f)
         {
@@ -190,7 +198,7 @@ public class playerMovement : MonoBehaviour
     {
         if (!jumpRequested) return;
 
-        if ((isTouchingWallLeft || isTouchingWallRight) && !isExhausted && wallReadyToJump)
+        if ((isTouchingWallLeft || isTouchingWallRight) && !isExhausted && wallReadyToJump && !isGrabbing)
         {
             rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
 
@@ -217,7 +225,7 @@ public class playerMovement : MonoBehaviour
             currentStamina -= wallJumpStaminaConsumption;
             Debug.Log(currentStamina);
         }
-        else if (isGrounded)
+        else if (isGrounded && !isGrabbing)
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForceVar, 0f);
             blockedDirection = 0;

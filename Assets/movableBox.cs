@@ -2,64 +2,54 @@ using UnityEngine;
 
 public class movableBox : MonoBehaviour
 {
-    public Rigidbody boxRb;
-    public Transform player;
-    public float moveSpeed = 5f;
-    public string playerTag = "Player";
+    private bool isGrabbed = false;
+    private Transform player;
+    private Vector3 grabOffset;
 
-    private bool playerInZone = false;
-    private playerMovement playerMovementScript;
+    public float moveSpeed = 3f;
+
+    private Rigidbody rb;
+    private Collider boxCollider;
 
     void Start()
     {
-        if (player != null)
-            playerMovementScript = player.GetComponent<playerMovement>();
+        rb = GetComponent<Rigidbody>();
+        boxCollider = GetComponent<Collider>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (playerInZone && Input.GetMouseButton(1))
+        if (isGrabbed && player != null)
         {
-            playerMovementScript.isGrabbingBox = true;
-
             float input = Input.GetAxisRaw("Horizontal");
+            Vector3 targetPos = player.position + grabOffset;
 
+            // Alleen bewegen als input gegeven wordt
             if (Mathf.Abs(input) > 0.1f)
             {
-                Vector3 direction = new Vector3(input, 0f, 0f);
-                boxRb.linearVelocity = new Vector3(direction.x * moveSpeed, boxRb.linearVelocity.y, 0f);
+                Vector3 moveDir = new Vector3(input, 0, 0).normalized;
+                rb.MovePosition(transform.position + moveDir * moveSpeed * Time.fixedDeltaTime);
             }
-            else
-            {
-                boxRb.linearVelocity = new Vector3(0f, boxRb.linearVelocity.y, 0f); // Stop als geen input
-            }
+        }
+    }
+
+    public void SetMovable(bool grab, Transform playerTransform)
+    {
+        isGrabbed = grab;
+        player = playerTransform;
+
+        if (grab)
+        {
+            // Zet collider tijdelijk op trigger om glijden te voorkomen
+            boxCollider.isTrigger = true;
+
+            // Offset zodat hij links/rechts van speler zit
+            float xOffset = playerTransform.position.x > transform.position.x ? -1f : 1f;
+            grabOffset = new Vector3(xOffset, 0, 0);
         }
         else
         {
-            if (playerMovementScript != null)
-                playerMovementScript.isGrabbingBox = false;
-
-            boxRb.linearVelocity = new Vector3(0f, boxRb.linearVelocity.y, 0f);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(playerTag))
-        {
-            player = other.transform;
-            playerMovementScript = player.GetComponent<playerMovement>();
-            playerInZone = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(playerTag))
-        {
-            playerInZone = false;
-            if (playerMovementScript != null)
-                playerMovementScript.isGrabbingBox = false;
+            boxCollider.isTrigger = false;
         }
     }
 }

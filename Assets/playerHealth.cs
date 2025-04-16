@@ -37,7 +37,6 @@ public class playerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
-        Debug.Log("Speler nam schade: " + damage);
 
         timeSinceLastDamage = 0f; // Reset regen timer
 

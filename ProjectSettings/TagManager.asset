@@ -3,19 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Box
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - ground
+  - Ground
   - Water
   - UI
   - wallJump
   - Player
   - Hide
   - Eye
-  - 
+  - Box
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: Hide
     uniqueID: 2214297721
+    locked: 0
+  - name: Box
+    uniqueID: 1620410825
     locked: 0
   - name: Default
     uniqueID: 0
