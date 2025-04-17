@@ -2,54 +2,63 @@ using UnityEngine;
 
 public class movableBox : MonoBehaviour
 {
-    private bool isGrabbed = false;
+    private Rigidbody rb;
+    private Collider triggerCollider;
+    private Collider physicalCollider;
+
     private Transform player;
-    private Vector3 grabOffset;
+    private bool isMovable = false;
+    private bool isAttached = false;
 
     public float moveSpeed = 3f;
 
-    private Rigidbody rb;
-    private Collider boxCollider;
-
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<Collider>();
+        triggerCollider = GetComponent<Collider>();
+        physicalCollider = GetComponentInChildren<Collider>();
+
+        if (physicalCollider == null)
+        {
+            Debug.LogError("No physical collider found as child!");
+        }
+
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
     }
 
     void FixedUpdate()
     {
-        if (isGrabbed && player != null)
+        if (isMovable && isAttached && player != null)
         {
             float input = Input.GetAxisRaw("Horizontal");
-            Vector3 targetPos = player.position + grabOffset;
-
-            // Alleen bewegen als input gegeven wordt
-            if (Mathf.Abs(input) > 0.1f)
-            {
-                Vector3 moveDir = new Vector3(input, 0, 0).normalized;
-                rb.MovePosition(transform.position + moveDir * moveSpeed * Time.fixedDeltaTime);
-            }
+            Vector3 newPosition = transform.position + new Vector3(input * moveSpeed * Time.fixedDeltaTime, 0f, 0f);
+            rb.MovePosition(newPosition);
         }
     }
 
-    public void SetMovable(bool grab, Transform playerTransform)
+    public void SetMovable(bool movable, Transform playerTransform)
     {
-        isGrabbed = grab;
-        player = playerTransform;
-
-        if (grab)
+        isMovable = movable;
+        if (movable && playerTransform != null)
         {
-            // Zet collider tijdelijk op trigger om glijden te voorkomen
-            boxCollider.isTrigger = true;
+            player = playerTransform;
+            isAttached = true;
+            if (physicalCollider != null)
+                physicalCollider.enabled = false; // tijdelijk uitschakelen zodat speler niet tegen box drukt
 
-            // Offset zodat hij links/rechts van speler zit
-            float xOffset = playerTransform.position.x > transform.position.x ? -1f : 1f;
-            grabOffset = new Vector3(xOffset, 0, 0);
+            // Verplaats naar player (parenting)
+            transform.SetParent(player);
         }
         else
         {
-            boxCollider.isTrigger = false;
+            isAttached = false;
+            player = null;
+            if (physicalCollider != null)
+                physicalCollider.enabled = true;
+
+            transform.SetParent(null);
         }
     }
 }

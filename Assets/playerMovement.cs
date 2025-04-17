@@ -26,6 +26,7 @@ public class playerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
+    public float maxFallSpeed = 10f;
 
     [Header("Wall Jump Settings")]
     public Transform wallCheckLeft;
@@ -60,21 +61,24 @@ public class playerMovement : MonoBehaviour
     public float exhaustJumpForce = 6f;
     private bool isExhausted = false;
 
+    [Header("Box Grabbing")]
+    public float boxMoveSpeed = 3f;
+    [HideInInspector] public bool isGrabbing = false;
+    [HideInInspector] public bool grabAttempt = false;
+    [HideInInspector] public bool nearBox = false;
+    private Transform grabbedBox;
+    private Collider grabbedBoxCollider;
+
     private Rigidbody rb;
     private float moveInput;
     private bool jumpPressed;
     private bool isGrounded;
-    private bool isTouchingWallLeft;
-    private bool isTouchingWallRight;
+    public bool isTouchingWallLeft;
+    public bool isTouchingWallRight;
     private bool jumpRequested = false;
     private bool isRunning = false;
     private bool isWallJumping = false;
     private float wallJumpTimer = 0f;
-
-    // Box dragging settings
-    [HideInInspector] public bool isGrabbing = false;
-    [HideInInspector] public bool nearBox = false;
-    public float boxMoveSpeed = 3f;
 
     void Start()
     {
@@ -84,7 +88,7 @@ public class playerMovement : MonoBehaviour
         runSpeedVar = runSpeed;
         jumpForceVar = jumpForce;
 
-        groundLayer = LayerMask.GetMask("Ground", "Box"); // Add or remove jumpable layers here!
+        groundLayer = LayerMask.GetMask("Ground", "Box");
     }
 
     void Update()
@@ -116,7 +120,15 @@ public class playerMovement : MonoBehaviour
                 isWallJumping = false;
         }
 
-        isGrabbing = Input.GetMouseButton(1) && nearBox;
+        if (Input.GetMouseButton(1))
+        {
+            grabAttempt = true;
+        }
+        else
+        {
+            grabAttempt = false;
+        }
+        Debug.Log(grabAttempt);
     }
 
     void FixedUpdate()
@@ -125,6 +137,11 @@ public class playerMovement : MonoBehaviour
         {
             handleMovement();
         }
+        else
+        {
+            handleBoxMovement();
+        }
+
         handleJump();
         applyExtraGravity();
         handleWallStick();
@@ -133,28 +150,40 @@ public class playerMovement : MonoBehaviour
 
     void handleMovement()
     {
-        float baseSpeed = isGrabbing ? boxMoveSpeed : (Input.GetKey(KeyCode.LeftShift) ? runSpeedVar : moveSpeedVar);
+        float baseSpeed = (Input.GetKey(KeyCode.LeftShift) ? runSpeedVar : moveSpeedVar);
 
         if (wallJumpControlTimer > 0f)
         {
             wallJumpControlTimer -= Time.fixedDeltaTime;
-            moveInput = wallJumpDirection; // Forceer beweging weg van muur
-        }
-        else
-        {
-            moveInput = Input.GetAxisRaw("Horizontal");
-
-            // Als wallJump nog actief is, blokkeer alleen input naar de muur
-            if (isWallJumping && !isGrounded)
-            {
-                if ((blockedDirection == -1 && moveInput < 0f) || (blockedDirection == 1 && moveInput > 0f))
-                {
-                    moveInput = 0f;
-                }
-            }
+            moveInput = wallJumpDirection;
         }
 
         float desiredVelocity = moveInput * baseSpeed;
+        float speedDiff = desiredVelocity - rb.linearVelocity.x;
+        float accelRate = Mathf.Abs(desiredVelocity) > 0.01f ? acceleration : deceleration;
+        float movement = speedDiff * accelRate * Time.fixedDeltaTime;
+
+        // Collision check naar links en rechts
+        Vector3 origin = transform.position;
+        float direction = Mathf.Sign(moveInput);
+        float checkDistance = 0.6f; // iets groter dan halve player breedte
+        Vector3 checkDir = Vector3.right * direction;
+
+        if (moveInput != 0f && Physics.Raycast(origin, checkDir, checkDistance, groundLayer))
+        {
+            // Stop horizontale beweging als we iets raken
+            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x + movement, rb.linearVelocity.y, 0f);
+        }
+    }
+
+
+    void handleBoxMovement()
+    {
+        float desiredVelocity = moveInput * boxMoveSpeed;
         float speedDiff = desiredVelocity - rb.linearVelocity.x;
         float accelRate = Mathf.Abs(desiredVelocity) > 0.01f ? acceleration : deceleration;
         float movement = speedDiff * accelRate * Time.fixedDeltaTime;
@@ -208,13 +237,13 @@ public class playerMovement : MonoBehaviour
             {
                 jumpDirection += Vector3.right;
                 blockedDirection = -1;
-                wallJumpDirection = 1f; // Rechts
+                wallJumpDirection = 1f;
             }
             else if (isTouchingWallRight)
             {
                 jumpDirection += Vector3.left;
                 blockedDirection = 1;
-                wallJumpDirection = -1f; // Links
+                wallJumpDirection = -1f;
             }
 
             rb.linearVelocity = new Vector3(jumpDirection.x * wallJumpHorizontalForce, wallJumpForce, 0f);
@@ -223,7 +252,6 @@ public class playerMovement : MonoBehaviour
             wallJumpTimer = wallJumpControlDelay;
             wallJumpControlTimer = wallJumpControlLock;
             currentStamina -= wallJumpStaminaConsumption;
-            Debug.Log(currentStamina);
         }
         else if (isGrounded && !isGrabbing)
         {
