@@ -7,22 +7,22 @@ public class BoxGrabTrigger : MonoBehaviour
     private Rigidbody boxRb;
     private Collider boxCollider;
     private bool playerInCollider = false;
+    public GameObject puzzleParent;
 
     private void Start()
     {
         playerScript = GameObject.FindWithTag("Player").GetComponent<playerMovement>();
         originalParent = transform.parent;
-        boxRb = originalParent.GetComponent<Rigidbody>();
-        boxCollider = originalParent.GetComponent<Collider>();
     }
 
     private void Update()
     {
-        if (playerInCollider && playerScript.grabAttempt)
+        if (!playerInCollider || !playerScript.isGrounded) return;
+
+        if (playerScript.grabAttempt)
         {
             if (!playerScript.isGrabbing)
             {
-                Debug.Log("Grab attempt!");
                 playerScript.isGrabbing = true;
 
                 // Zet de box als child van de speler
@@ -31,17 +31,17 @@ public class BoxGrabTrigger : MonoBehaviour
         }
         else if (playerScript.isGrabbing && !playerScript.grabAttempt)
         {
-            Debug.Log("Release");
             playerScript.isGrabbing = false;
+            playerInCollider = false;
 
             // Zet de box terug naar originele parent
-            originalParent.SetParent(null);
+            originalParent.SetParent(puzzleParent.transform);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && playerScript.grabAttempt)
+        if (other.CompareTag("Player"))
         {
             playerInCollider = true;
         }
@@ -49,7 +49,7 @@ public class BoxGrabTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && playerScript.grabAttempt)
+        if (other.CompareTag("Player"))
         {
             playerInCollider = false;
         }

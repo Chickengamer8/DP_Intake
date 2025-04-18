@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.UI;
+using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
@@ -69,10 +70,13 @@ public class playerMovement : MonoBehaviour
     private Transform grabbedBox;
     private Collider grabbedBoxCollider;
 
+    [Header("Movie Mode")]
+    public bool canMove = true;
+
     private Rigidbody rb;
     private float moveInput;
     private bool jumpPressed;
-    private bool isGrounded;
+    public bool isGrounded;
     public bool isTouchingWallLeft;
     public bool isTouchingWallRight;
     private bool jumpRequested = false;
@@ -93,6 +97,8 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;
+
         if (!isWallJumping)
             moveInput = Input.GetAxisRaw("Horizontal");
 
@@ -128,11 +134,12 @@ public class playerMovement : MonoBehaviour
         {
             grabAttempt = false;
         }
-        Debug.Log(grabAttempt);
     }
 
     void FixedUpdate()
     {
+        if (!canMove) return;
+
         if (!isGrabbing)
         {
             handleMovement();
@@ -179,7 +186,6 @@ public class playerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3(rb.linearVelocity.x + movement, rb.linearVelocity.y, 0f);
         }
     }
-
 
     void handleBoxMovement()
     {

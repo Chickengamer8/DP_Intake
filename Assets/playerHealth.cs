@@ -1,5 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
+
+public static class CheckpointManager
+{
+    public static Vector3 lastCheckpoint = Vector3.zero;
+}
 
 public class playerHealth : MonoBehaviour
 {
@@ -7,24 +14,33 @@ public class playerHealth : MonoBehaviour
     public float currentHealth;
 
     [Header("Regen Settings")]
-    public float regenDelay = 3f;            // Seconden wachten na damage
-    public float regenRate = 5f;             // HP per seconde
+    public float regenDelay = 3f;
+    public float regenRate = 5f;
     private float timeSinceLastDamage = 0f;
 
     [Header("Health UI")]
     public Image healthBarFill;
 
+    private playerMovement playerMovementScript;
+    private Rigidbody rb;
+
     void Start()
     {
         currentHealth = maxHealth;
+        playerMovementScript = GetComponent<playerMovement>();
+        rb = GetComponent<Rigidbody>();
+
+        // Als er een checkpoint is opgeslagen, spawn daar
+        if (CheckpointManager.lastCheckpoint != Vector3.zero)
+        {
+            transform.position = CheckpointManager.lastCheckpoint;
+        }
     }
 
     void Update()
     {
-        // Regen timer opbouwen
         timeSinceLastDamage += Time.deltaTime;
 
-        // Als genoeg tijd is verstreken, begin met healen
         if (timeSinceLastDamage >= regenDelay && currentHealth < maxHealth)
         {
             RegenerateHealth();
@@ -38,7 +54,7 @@ public class playerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
-        timeSinceLastDamage = 0f; // Reset regen timer
+        timeSinceLastDamage = 0f;
 
         if (currentHealth <= 0)
         {
@@ -62,9 +78,32 @@ public class playerHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    public void SetCheckpoint(Vector3 newCheckpoint)
     {
-        Debug.Log("Speler is dood.");
-        // TODO: Respawn of Game Over logic
+        CheckpointManager.lastCheckpoint = newCheckpoint;
+    }
+
+    public void Die()
+    {
+        StartCoroutine(DeathSequence());
+    }
+
+    private IEnumerator DeathSequence()
+    {
+        // Zet velocity naar nul en geef ��n korte sprong
+        rb.linearVelocity = Vector3.zero;
+        rb.AddForce(Vector3.up * 5f, ForceMode.VelocityChange);
+
+        // Zet movement tijdelijk uit
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = false;
+        }
+
+        // Wacht even zodat speler "valt"
+        yield return new WaitForSeconds(1.5f);
+
+        // Laad de scene opnieuw
+        SceneManager.LoadScene("level1");
     }
 }

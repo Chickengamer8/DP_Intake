@@ -11,39 +11,34 @@ public class eyeVision : MonoBehaviour
     public float detectionRange = 20f;
     public float damageInterval = 1f;
     public float damagePerTick = 10f;
+    public LayerMask hideLayer;
 
     private playerHealth playerHealth;
-    private playerHideDetector hideDetector;
     private float damageTimer;
 
     [Header("Ramp-up Damage Settings")]
     public float damageMultiplier = 1f;
-    public float damageIncreaseRate = 0.5f; // Hoe snel damage stijgt per seconde
+    public float damageIncreaseRate = 0.5f;
     public float maxDamageMultiplier = 5f;
-    public float recoveryRate = 1f; // Hoe snel het afneemt als je verborgen bent
+    public float recoveryRate = 1f;
+
+    public bool canSeePlayer = true;
 
     void Start()
     {
         if (player != null)
-        {
             playerHealth = player.GetComponent<playerHealth>();
-            hideDetector = player.GetComponent<playerHideDetector>();
-        }
 
         damageTimer = damageInterval;
     }
 
     void Update()
     {
-        if (player == null || playerHealth == null || hideDetector == null)
+        if (player == null || playerHealth == null)
             return;
 
-        float distance = Vector3.Distance(transform.position, player.position);
-        bool isInSight = distance <= detectionRange && !hideDetector.isHidden;
-
-        if (isInSight)
+        if (canSeePlayer)
         {
-            // Bouw schade op zolang speler zichtbaar is
             damageMultiplier += damageIncreaseRate * Time.deltaTime;
             damageMultiplier = Mathf.Clamp(damageMultiplier, 1f, maxDamageMultiplier);
 
@@ -51,13 +46,11 @@ public class eyeVision : MonoBehaviour
         }
         else
         {
-            // Reset langzaam naar normale waarde
             damageMultiplier -= recoveryRate * Time.deltaTime;
             damageMultiplier = Mathf.Clamp(damageMultiplier, 1f, maxDamageMultiplier);
             damageTimer = damageInterval;
         }
     }
-
 
     void ApplyDamageOverTime()
     {
