@@ -39,6 +39,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: parallax5
+    uniqueID: 1902451289
+    locked: 0
+  - name: parallax4
+    uniqueID: 4028428623
+    locked: 0
+  - name: parallax3
+    uniqueID: 3866563167
+    locked: 0
+  - name: parallax2
+    uniqueID: 2086106475
+    locked: 0
+  - name: parallax1
+    uniqueID: 2446779597
+    locked: 0
   - name: Background1
     uniqueID: 2212801849
     locked: 0
@@ -56,6 +71,15 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 3230973857
+    locked: 0
+  - name: UI
+    uniqueID: 3594582601
+    locked: 0
+  - name: foreground1
+    uniqueID: 579571603
+    locked: 0
+  - name: foreground2
+    uniqueID: 3543571883
     locked: 0
   m_RenderingLayers:
   - Default

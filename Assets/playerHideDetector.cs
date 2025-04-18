@@ -3,7 +3,7 @@ using UnityEngine;
 public class playerHideDetector : MonoBehaviour
 {
     private int hideZoneCount = 0;
-    public bool isHidden => hideZoneCount > 0;
+    public bool isHidden => hideZoneCount > 1;
     public eyeVision vision;
 
     void Start()
@@ -22,7 +22,7 @@ public class playerHideDetector : MonoBehaviour
     private void Update()
     {
         Debug.Log(hideZoneCount);
-        if (hideZoneCount <= 0) vision.canSeePlayer = true;
+        if (!isHidden) vision.canSeePlayer = true;
         else vision.canSeePlayer = false;
     }
 
