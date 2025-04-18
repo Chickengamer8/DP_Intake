@@ -21,7 +21,6 @@ public class playerHideDetector : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(hideZoneCount);
         if (!isHidden) vision.canSeePlayer = true;
         else vision.canSeePlayer = false;
     }

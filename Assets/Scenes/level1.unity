@@ -5154,7 +5154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3b0971a63ef9a40a3d0e22c978070a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: level2
+  sceneToLoad: safehouse1
   fadeDuration: 3
 --- !u!65 &1097795416
 BoxCollider:
@@ -7217,6 +7217,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1511135674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1511135676}
+  - component: {fileID: 1511135675}
+  m_Layer: 0
+  m_Name: robotState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1511135675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511135674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d81d939b7a8dba4cb455dad8e2c3430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  insertedBatteries: 0
+--- !u!4 &1511135676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511135674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 489.13217, y: 187.93489, z: -13.783945}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1518367041
 GameObject:
   m_ObjectHideFlags: 0
@@ -11328,3 +11373,4 @@ SceneRoots:
   - {fileID: 1919419542}
   - {fileID: 1718566554}
   - {fileID: 1058814984}
+  - {fileID: 1511135676}

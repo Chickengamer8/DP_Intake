@@ -9,8 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/level1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/Scenes/safehouse1.unity
+    guid: 91d99bd9b9738694aa4df8aae2b048b9
+  - enabled: 1
     path: Assets/Scenes/level2.unity
     guid: 4c3062923abf7394e8f79695b2ae0dd9
+  - enabled: 1
+    path: Assets/Scenes/safehouse2.unity
+    guid: f37113c88058f6649b53307b3b1e8298
+  - enabled: 1
+    path: Assets/Scenes/level3.unity
+    guid: fab3074b2851765469b17642d99f0456
+  - enabled: 1
+    path: Assets/Scenes/level4.unity
+    guid: c0c16e85f90d52344af71e6c0471615b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
