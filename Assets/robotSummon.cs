@@ -9,10 +9,10 @@ public class robotSummon : MonoBehaviour
     private float killDelay = 1.5f;
     public GameObject platform;
 
-    public void StartSequence(Transform summonPoint, Transform returnTo, float delayBetweenKills)
+    public void StartSequence(Transform robotWaypoint, Transform returnTo, float delayBetweenKills)
     {
         killDelay = delayBetweenKills;
-        StartCoroutine(ApproachAndDestroy(summonPoint, returnTo));
+        StartCoroutine(ApproachAndDestroy(robotWaypoint, returnTo));
     }
 
     private IEnumerator ApproachAndDestroy(Transform target, Transform returnTo)
