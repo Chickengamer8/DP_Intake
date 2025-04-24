@@ -1,5 +1,4 @@
-﻿using UnityEditor.UI;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
@@ -45,7 +44,6 @@ public class playerMovement : MonoBehaviour
 
     [Header("Gravity Settings")]
     public float fallMultiplier = 4f;
-    public float lowJumpMultiplier = 4f;
 
     [Header("Wall-Sticking")]
     public float wallStickDuration = 1f;
@@ -109,9 +107,6 @@ public class playerMovement : MonoBehaviour
 
         isTouchingWallLeft = Physics.CheckSphere(wallCheckLeft.position, wallCheckRadius, wallJumpLayer);
         isTouchingWallRight = Physics.CheckSphere(wallCheckRight.position, wallCheckRadius, wallJumpLayer);
-
-        Debug.Log(isTouchingWallLeft);
-        Debug.Log(isTouchingWallRight);
 
         if (jumpPressed && (isGrounded || isTouchingWallLeft || isTouchingWallRight))
         {
@@ -257,10 +252,6 @@ public class playerMovement : MonoBehaviour
         if (rb.linearVelocity.y < 0 && !isGrounded)
         {
             rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
-        }
-        else if (!Input.GetButton("Jump") && rb.linearVelocity.y > 0 && !isGrounded)
-        {
-            rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1f) * Time.fixedDeltaTime;
         }
     }
 

@@ -9,15 +9,26 @@ public class hideHornSummon : MonoBehaviour
     public Transform pointB;
     public float moveSpeed = 2f;
 
+    [Header("Audio")]
+    public AudioClip hornSound;
+
     private GameObject spawnedRobot;
     private Vector3 targetPoint;
+    private AudioSource audioSource;
 
     private bool playerInZone = false;
     private bool robotActive = false;
 
+    void Start()
+    {
+        // Voeg een AudioSource toe als er nog geen is
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = hornSound;
+    }
+
     void Update()
     {
-        // Check voor input terwijl speler in de triggerzone is
         if (playerInZone && !robotActive && Input.GetKeyDown(KeyCode.E))
         {
             ActivateHorn();
@@ -59,5 +70,10 @@ public class hideHornSummon : MonoBehaviour
         spawnedRobot = Instantiate(robotPrefab, spawnPoint.position, Quaternion.identity);
         robotActive = true;
         targetPoint = pointA.position;
+
+        if (hornSound != null)
+        {
+            audioSource.Play();
+        }
     }
 }

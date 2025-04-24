@@ -9,9 +9,14 @@ public class leverController : MonoBehaviour
     public Vector2 hiddenPosition;
     public float slideSpeed = 5f;
 
+    [Header("Teleport Settings")]
+    public GameObject objectToTeleport;
+    public Transform teleportTarget;
+
     private bool playerInRange = false;
     private bool promptVisible = false;
     private bool isRotated = false;
+    private bool hasTeleported = false;
 
     private void Start()
     {
@@ -24,6 +29,7 @@ public class leverController : MonoBehaviour
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             RotateTarget();
+            TeleportObject();
         }
 
         // Slide prompt in/out
@@ -40,6 +46,15 @@ public class leverController : MonoBehaviour
         {
             targetObject.transform.Rotate(0f, 0f, 90f);
             isRotated = true;
+        }
+    }
+
+    private void TeleportObject()
+    {
+        if (!hasTeleported && objectToTeleport != null && teleportTarget != null)
+        {
+            objectToTeleport.transform.position = teleportTarget.position;
+            hasTeleported = true;
         }
     }
 
