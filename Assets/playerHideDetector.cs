@@ -21,6 +21,8 @@ public class playerHideDetector : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Hide layers:");
+        Debug.Log(hideZoneCount);
         if (!isHidden) vision.canSeePlayer = true;
         else vision.canSeePlayer = false;
     }
@@ -37,7 +39,7 @@ public class playerHideDetector : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Hide"))
         {
-            hideZoneCount = Mathf.Max(0, hideZoneCount - 1);
+            hideZoneCount--;
         }
     }
 }

@@ -12,6 +12,7 @@ public class playerHealth : MonoBehaviour
 {
     public float maxHealth = 100f;
     public float currentHealth;
+    public string loadScene;
 
     [Header("Regen Settings")]
     public float regenDelay = 3f;
@@ -104,6 +105,6 @@ public class playerHealth : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         // Laad de scene opnieuw
-        SceneManager.LoadScene("level1");
+        SceneManager.LoadScene(loadScene);
     }
 }

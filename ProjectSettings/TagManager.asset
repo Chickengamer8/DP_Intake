@@ -13,7 +13,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - wallJump
+  - 
   - Player
   - Hide
   - Eye
@@ -63,6 +63,15 @@ TagManager:
     locked: 0
   - name: Hide
     uniqueID: 2214297721
+    locked: 0
+  - name: Building
+    uniqueID: 771682747
+    locked: 0
+  - name: Building2
+    uniqueID: 2963118163
+    locked: 0
+  - name: Building3
+    uniqueID: 15050063
     locked: 0
   - name: Box
     uniqueID: 1620410825
