@@ -45,7 +45,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.95938164, g: 0.6767188, b: 0.6767188, a: 1}
+    - _Color: {r: 0.82769185, g: 0.5003042, b: 0.5003042, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
