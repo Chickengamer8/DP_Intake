@@ -109,7 +109,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -650,7 +650,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -659,7 +659,29 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Alever_0: 7391102071151097000
+      Alever_1: 4342612536956887443
+      Alever_10: 7981790491620270497
+      Alever_11: 5676713278467702240
+      Alever_12: 5608413062994090815
+      Alever_13: -4439639973806327286
+      Alever_14: 7227649376283032147
+      Alever_15: 3664494718048079603
+      Alever_16: -3544360467437490065
+      Alever_17: -7258209665683846269
+      Alever_18: -5076438935159768348
+      Alever_19: 1269977256035198733
+      Alever_2: 5992558279264677505
+      Alever_20: 1994140380195996559
+      Alever_21: -2065513817832673599
+      Alever_3: -2576680327073404150
+      Alever_4: -832332000177052198
+      Alever_5: -8431248254945939873
+      Alever_6: 8176791913633315285
+      Alever_7: 4479639896868101889
+      Alever_8: 8254432904329847840
+      Alever_9: -1336668914058916729
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

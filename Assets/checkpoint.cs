@@ -1,33 +1,50 @@
 using UnityEngine;
 
-public class checkpoint : MonoBehaviour
+public class Checkpoint : MonoBehaviour
 {
-    public Material inactiveMaterial;
-    public Material activeMaterial;
+    [Header("Sprites")]
+    public Sprite inactiveSprite;
+    public Sprite activeSprite;
 
-    private Renderer checkpointRenderer;
-    private bool isActivated = false;
+    [Header("Checkpoint ID (optioneel)")]
+    public int checkpointID;
+
+    private SpriteRenderer spriteRenderer;
+    private bool isActive = false;
 
     void Start()
     {
-        checkpointRenderer = GetComponent<Renderer>();
-        checkpointRenderer.material = inactiveMaterial;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null && inactiveSprite != null)
+            spriteRenderer.sprite = inactiveSprite;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (isActivated) return;
-
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isActive)
         {
-            playerHealth playerHealthScript = other.GetComponent<playerHealth>();
-            if (playerHealthScript != null)
-            {
-                playerHealthScript.SetCheckpoint(transform.position);
-            }
-
-            checkpointRenderer.material = activeMaterial;
-            isActivated = true;
+            ActivateCheckpoint(other.transform);
         }
+    }
+
+    private void ActivateCheckpoint(Transform player)
+    {
+        isActive = true;
+
+        if (spriteRenderer != null && activeSprite != null)
+            spriteRenderer.sprite = activeSprite;
+
+        // Zet checkpoint data
+        CheckpointManager.lastCheckpoint = transform.position;
+        CheckpointManager.hasCheckpoint = true;
+
+        // Roep eventueel extra logica aan
+        playerHealth health = player.GetComponent<playerHealth>();
+        if (health != null)
+        {
+            health.SetCheckpoint(transform.position);
+        }
+
+        Debug.Log("Checkpoint " + checkpointID + " activated!");
     }
 }

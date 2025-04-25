@@ -54,6 +54,9 @@ public class moveBigBox : MonoBehaviour
                 isGrabbed = false;
                 autoMoveStarted = true;
                 currentPointIndex = 1;
+
+                if (boxCollider != null)
+                    boxCollider.isTrigger = true;
             }
         }
         else

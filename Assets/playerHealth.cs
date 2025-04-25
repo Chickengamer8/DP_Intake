@@ -6,6 +6,7 @@ using System.Collections;
 public static class CheckpointManager
 {
     public static Vector3 lastCheckpoint = Vector3.zero;
+    public static bool hasCheckpoint = false;
 }
 
 public class playerHealth : MonoBehaviour
@@ -31,10 +32,22 @@ public class playerHealth : MonoBehaviour
         playerMovementScript = GetComponent<playerMovement>();
         rb = GetComponent<Rigidbody>();
 
-        // Als er een checkpoint is opgeslagen, spawn daar
-        if (CheckpointManager.lastCheckpoint != Vector3.zero)
+        // Zoek het spawnPoint als er geen actief checkpoint is
+        if (CheckpointManager.hasCheckpoint)
         {
             transform.position = CheckpointManager.lastCheckpoint;
+        }
+        else
+        {
+            GameObject spawn = GameObject.Find("spawnPoint");
+            if (spawn != null)
+            {
+                transform.position = spawn.transform.position;
+            }
+            else
+            {
+                Debug.LogWarning("Geen spawnPoint gevonden!");
+            }
         }
     }
 
@@ -54,7 +67,6 @@ public class playerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
-
         timeSinceLastDamage = 0f;
 
         if (currentHealth <= 0)
@@ -82,6 +94,7 @@ public class playerHealth : MonoBehaviour
     public void SetCheckpoint(Vector3 newCheckpoint)
     {
         CheckpointManager.lastCheckpoint = newCheckpoint;
+        CheckpointManager.hasCheckpoint = true;
     }
 
     public void Die()
@@ -91,20 +104,15 @@ public class playerHealth : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
-        // Zet velocity naar nul en geef ��n korte sprong
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(Vector3.up * 5f, ForceMode.VelocityChange);
 
-        // Zet movement tijdelijk uit
         if (playerMovementScript != null)
         {
             playerMovementScript.enabled = false;
         }
 
-        // Wacht even zodat speler "valt"
         yield return new WaitForSeconds(1.5f);
-
-        // Laad de scene opnieuw
         SceneManager.LoadScene(loadScene);
     }
 }
