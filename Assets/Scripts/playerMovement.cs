@@ -3,286 +3,154 @@
 public class playerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 7f;
-    private float moveSpeedVar;
-    public float acceleration = 20f;
-    public float deceleration = 25f;
-    public float runSpeed = 10f;
-    private float runSpeedVar;
-    public float maxHorizontalSpeed = 15f;
-    public float maxVerticalSpeed = 25f;
+    public float moveSpeed = 8f;
+    public float jumpForce = 16f;
+    public Vector2 wallJumpForce = new Vector2(10f, 16f);
 
-    [Header("Stamina")]
+    [Header("Movement Tuning")]
+    public float acceleration = 60f;
+    public float deceleration = 30f;
+    public float airAcceleration = 30f;
+    public float airDeceleration = 5f;
+
+    [Header("Jump Tuning")]
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
+
+    [Header("Stamina Settings")]
     public float maxStamina = 100f;
-    public float currentStamina;
-    public float staminaRegenRate = 15f;
-    public float staminaDrainRate = 20f;
+    public float staminaRegenRate = 10f;
     public float jumpStaminaConsumption = 5f;
-    public float wallJumpStaminaConsumption = 15f;
+    public float wallJumpStaminaConsumption = 10f;
+    public float currentStamina;
 
-    [Header("Jumping Settings")]
-    public float jumpForce = 12f;
-    private float jumpForceVar;
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
-    public float maxFallSpeed = 10f;
-
-    [Header("Wall Jump Settings")]
-    public Transform wallCheckLeft;
-    public Transform wallCheckRight;
-    public float wallCheckRadius = 0.2f;
-    public LayerMask wallJumpLayer;
-    public float wallJumpForce = 12f;
-    public float wallJumpPush = 10f;
-    public float wallJumpControlDelay = 1f;
-    private int blockedDirection = 0;
-    private float wallJumpHorizontalForce = 7f;
-    private float wallJumpControlLock = 0.2f;
-    private float wallJumpControlTimer = 0f;
-    private float wallJumpDirection = 0f;
-
-    [Header("Gravity Settings")]
-    public float fallMultiplier = 4f;
-
-    [Header("Wall-Sticking")]
-    public float wallStickDuration = 1f;
-    public float wallSlideAcceleration = 10f;
-    private float wallStickTimer = 0f;
-    private bool isStickingToWall = false;
-
-    [Header("Exhaust Settings")]
-    public float exhaustMoveSpeed = 3f;
-    public float exhaustRunSpeed = 4f;
-    public float exhaustJumpForce = 6f;
-    private bool isExhausted = false;
-
-    [Header("Box Grabbing")]
+    [Header("Grabbing")]
     public float boxMoveSpeed = 3f;
-    [HideInInspector] public bool isGrabbing = false;
-    [HideInInspector] public bool grabAttempt = false;
-    [HideInInspector] public bool nearBox = false;
-    private Transform grabbedBox;
-    private Collider grabbedBoxCollider;
+    public bool isGrabbing = false;
+    public bool grabAttempt = false;
+    public bool nearBox = false;
 
     [Header("Movie Mode")]
     public bool canMove = true;
 
+    [Header("Ground & Wall Detection")]
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
+    public Transform wallCheckLeft;
+    public Transform wallCheckRight;
+    public float wallCheckRadius = 0.2f;
+    public LayerMask wallLayer;
+
+    [HideInInspector]
+    public bool isGrounded = false;
+    private bool isOnWall = false;
+    private int wallDir;
+
     private Rigidbody rb;
-    private float moveInput;
-    private bool jumpPressed;
-    public bool isGrounded;
-    public bool isTouchingWallLeft;
-    public bool isTouchingWallRight;
-    private bool jumpRequested = false;
-    private bool isRunning = false;
-    private bool isWallJumping = false;
-    private float wallJumpTimer = 0f;
+    private float inputX;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         currentStamina = maxStamina;
-        moveSpeedVar = moveSpeed;
-        runSpeedVar = runSpeed;
-        jumpForceVar = jumpForce;
-        groundLayer = LayerMask.GetMask("Ground", "Box");
+        groundLayer = LayerMask.GetMask("Ground", "Box"); // gronden + boxes
     }
 
     void Update()
     {
         if (!canMove) return;
 
-        if (!isWallJumping)
-            moveInput = Input.GetAxisRaw("Horizontal");
-
-        jumpPressed = Input.GetButtonDown("Jump");
-
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
-        if (isGrounded && blockedDirection != 0)
-        {
-            blockedDirection = 0;
-            isWallJumping = false;
-        }
-
-        isTouchingWallLeft = Physics.CheckSphere(wallCheckLeft.position, wallCheckRadius, wallJumpLayer);
-        isTouchingWallRight = Physics.CheckSphere(wallCheckRight.position, wallCheckRadius, wallJumpLayer);
-
-        if (jumpPressed && (isGrounded || isTouchingWallLeft || isTouchingWallRight))
-        {
-            jumpRequested = true;
-        }
-
-        if (isWallJumping)
-        {
-            wallJumpTimer -= Time.deltaTime;
-            if (wallJumpTimer <= 0f)
-                isWallJumping = false;
-        }
-
+        inputX = Input.GetAxisRaw("Horizontal");
         grabAttempt = Input.GetMouseButton(1);
+
+        UpdateGroundAndWallStatus();
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (isGrounded && !isGrabbing) Jump();
+            else if (isOnWall && !isGrabbing) WallJump();
+        }
+
+        if (!isGrabbing && currentStamina < maxStamina)
+        {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
     }
 
     void FixedUpdate()
     {
         if (!canMove) return;
 
-        if (!isGrabbing)
-            handleMovement();
-        else
-            handleBoxMovement();
+        HandleMovement(inputX);
 
-        handleJump();
-        applyExtraGravity();
-        handleWallStick();
-        handleStamina();
+        ApplyGravityTweaks();
     }
 
-    void handleMovement()
+    private void UpdateGroundAndWallStatus()
     {
-        float baseSpeed = (Input.GetKey(KeyCode.LeftShift) ? runSpeedVar : moveSpeedVar);
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        bool touchingLeft = Physics.CheckSphere(wallCheckLeft.position, wallCheckRadius, wallLayer);
+        bool touchingRight = Physics.CheckSphere(wallCheckRight.position, wallCheckRadius, wallLayer);
 
-        if (wallJumpControlTimer > 0f)
+        isOnWall = !isGrounded && (touchingLeft || touchingRight);
+        wallDir = touchingLeft ? -1 : (touchingRight ? 1 : 0);
+    }
+
+    private void HandleMovement(float input)
+    {
+        float targetSpeed = input * (isGrabbing ? boxMoveSpeed : moveSpeed);
+        float speedDiff = targetSpeed - rb.linearVelocity.x;
+        float accelRate = isGrounded
+            ? (Mathf.Abs(targetSpeed) > 0.01f ? acceleration : deceleration)
+            : (Mathf.Abs(targetSpeed) > 0.01f ? airAcceleration : airDeceleration);
+
+        float movement = accelRate * Time.fixedDeltaTime;
+
+        if (Mathf.Abs(speedDiff) <= movement)
         {
-            wallJumpControlTimer -= Time.fixedDeltaTime;
-            moveInput = wallJumpDirection;
-        }
-
-        float desiredVelocity = moveInput * baseSpeed;
-        float speedDiff = desiredVelocity - rb.linearVelocity.x;
-        float accelRate = Mathf.Abs(desiredVelocity) > 0.01f ? acceleration : deceleration;
-        float movement = speedDiff * accelRate * Time.fixedDeltaTime;
-
-        Vector3 origin = transform.position;
-        float direction = Mathf.Sign(moveInput);
-        float checkDistance = 0.6f;
-        Vector3 checkDir = Vector3.right * direction;
-
-        if (moveInput != 0f && Physics.Raycast(origin, checkDir, checkDistance, groundLayer))
-        {
-            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+            rb.linearVelocity = new Vector3(targetSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
         }
         else
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x + movement, rb.linearVelocity.y, 0f);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x + Mathf.Sign(speedDiff) * movement, rb.linearVelocity.y, rb.linearVelocity.z);
         }
     }
 
-    void handleBoxMovement()
+    private void Jump()
     {
-        float desiredVelocity = moveInput * boxMoveSpeed;
-        float speedDiff = desiredVelocity - rb.linearVelocity.x;
-        float accelRate = Mathf.Abs(desiredVelocity) > 0.01f ? acceleration : deceleration;
-        float movement = speedDiff * accelRate * Time.fixedDeltaTime;
+        if (currentStamina < jumpStaminaConsumption) return;
+        currentStamina -= jumpStaminaConsumption;
 
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x + movement, rb.linearVelocity.y, 0f);
+        Vector3 v = rb.linearVelocity;
+        v.y = 0f;
+        rb.linearVelocity = v;
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+        isGrounded = false;
     }
 
-    void handleStamina()
+    private void WallJump()
     {
-        bool wantsToRun = Input.GetKey(KeyCode.LeftShift) && Mathf.Abs(moveInput) > 0.1f && isGrounded;
-        bool canSprint = currentStamina > 1f;
-        isRunning = wantsToRun && canSprint;
+        if (currentStamina < wallJumpStaminaConsumption) return;
+        currentStamina -= wallJumpStaminaConsumption;
 
-        if (isRunning)
-            currentStamina -= staminaDrainRate * Time.deltaTime;
-        else if (isGrounded && !Input.GetKey(KeyCode.LeftShift))
-            currentStamina += staminaRegenRate * Time.deltaTime;
-
-        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-
-        if (currentStamina <= 2f)
-        {
-            isExhausted = true;
-            moveSpeedVar = exhaustMoveSpeed;
-            runSpeedVar = exhaustRunSpeed;
-            jumpForceVar = exhaustJumpForce;
-        }
-        else if (currentStamina >= 20f && isExhausted)
-        {
-            isExhausted = false;
-            moveSpeedVar = moveSpeed;
-            runSpeedVar = runSpeed;
-            jumpForceVar = jumpForce;
-        }
+        isOnWall = false;
+        Vector3 jumpDirection = new Vector3(-wallDir * wallJumpForce.x, wallJumpForce.y, 0);
+        rb.linearVelocity = Vector3.zero;
+        rb.AddForce(jumpDirection, ForceMode.Impulse);
     }
 
-    void handleJump()
+    private void ApplyGravityTweaks()
     {
-        if (!jumpRequested) return;
-
-        if ((isTouchingWallLeft || isTouchingWallRight) && !isExhausted && !isGrabbing)
+        if (rb.linearVelocity.y < 0)
         {
-            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
-            Vector3 jumpDirection = Vector3.up;
-
-            if (isTouchingWallLeft)
-            {
-                jumpDirection += Vector3.right;
-                blockedDirection = -1;
-                wallJumpDirection = 1f;
-            }
-            else if (isTouchingWallRight)
-            {
-                jumpDirection += Vector3.left;
-                blockedDirection = 1;
-                wallJumpDirection = -1f;
-            }
-
-            rb.linearVelocity = new Vector3(jumpDirection.x * wallJumpHorizontalForce, wallJumpForce, 0f);
-            isWallJumping = true;
-            wallJumpTimer = wallJumpControlDelay;
-            wallJumpControlTimer = wallJumpControlLock;
-            currentStamina -= wallJumpStaminaConsumption;
+            rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
-        else if (isGrounded && !isGrabbing)
+        else if (rb.linearVelocity.y > 0 && !Input.GetButton("Jump"))
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForceVar, 0f);
-            blockedDirection = 0;
-            currentStamina -= jumpStaminaConsumption;
-        }
-
-        jumpRequested = false;
-    }
-
-    void applyExtraGravity()
-    {
-        if (isStickingToWall) return;
-
-        if (rb.linearVelocity.y < 0 && !isGrounded)
-        {
-            rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
-        }
-    }
-
-    void handleWallStick()
-    {
-        bool touchingWall = isTouchingWallLeft || isTouchingWallRight;
-        bool falling = !isGrounded && rb.linearVelocity.y <= 0f;
-
-        if (touchingWall && falling)
-        {
-            if (!isStickingToWall)
-            {
-                isStickingToWall = true;
-                wallStickTimer = wallStickDuration;
-            }
-
-            if (wallStickTimer > 0f)
-            {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, 0f);
-                wallStickTimer -= Time.deltaTime;
-            }
-            else
-            {
-                float newY = rb.linearVelocity.y - wallSlideAcceleration * Time.deltaTime;
-                newY = Mathf.Clamp(newY, -maxVerticalSpeed, 0f);
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, newY, 0f);
-            }
-        }
-        else
-        {
-            isStickingToWall = false;
+            rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
 
@@ -293,13 +161,11 @@ public class playerMovement : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
-
         if (wallCheckLeft != null)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(wallCheckLeft.position, wallCheckRadius);
         }
-
         if (wallCheckRight != null)
         {
             Gizmos.color = Color.blue;

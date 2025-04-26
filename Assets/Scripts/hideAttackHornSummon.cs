@@ -88,13 +88,20 @@ public class hideAttackHornSummon : MonoBehaviour
     {
         Vector3 targetPos = player.position + Vector3.left * followDistance;
 
-        // Limiteer movement tot het movementLimitPoint
-        if (movementLimitPoint != null && targetPos.x < movementLimitPoint.position.x)
+        if (movementLimitPoint != null)
         {
-            targetPos.x = movementLimitPoint.position.x;
+            // Robot mag speler volgen, maar niet verder dan het limit point
+            if (targetPos.x > movementLimitPoint.position.x)
+            {
+                targetPos.x = movementLimitPoint.position.x;
+            }
         }
 
-        robot.transform.position = Vector3.MoveTowards(robot.transform.position, targetPos, followSpeed * Time.deltaTime);
+        // Verplaats robot alleen als de afstand groter is dan een kleine drempel
+        if (Vector3.Distance(robot.transform.position, targetPos) > 0.1f)
+        {
+            robot.transform.position = Vector3.MoveTowards(robot.transform.position, targetPos, followSpeed * Time.deltaTime);
+        }
     }
 
     private void SearchForEnemies()

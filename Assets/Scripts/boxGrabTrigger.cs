@@ -3,19 +3,20 @@ using UnityEngine;
 public class BoxGrabTrigger : MonoBehaviour
 {
     private playerMovement playerScript;
-    private Transform originalParent;
     private Rigidbody boxRb;
-    private Collider boxCollider;
     private bool playerInCollider = false;
-    public GameObject puzzleParent;
+    private FixedJoint grabJoint = null;
 
-    private void Start()
+    void Start()
     {
         playerScript = GameObject.FindWithTag("Player").GetComponent<playerMovement>();
-        originalParent = transform.parent;
+        boxRb = GetComponent<Rigidbody>();
+
+        // Zorg dat de box in eerste instantie niet zomaar verschuift
+        boxRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
     }
 
-    private void Update()
+    void Update()
     {
         if (!playerInCollider || !playerScript.isGrounded) return;
 
@@ -24,19 +25,37 @@ public class BoxGrabTrigger : MonoBehaviour
             if (!playerScript.isGrabbing)
             {
                 playerScript.isGrabbing = true;
-
-                // Zet de box als child van de speler
-                originalParent.SetParent(playerScript.transform);
+                AttachBoxToPlayer();
             }
         }
-        else if (playerScript.isGrabbing && !playerScript.grabAttempt)
+        else if (playerScript.isGrabbing)
         {
             playerScript.isGrabbing = false;
-            playerInCollider = false;
-
-            // Zet de box terug naar originele parent
-            originalParent.SetParent(puzzleParent.transform);
+            DetachBoxFromPlayer();
         }
+    }
+
+    private void AttachBoxToPlayer()
+    {
+        grabJoint = gameObject.AddComponent<FixedJoint>();
+        grabJoint.connectedBody = playerScript.GetComponent<Rigidbody>();
+        grabJoint.breakForce = 1000f;
+        grabJoint.breakTorque = 1000f;
+
+        // Ontvries positie zodat de box kan bewegen
+        boxRb.constraints = RigidbodyConstraints.FreezeRotation;
+    }
+
+    private void DetachBoxFromPlayer()
+    {
+        if (grabJoint != null)
+        {
+            Destroy(grabJoint);
+            grabJoint = null;
+        }
+
+        // Vries de box weer vast zodat hij niet meer beweegt
+        boxRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
     }
 
     private void OnTriggerEnter(Collider other)

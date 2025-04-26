@@ -8,6 +8,8 @@ public class moveBigBox : MonoBehaviour
     public float speedMultiplier = 1f;
     public Renderer boxRenderer;
     public Color endColor = Color.white;
+    public MonoBehaviour movableBoxScript; // Script om te activeren
+    public GameObject objectToActivate;     // Nieuw! Object om te activeren
 
     private int currentPointIndex = 0;
     private bool isMoving = false;
@@ -27,6 +29,16 @@ public class moveBigBox : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = true;
+        }
+
+        if (movableBoxScript != null)
+        {
+            movableBoxScript.enabled = false;
+        }
+
+        if (objectToActivate != null)
+        {
+            objectToActivate.SetActive(false);
         }
     }
 
@@ -54,9 +66,6 @@ public class moveBigBox : MonoBehaviour
                 isGrabbed = false;
                 autoMoveStarted = true;
                 currentPointIndex = 1;
-
-                if (boxCollider != null)
-                    boxCollider.isTrigger = true;
             }
         }
         else
@@ -82,7 +91,6 @@ public class moveBigBox : MonoBehaviour
         {
             transform.position = targetPoint.position;
 
-            // Als laatste punt bereikt, forceer exacte rotatie, zet trigger aan en verander kleur
             if (currentPointIndex == pathPoints.Length - 1)
             {
                 transform.rotation = targetPoint.rotation;
@@ -97,7 +105,17 @@ public class moveBigBox : MonoBehaviour
                     boxRenderer.material.color = endColor;
                 }
 
-                enabled = false; // Stop script
+                if (movableBoxScript != null)
+                {
+                    movableBoxScript.enabled = true;
+                }
+
+                if (objectToActivate != null)
+                {
+                    objectToActivate.SetActive(true);
+                }
+
+                this.enabled = false; // Zet moveBigBox script uit
             }
             else
             {
