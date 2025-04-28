@@ -15,7 +15,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - addCollider
   - Player
   - Hide
   - Eye

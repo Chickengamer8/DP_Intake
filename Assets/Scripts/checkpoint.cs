@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Checkpoint : MonoBehaviour
+public class checkpoint : MonoBehaviour
 {
     [Header("Sprites")]
     public Sprite inactiveSprite;
@@ -34,17 +34,11 @@ public class Checkpoint : MonoBehaviour
         if (spriteRenderer != null && activeSprite != null)
             spriteRenderer.sprite = activeSprite;
 
-        // Zet checkpoint data
-        CheckpointManager.lastCheckpoint = transform.position;
-        CheckpointManager.hasCheckpoint = true;
-
-        // Roep eventueel extra logica aan
-        playerHealth health = player.GetComponent<playerHealth>();
-        if (health != null)
+        if (globalPlayerStats.instance != null)
         {
-            health.SetCheckpoint(transform.position);
+            globalPlayerStats.instance.SetCheckpoint(transform.position);
         }
 
-        Debug.Log("Checkpoint " + checkpointID + " activated!");
+        Debug.Log($"[Checkpoint] Activated checkpoint {checkpointID} at {transform.position}");
     }
 }

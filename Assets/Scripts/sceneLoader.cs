@@ -8,7 +8,7 @@ public class sceneLoader : MonoBehaviour
 
     private void Start()
     {
-        fade = FindObjectOfType<fadeManager>();
+        fade = FindFirstObjectByType<fadeManager>();
         if (fade == null)
         {
             Debug.LogWarning("fadeManager not found in scene. Scene transition will be instant.");

@@ -3,15 +3,13 @@ using UnityEngine.UI;
 
 public class playerUI : MonoBehaviour
 {
-    [Header("UI Reference")]
-    public Image healthBarImage;    // Sleep hier de health bar Image in
-    public Image staminaBarImage;   // Sleep hier de stamina bar Image in
+    [Header("UI References")]
+    public Image healthBarImage;
+    public Image staminaBarImage;
 
-    [Header("Health Reference")]
-    public playerHealth playerHealth;   // Sleep hier het playerHealth script in
-
-    [Header("Stamina Reference")]
-    public playerMovement playerMovement; // Sleep hier het playerMovement script in
+    [Header("Player References")]
+    public playerHealth playerHealth;
+    public playerMovement playerMovement;
 
     void Update()
     {
@@ -19,20 +17,22 @@ public class playerUI : MonoBehaviour
         UpdateStaminaBar();
     }
 
-    void UpdateHealthBar()
+    private void UpdateHealthBar()
     {
         if (healthBarImage != null && playerHealth != null)
         {
-            float healthPercent = playerHealth.currentHealth / playerHealth.maxHealth;
+            float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
+            float healthPercent = playerHealth.currentHealth / maxHealth;
             healthBarImage.fillAmount = Mathf.Clamp01(healthPercent);
         }
     }
 
-    void UpdateStaminaBar()
+    private void UpdateStaminaBar()
     {
         if (staminaBarImage != null && playerMovement != null)
         {
-            float staminaPercent = playerMovement.currentStamina / playerMovement.maxStamina;
+            float maxStamina = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxStamina : 100f;
+            float staminaPercent = playerMovement.currentStamina / maxStamina;
             staminaBarImage.fillAmount = Mathf.Clamp01(staminaPercent);
         }
     }

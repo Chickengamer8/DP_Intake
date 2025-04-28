@@ -4,7 +4,7 @@ using System.Collections;
 public class enemyChase : MonoBehaviour
 {
     public float moveSpeed = 3f;
-    public float killDelay = 2f; // Tijd voor de speler doodgaat
+    public float killDelay = 2f;
     public Transform player;
 
     private Rigidbody rb;
@@ -31,7 +31,6 @@ public class enemyChase : MonoBehaviour
 
         rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, 0f);
 
-        // Flip de vijand afhankelijk van richting
         if (direction.x < 0f)
         {
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
@@ -55,17 +54,18 @@ public class enemyChase : MonoBehaviour
             if (health != null) StartCoroutine(DelayedKill(health));
 
             hasHitPlayer = true;
-            Debug.Log("Vijand heeft speler geraakt — animatie start & dood volgt.");
+            Debug.Log("[enemyChase] Player hit. Killing after delay...");
         }
     }
 
-    IEnumerator DelayedKill(playerHealth health)
+    private IEnumerator DelayedKill(playerHealth health)
     {
         yield return new WaitForSeconds(killDelay);
 
         if (health != null)
         {
-            health.TakeDamage(health.maxHealth); // Instant dood na delay
+            float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
+            health.TakeDamage(maxHealth); // Instakill
         }
     }
 }

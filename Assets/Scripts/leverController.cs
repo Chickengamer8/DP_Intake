@@ -14,7 +14,6 @@ public class leverController : MonoBehaviour
     public Transform teleportTarget;
 
     private bool playerInRange = false;
-    private bool promptVisible = false;
     private bool isRotated = false;
     private bool hasTeleported = false;
 
