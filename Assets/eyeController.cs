@@ -106,7 +106,7 @@ public class eyeController : MonoBehaviour
         // Update globalPlayerStats hiding status
         if (globalPlayerStats.instance != null)
         {
-            globalPlayerStats.instance.isHiding = !canSeePlayer;
+            globalPlayerStats.instance.isHiding = canSeePlayer;
         }
 
         // Optioneel: aanpassen van movement/jump als verstopt

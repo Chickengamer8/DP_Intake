@@ -56,6 +56,17 @@ public class BoxGrabTrigger : MonoBehaviour
     {
         HandleGrabInput();
         HandleFreezeTimer();
+
+        if (playerInCollider && playerScript.grabAttempt && !isGrabbed)
+        {
+            TeleportPlayerAroundBox();
+        }
+
+        if (isGrabbed && !Input.GetMouseButton(1))
+        {
+            isGrabbed = false;
+            DetachBoxFromPlayer();
+        }
     }
 
     private void HandleGrabInput()
@@ -69,11 +80,6 @@ public class BoxGrabTrigger : MonoBehaviour
                 isGrabbed = true;
                 AttachBoxToPlayer();
             }
-        }
-        else if (isGrabbed)
-        {
-            isGrabbed = false;
-            DetachBoxFromPlayer();
         }
     }
 
@@ -130,13 +136,11 @@ public class BoxGrabTrigger : MonoBehaviour
                 }
                 else
                 {
-                    // Nog steeds geen support -> nieuwe wachttijd starten
                     freezeTimer = freezeDelayAfterFall;
                 }
             }
         }
     }
-
 
     private void FreezeBox()
     {
@@ -152,10 +156,8 @@ public class BoxGrabTrigger : MonoBehaviour
     private bool CheckSupportUnderBox()
     {
         Vector3 centerCheckPos = boxObject.transform.position;
-
         bool centerSupported = Physics.Raycast(centerCheckPos, Vector3.down, groundCheckLength, groundLayer);
 
-        // Debug Visuals
 #if UNITY_EDITOR
         Debug.DrawLine(centerCheckPos, centerCheckPos + Vector3.down * groundCheckLength, centerSupported ? Color.green : Color.red);
 #endif
@@ -166,24 +168,32 @@ public class BoxGrabTrigger : MonoBehaviour
         return centerSupported;
     }
 
+    private void TeleportPlayerAroundBox()
+    {
+        if (boxObject == null || playerScript == null) return;
+
+        Vector3 playerPos = playerScript.transform.position;
+        Vector3 boxPos = boxObject.transform.position;
+        float offset = 1f;
+
+        if (playerPos.x < boxPos.x)
+            playerScript.transform.position = new Vector3(boxPos.x - offset, playerPos.y, playerPos.z);
+        else
+            playerScript.transform.position = new Vector3(boxPos.x + offset, playerPos.y, playerPos.z);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInCollider = true;
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInCollider = false;
-        }
     }
 
-    // DEBUG VISUALS
     private void OnDrawGizmos()
     {
         if (boxObject == null)
@@ -191,22 +201,5 @@ public class BoxGrabTrigger : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(boxObject.transform.position, boxObject.transform.localScale);
-
-        Vector3 leftCheckPos = boxObject.transform.position - boxObject.transform.right * (boxObject.transform.localScale.x / 2f);
-        Vector3 rightCheckPos = boxObject.transform.position + boxObject.transform.right * (boxObject.transform.localScale.x / 2f);
-
-        // Left ray
-        Gizmos.color = Physics.Raycast(leftCheckPos, Vector3.down, groundCheckLength, groundLayer) ? Color.green : Color.red;
-        Gizmos.DrawLine(leftCheckPos, leftCheckPos + Vector3.down * groundCheckLength);
-
-        // Right ray
-        Gizmos.color = Physics.Raycast(rightCheckPos, Vector3.down, groundCheckLength, groundLayer) ? Color.green : Color.red;
-        Gizmos.DrawLine(rightCheckPos, rightCheckPos + Vector3.down * groundCheckLength);
-
-        // Label
-#if UNITY_EDITOR
-        UnityEditor.Handles.Label(boxObject.transform.position + Vector3.up * 1.5f,
-            $"Support: {Mathf.RoundToInt(lastSupportRatio * 100f)}%\nFrozenX: {((boxRb != null && (boxRb.constraints & RigidbodyConstraints.FreezePositionX) != 0) ? "Yes" : "No")}");
-#endif
     }
 }

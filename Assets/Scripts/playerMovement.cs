@@ -55,6 +55,9 @@ public class playerMovement : MonoBehaviour
     [Header("Debug Settings")]
     public bool showDebug = true;
 
+    [Header("Box movement")]
+    public LayerMask boxLayer;
+
     [HideInInspector] public bool isGrounded = false;
 
     private Rigidbody rb;
@@ -65,6 +68,7 @@ public class playerMovement : MonoBehaviour
     private int wallJumpLockDirection;
     private float wallJumpLockCounter;
     private float inputX;
+    private bool standingOnBox = false;
 
     private void Start()
     {
@@ -86,7 +90,21 @@ public class playerMovement : MonoBehaviour
         if (!canMove) return;
 
         inputX = Input.GetAxisRaw("Horizontal");
-        grabAttempt = Input.GetMouseButton(1);
+
+        Collider[] groundHits = Physics.OverlapSphere(groundCheck.position, groundCheckRadius);
+        bool standingOnBox = false;
+
+        foreach (Collider col in groundHits)
+        {
+            if (col.transform.parent != null && col.transform.parent.gameObject.layer == LayerMask.NameToLayer("Box"))
+            {
+                standingOnBox = true;
+                break;
+            }
+        }
+
+        grabAttempt = Input.GetMouseButton(1) && !standingOnBox;
+
 
         UpdateGroundAndWallStatus();
         HandleWallJumpLock();
