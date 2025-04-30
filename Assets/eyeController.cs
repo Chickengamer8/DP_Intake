@@ -14,6 +14,9 @@ public class eyeController : MonoBehaviour
     public Vector3 deadzoneOffset = Vector3.zero;
     public float deadzoneSmoothSpeed = 5f;
 
+    [Header("Pupil Wander Area")]
+    public Vector3 pupilWanderRadius = new Vector3(0.3f, 0.3f, 0.3f); // nieuw
+
     [Header("Wander Settings")]
     public float wanderInterval = 2f;
     public float wanderRange = 1f;
@@ -22,7 +25,6 @@ public class eyeController : MonoBehaviour
     public float wanderFrequencyX = 1.5f;
     public float wanderFrequencyY = 1.3f;
     public float wanderFrequencyZ = 1.1f;
-    public float wanderRadiusFactor = 0.5f;
 
     [Header("Damage Settings")]
     public float damageInterval = 1f;
@@ -83,7 +85,6 @@ public class eyeController : MonoBehaviour
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Check hide zones
         bool isInHideZone = Physics.OverlapSphere(player.position, 0.1f, hideLayer).Length > 0;
 
         if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, distanceToPlayer))
@@ -134,9 +135,9 @@ public class eyeController : MonoBehaviour
 
             transform.position = Vector3.SmoothDamp(transform.position, wanderTarget, ref currentVelocity, 0.2f);
 
-            float wanderX = Mathf.Sin(Time.time * wanderFrequencyX) * (lookRadius * wanderRadiusFactor);
-            float wanderY = Mathf.Cos(Time.time * wanderFrequencyY) * (lookRadius * wanderRadiusFactor);
-            float wanderZ = Mathf.Sin(Time.time * wanderFrequencyZ) * (lookRadius * wanderRadiusFactor);
+            float wanderX = Mathf.Sin(Time.time * wanderFrequencyX) * pupilWanderRadius.x;
+            float wanderY = Mathf.Cos(Time.time * wanderFrequencyY) * pupilWanderRadius.y;
+            float wanderZ = Mathf.Sin(Time.time * wanderFrequencyZ) * pupilWanderRadius.z;
             Vector3 wanderOffset = new Vector3(wanderX, wanderY, wanderZ);
             if (eyePupil != null)
                 eyePupil.localPosition = Vector3.Lerp(eyePupil.localPosition, wanderOffset, Time.deltaTime * wanderPupilSpeed);
@@ -182,5 +183,11 @@ public class eyeController : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(center, deadzoneSize);
+
+        if (eyePupil != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireCube(eyePupil.position, pupilWanderRadius * 2f);
+        }
     }
 }

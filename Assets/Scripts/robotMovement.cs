@@ -1,10 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class robotMovement : MonoBehaviour
 {
     private Transform target;
-    private GameObject platformToActivate;
+    private GameObject platformToRotate;
+    private GameObject colliderToEnable;
+
     public float speed = 2f;
+    [SerializeField] private float platformRotateTime = 1f;
+
     private bool shouldMove = false;
 
     public void SetTarget(Transform newTarget)
@@ -13,16 +18,20 @@ public class robotMovement : MonoBehaviour
         shouldMove = true;
     }
 
-    public void SetPlatform(GameObject platform)
+    public void SetPlatformToRotate(GameObject platform)
     {
-        platformToActivate = platform;
+        platformToRotate = platform;
+    }
+
+    public void SetColliderToEnable(GameObject colliderObj)
+    {
+        colliderToEnable = colliderObj;
     }
 
     private void Update()
     {
         if (!shouldMove || target == null) return;
 
-        // Zorg dat hij in Z=0 blijft tijdens movement
         Vector3 targetPosition = target.position;
         targetPosition.z = 0f;
 
@@ -32,12 +41,33 @@ public class robotMovement : MonoBehaviour
         {
             shouldMove = false;
 
-            if (platformToActivate != null)
+            if (platformToRotate != null)
             {
-                platformToActivate.SetActive(true);
+                StartCoroutine(RotatePlatform());
             }
+        }
+    }
 
-            // Optioneel: idle animatie starten of iets zeggen
+    private IEnumerator RotatePlatform()
+    {
+        platformToRotate.SetActive(true);
+
+        Quaternion startRot = platformToRotate.transform.rotation;
+        Quaternion endRot = Quaternion.Euler(90f, 0f, -180f);
+
+        float elapsed = 0f;
+        while (elapsed < platformRotateTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / platformRotateTime);
+            platformToRotate.transform.rotation = Quaternion.Lerp(startRot, endRot, t);
+            yield return null;
+        }
+
+        if (colliderToEnable != null)
+        {
+            BoxCollider box = colliderToEnable.GetComponent<BoxCollider>();
+            if (box != null) box.enabled = true;
         }
     }
 }
