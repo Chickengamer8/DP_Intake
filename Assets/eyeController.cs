@@ -10,8 +10,8 @@ public class eyeController : MonoBehaviour
     public float followSpeed = 5f;
 
     [Header("Deadzone (Wander Area)")]
-    public Vector2 deadzoneSize = new Vector2(4f, 2f);
-    public Vector2 deadzoneOffset = Vector2.zero;
+    public Vector3 deadzoneSize = new Vector3(4f, 2f, 4f);
+    public Vector3 deadzoneOffset = Vector3.zero;
     public float deadzoneSmoothSpeed = 5f;
 
     [Header("Wander Settings")]
@@ -21,6 +21,7 @@ public class eyeController : MonoBehaviour
     public float wanderPupilSpeed = 3f;
     public float wanderFrequencyX = 1.5f;
     public float wanderFrequencyY = 1.3f;
+    public float wanderFrequencyZ = 1.1f;
     public float wanderRadiusFactor = 0.5f;
 
     [Header("Damage Settings")]
@@ -72,44 +73,34 @@ public class eyeController : MonoBehaviour
 
     void UpdateDeadzone()
     {
-        Vector3 desiredCenter = mainCamera.transform.position + (Vector3)deadzoneOffset;
+        Vector3 desiredCenter = mainCamera.transform.position + deadzoneOffset;
         deadzoneCenter = Vector3.Lerp(deadzoneCenter, desiredCenter, Time.deltaTime * deadzoneSmoothSpeed);
     }
 
     void UpdateVision()
     {
-        // Check lijn naar speler
         canSeePlayer = false;
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        // Check hide zones
+        bool isInHideZone = Physics.OverlapSphere(player.position, 0.1f, hideLayer).Length > 0;
+
         if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, distanceToPlayer))
         {
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player") && !isInHideZone)
             {
                 canSeePlayer = true;
             }
-            else
-            {
-                // Check of het object op Hide-layer zit
-                if (((1 << hit.collider.gameObject.layer) & hideLayer) != 0)
-                {
-                    canSeePlayer = false;
-                }
-            }
         }
-        else
+        else if (!isInHideZone)
         {
             canSeePlayer = true;
         }
 
-        // Update globalPlayerStats hiding status
         if (globalPlayerStats.instance != null)
-        {
-            globalPlayerStats.instance.isHiding = canSeePlayer;
-        }
+            globalPlayerStats.instance.isHiding = !canSeePlayer;
 
-        // Optioneel: aanpassen van movement/jump als verstopt
         if (playerMovement != null)
         {
             if (globalPlayerStats.instance != null && globalPlayerStats.instance.isHiding)
@@ -132,27 +123,26 @@ public class eyeController : MonoBehaviour
             wanderTimer -= Time.deltaTime;
             if (wanderTimer <= 0f)
             {
-                Vector2 offset = new Vector2(
+                Vector3 offset = new Vector3(
+                    Random.Range(-wanderRange, wanderRange),
                     Random.Range(-wanderRange, wanderRange),
                     Random.Range(-wanderRange, wanderRange)
                 );
-                wanderTarget = deadzoneCenter + (Vector3)offset;
+                wanderTarget = deadzoneCenter + offset;
                 wanderTimer = wanderInterval;
             }
 
-            // Smooth wander movement
             transform.position = Vector3.SmoothDamp(transform.position, wanderTarget, ref currentVelocity, 0.2f);
 
-            // Pupil wander beweging
             float wanderX = Mathf.Sin(Time.time * wanderFrequencyX) * (lookRadius * wanderRadiusFactor);
             float wanderY = Mathf.Cos(Time.time * wanderFrequencyY) * (lookRadius * wanderRadiusFactor);
-            Vector3 wanderOffset = new Vector3(wanderX, wanderY, 0f);
+            float wanderZ = Mathf.Sin(Time.time * wanderFrequencyZ) * (lookRadius * wanderRadiusFactor);
+            Vector3 wanderOffset = new Vector3(wanderX, wanderY, wanderZ);
             if (eyePupil != null)
                 eyePupil.localPosition = Vector3.Lerp(eyePupil.localPosition, wanderOffset, Time.deltaTime * wanderPupilSpeed);
         }
         else
         {
-            // Volg speler direct
             Vector3 dir = player.position - transform.position;
             Vector3 clampedDir = Vector3.ClampMagnitude(dir, lookRadius);
             if (eyePupil != null)
@@ -188,9 +178,9 @@ public class eyeController : MonoBehaviour
             mainCamera = Camera.main;
 
         Vector3 camPos = Application.isPlaying ? deadzoneCenter : mainCamera.transform.position;
-        Vector3 center = camPos + (Vector3)deadzoneOffset;
+        Vector3 center = camPos + deadzoneOffset;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(center, new Vector3(deadzoneSize.x, deadzoneSize.y, 0f));
+        Gizmos.DrawWireCube(center, deadzoneSize);
     }
 }

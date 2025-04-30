@@ -154,7 +154,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -1025,7 +1025,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -1034,7 +1034,44 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Amachine3_0: -1188734895148977574
+      Amachine3_1: -4215727554706706951
+      Amachine3_10: -2974011919477447466
+      Amachine3_11: -6978986603971157068
+      Amachine3_12: 7651700554548154264
+      Amachine3_13: 7739607847703166297
+      Amachine3_14: -3878719727498935854
+      Amachine3_15: -4606318179534062738
+      Amachine3_16: -2447238167761679809
+      Amachine3_17: 6886472884406696020
+      Amachine3_18: -1147048312207577397
+      Amachine3_19: 7622315788663019641
+      Amachine3_2: 5038240737688050984
+      Amachine3_20: 2135055920150830258
+      Amachine3_21: 6750825105175106080
+      Amachine3_22: -7544425911328016765
+      Amachine3_23: 6659560820779881974
+      Amachine3_24: -4421767380128846765
+      Amachine3_25: -2675784423614627701
+      Amachine3_26: 8804173087456282553
+      Amachine3_27: 6240533641872320093
+      Amachine3_28: 4174818991562911023
+      Amachine3_29: 4309876763705492940
+      Amachine3_3: 1685163370139526651
+      Amachine3_30: 613840185947586201
+      Amachine3_31: 4794026978116230962
+      Amachine3_32: 8837100328346031251
+      Amachine3_33: 1576869314035216781
+      Amachine3_34: 6978102207996730678
+      Amachine3_35: 2715892115148616091
+      Amachine3_36: 6578946798718753292
+      Amachine3_4: -2262049948740455576
+      Amachine3_5: -8082597101175244405
+      Amachine3_6: -9050306472228269189
+      Amachine3_7: 975792589118629381
+      Amachine3_8: -5555680258976216350
+      Amachine3_9: -4931502609150505793
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

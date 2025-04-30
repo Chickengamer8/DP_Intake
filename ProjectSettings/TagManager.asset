@@ -57,14 +57,20 @@ TagManager:
   - name: parallax1
     uniqueID: 2446779597
     locked: 0
-  - name: Background1
+  - name: eyeBG
+    uniqueID: 3164514067
+    locked: 0
+  - name: eyeMain
     uniqueID: 2212801849
     locked: 0
-  - name: Background2
+  - name: windowBG
     uniqueID: 4130150295
     locked: 0
   - name: Hide
     uniqueID: 2214297721
+    locked: 0
+  - name: foliage
+    uniqueID: 37810291
     locked: 0
   - name: Building
     uniqueID: 771682747

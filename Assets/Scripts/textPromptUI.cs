@@ -10,17 +10,12 @@ public class textPromptUI : MonoBehaviour
     public Vector2 hiddenPosition;
     public Vector2 visiblePosition;
 
-    public Vector2 skipHintHiddenPosition;
-    public Vector2 skipHintVisiblePosition;
-
     public float slideDuration = 0.4f;
     public float timeBetweenLines = 2f;
 
     public cutsceneController controller;
 
     private RectTransform rectTransform;
-    private RectTransform skipHintRectTransform;
-
     private bool skipLineRequested = false;
 
     private void Awake()
@@ -30,8 +25,8 @@ public class textPromptUI : MonoBehaviour
 
         if (skipHintText != null)
         {
-            skipHintRectTransform = skipHintText.GetComponent<RectTransform>();
-            skipHintRectTransform.anchoredPosition = skipHintHiddenPosition;
+            skipHintText.text = "Press [Space] to skip line";
+            skipHintText.gameObject.SetActive(false); // tekst mag wel blijven staan als child
         }
     }
 
@@ -42,26 +37,18 @@ public class textPromptUI : MonoBehaviour
 
     private IEnumerator PlayDialogue(string[] lines)
     {
-        // Slide in main dialogue
+        // Slide in de zwarte balk (dialogue paneel)
         float elapsed = 0f;
         while (elapsed < slideDuration)
         {
             rectTransform.anchoredPosition = Vector2.Lerp(hiddenPosition, visiblePosition, elapsed / slideDuration);
-            if (skipHintText != null)
-                skipHintRectTransform.anchoredPosition = Vector2.Lerp(skipHintHiddenPosition, skipHintVisiblePosition, elapsed / slideDuration);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         rectTransform.anchoredPosition = visiblePosition;
-        if (skipHintText != null)
-        {
-            skipHintRectTransform.anchoredPosition = skipHintVisiblePosition;
-            skipHintText.text = "Press [Space] to skip line";
-            skipHintText.gameObject.SetActive(true);
-        }
 
-        // Show each line
+        // Toon elke zin
         for (int i = 0; i < lines.Length; i++)
         {
             dialogueText.text = lines[i];
@@ -78,23 +65,16 @@ public class textPromptUI : MonoBehaviour
             }
         }
 
-        // Slide out
+        // Slide out de zwarte balk
         elapsed = 0f;
-        if (skipHintText != null)
-            skipHintText.gameObject.SetActive(false);
-
         while (elapsed < slideDuration)
         {
             rectTransform.anchoredPosition = Vector2.Lerp(visiblePosition, hiddenPosition, elapsed / slideDuration);
-            if (skipHintText != null)
-                skipHintRectTransform.anchoredPosition = Vector2.Lerp(skipHintVisiblePosition, skipHintHiddenPosition, elapsed / slideDuration);
             elapsed += Time.deltaTime;
             controller.sidebarsControl(false);
             yield return null;
         }
 
         rectTransform.anchoredPosition = hiddenPosition;
-        if (skipHintText != null)
-            skipHintRectTransform.anchoredPosition = skipHintHiddenPosition;
     }
 }

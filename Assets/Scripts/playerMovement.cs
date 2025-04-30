@@ -5,8 +5,8 @@ public class playerMovement : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 8f;
     public float jumpForce = 16f;
-    public float hideMoveSpeed = 4f; // ✅ Nieuw voor hiding
-    public float hideJumpForce = 10f; // ✅ Nieuw voor hiding
+    public float hideMoveSpeed = 4f;
+    public float hideJumpForce = 10f;
     public float defaultMoveSpeed;
     public float defaultJumpForce;
 
@@ -17,7 +17,11 @@ public class playerMovement : MonoBehaviour
     public float airAcceleration = 30f;
     public float airDeceleration = 5f;
     public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
+
+    [Header("Sprint Settings")]
+    public float sprintSpeed = 12f;
+    public float sprintStaminaConsumption = 15f;
+    private bool isSprinting = false;
 
     [Header("Wall Slide Settings")]
     public float wallStickTime = 0.25f;
@@ -52,9 +56,6 @@ public class playerMovement : MonoBehaviour
     public float wallCheckRadius = 0.2f;
     public LayerMask wallLayer;
 
-    [Header("Debug Settings")]
-    public bool showDebug = true;
-
     [Header("Box movement")]
     public LayerMask boxLayer;
 
@@ -68,7 +69,9 @@ public class playerMovement : MonoBehaviour
     private int wallJumpLockDirection;
     private float wallJumpLockCounter;
     private float inputX;
-    private bool standingOnBox = false;
+
+    [Header("Animation")]
+    public Animator animator;
 
     private void Start()
     {
@@ -91,6 +94,9 @@ public class playerMovement : MonoBehaviour
 
         inputX = Input.GetAxisRaw("Horizontal");
 
+        animator.SetFloat("velocityX", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("velocityY", rb.linearVelocity.y);
+
         Collider[] groundHits = Physics.OverlapSphere(groundCheck.position, groundCheckRadius);
         bool standingOnBox = false;
 
@@ -105,7 +111,6 @@ public class playerMovement : MonoBehaviour
 
         grabAttempt = Input.GetMouseButton(1) && !standingOnBox;
 
-
         UpdateGroundAndWallStatus();
         HandleWallJumpLock();
         UpdateStamina();
@@ -114,7 +119,36 @@ public class playerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             if (isGrounded && !isGrabbing) Jump();
-            else if (isOnWall && !isGrabbing) WallJump();
+            else if (isOnWall && !isGrabbing)
+            {
+                inputX = 0f; // Voorkomt wall jump spam
+                WallJump();
+            }
+
+            animator.SetBool("jump", true);
+        }
+        else if (rb.linearVelocity.y < 0) animator.SetBool("jump", false);
+
+        if (Input.GetKey(KeyCode.LeftShift) && inputX != 0 && !isGrabbing && currentStamina > 0f && isGrounded)
+        {
+            if (!isSprinting && currentStamina > 20f)
+            {
+                isSprinting = true;
+            }
+        }
+        else
+        {
+            isSprinting = false;
+        }
+
+        if (isSprinting)
+        {
+            currentStamina -= sprintStaminaConsumption * Time.deltaTime;
+            if (currentStamina <= 0f)
+            {
+                currentStamina = 0f;
+                isSprinting = false;
+            }
         }
     }
 
@@ -130,10 +164,12 @@ public class playerMovement : MonoBehaviour
     private void UpdateGroundAndWallStatus()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        animator.SetBool("isGrounded", isGrounded);
 
         bool touchingLeft = Physics.CheckSphere(wallCheckLeft.position, wallCheckRadius, wallLayer);
         bool touchingRight = Physics.CheckSphere(wallCheckRight.position, wallCheckRadius, wallLayer);
 
+        bool wasOnWall = isOnWall;
         isOnWall = !isGrounded && (touchingLeft || touchingRight);
         wallDir = touchingLeft ? -1 : (touchingRight ? 1 : 0);
 
@@ -141,6 +177,13 @@ public class playerMovement : MonoBehaviour
         {
             wallStickCounter = 0f;
             wallSlideSpeed = wallSlideStartSpeed;
+            animator.SetBool("onWall", false);
+        }
+        else
+        {
+            // Reset stick timer als net nieuwe muur geraakt
+            if (!wasOnWall) wallStickCounter = 0f;
+            animator.SetBool("onWall", true);
         }
     }
 
@@ -151,7 +194,24 @@ public class playerMovement : MonoBehaviour
             input = 0f;
         }
 
-        float targetSpeed = input * (isGrabbing ? boxMoveSpeed : moveSpeed);
+        float usedSpeed = isSprinting ? sprintSpeed : moveSpeed;
+        float targetSpeed;
+
+        if (isGrabbing)
+        {
+            targetSpeed = input * boxMoveSpeed;
+            animator.SetBool("isPushing", true);
+
+            // Geen acceleration bij grabbing: directe snelheid
+            rb.linearVelocity = new Vector3(targetSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
+            return;
+        }
+        else
+        {
+            targetSpeed = input * usedSpeed;
+            animator.SetBool("isPushing", false);
+        }
+
         float speedDiff = targetSpeed - rb.linearVelocity.x;
         float accelRate = isGrounded
             ? (Mathf.Abs(targetSpeed) > 0.01f ? acceleration : deceleration)
@@ -193,6 +253,7 @@ public class playerMovement : MonoBehaviour
         {
             wallJumpLockCounter -= Time.deltaTime;
         }
+        else animator.SetBool("wallJumped", false);
     }
 
     private void UpdateStamina()
@@ -239,6 +300,7 @@ public class playerMovement : MonoBehaviour
         currentStamina -= wallJumpStaminaConsumption;
 
         isOnWall = false;
+        animator.SetBool("wallJumped", true);
         Vector3 jumpDirection = new Vector3(-wallDir * wallJumpForce.x, wallJumpForce.y, 0);
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(jumpDirection, ForceMode.Impulse);
@@ -252,10 +314,6 @@ public class playerMovement : MonoBehaviour
         if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-        }
-        else if (rb.linearVelocity.y > 0 && !Input.GetButton("Jump"))
-        {
-            rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
 
