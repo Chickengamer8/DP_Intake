@@ -22,7 +22,7 @@ public class playerUI : MonoBehaviour
         if (healthBarImage != null && playerHealth != null)
         {
             float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
-            float healthPercent = playerHealth.currentHealth / maxHealth;
+            float healthPercent = globalPlayerStats.instance.currentHealth / maxHealth;
             healthBarImage.fillAmount = Mathf.Clamp01(healthPercent);
         }
     }

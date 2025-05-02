@@ -1,137 +1,60 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+﻿using UnityEngine;
 
-public class robotTriggerZone : MonoBehaviour
+public class robotSpawnAnimation : MonoBehaviour
 {
-    [Header("Prompt Settings")]
-    public GameObject promptUI;
-    public string promptText = "Press E to pull the lever";
-    public TextMeshProUGUI promptTextComponent;
-    public Vector3 slideInPosition;
-    public Vector3 slideOutPosition;
-    public float slideSpeed = 5f;
-
-    [Header("Lever Settings")]
-    public doorController connectedDoor;
-    public SpriteRenderer leverSpriteRenderer;
-    public Sprite activatedSprite;
-
-    private bool playerNearby = false;
-    private bool isActivated = false;
-    private bool shouldSlideIn = false;
-    private bool shouldSlideOut = false;
-
+    [Header("Robot Setup")]
     public GameObject robotPrefab;
     public Transform spawnPoint;
     public Transform targetPoint;
 
+    [Header("Platform & Collider")]
     public GameObject platformToRotate;
     public GameObject colliderToEnable;
 
-    private bool triggered = false;
+    [Header("Camera Control")]
+    public cameraFollow cameraFollowScript;
+    public Transform playerTarget;      // Waar de camera naar terug moet na afloop
+    public float cameraZoom = 5f;
+    public Vector3 cameraOffset = new Vector3(0f, 0f, -10f); // ➔ instelbare offset
 
-    void Start()
+    private bool animationTriggered = false;
+
+    public void startAnimation()
     {
-        if (promptUI != null)
-        {
-            promptUI.transform.localPosition = slideOutPosition;
-            promptUI.SetActive(false);
-        }
+        if (animationTriggered) return;
+        animationTriggered = true;
 
-        if (promptTextComponent != null)
-            promptTextComponent.text = promptText;
-    }
-
-    void Update()
-    {
-        if (playerNearby && !isActivated && Input.GetKeyDown(KeyCode.E))
-        {
-            ActivateLever();
-        }
-
-        HandlePromptSlide();
-    }
-
-    void ActivateLever()
-    {
-        if (triggered) return;
-
-        triggered = true;
-
-        // Spawnpositie op juiste Z
+        // Spawn de robot
         Vector3 spawnPosition = spawnPoint.position;
-
         GameObject robot = Instantiate(robotPrefab, spawnPosition, Quaternion.identity);
 
-        // Geef target, rotatieplatform en collider door
+        // Camera laten volgen met offset
+        if (cameraFollowScript != null)
+        {
+            cameraFollowScript.SetCutsceneTargetWithOffset(robot.transform, cameraZoom, cameraOffset);
+        }
+
+        // Geef robot zijn taken
         robotMovement robotScript = robot.GetComponent<robotMovement>();
-        robotScript.SetTarget(targetPoint);
-        robotScript.SetPlatformToRotate(platformToRotate);
-        robotScript.SetColliderToEnable(colliderToEnable);
-        connectedDoor.OpenDoor();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !isActivated)
+        if (robotScript != null)
         {
-            playerNearby = true;
-            if (promptUI != null)
-            {
-                promptUI.SetActive(true);
-                StartSlideIn();
-            }
+            robotScript.SetTarget(targetPoint);
+            robotScript.SetPlatformToRotate(platformToRotate);
+            robotScript.SetColliderToEnable(colliderToEnable);
+            robotScript.SetCallingAnimationScript(this);
+        }
+        else
+        {
+            Debug.LogWarning("robotSpawnAnimation: robotPrefab mist robotMovement script!");
         }
     }
 
-    void OnTriggerExit(Collider other)
+    // Wordt aangeroepen als robot klaar is
+    public void OnRobotAnimationComplete()
     {
-        if (other.CompareTag("Player"))
+        if (cameraFollowScript != null && playerTarget != null)
         {
-            playerNearby = false;
-            StartSlideOut();
-        }
-    }
-
-    void StartSlideIn()
-    {
-        shouldSlideIn = true;
-        shouldSlideOut = false;
-    }
-
-    void StartSlideOut()
-    {
-        shouldSlideOut = true;
-        shouldSlideIn = false;
-    }
-
-    void HandlePromptSlide()
-    {
-        if (promptUI == null)
-            return;
-
-        if (shouldSlideIn)
-        {
-            promptUI.transform.localPosition = Vector3.MoveTowards(
-                promptUI.transform.localPosition,
-                slideInPosition,
-                slideSpeed * Time.deltaTime
-            );
-        }
-        else if (shouldSlideOut)
-        {
-            promptUI.transform.localPosition = Vector3.MoveTowards(
-                promptUI.transform.localPosition,
-                slideOutPosition,
-                slideSpeed * Time.deltaTime
-            );
-
-            if (Vector3.Distance(promptUI.transform.localPosition, slideOutPosition) < 0.01f)
-            {
-                promptUI.SetActive(false);
-                shouldSlideOut = false;
-            }
+            cameraFollowScript.ResetToDefault(playerTarget);
         }
     }
 }

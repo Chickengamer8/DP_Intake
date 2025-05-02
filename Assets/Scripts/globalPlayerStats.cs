@@ -12,9 +12,13 @@ public class globalPlayerStats : MonoBehaviour
     [Header("Checkpoint Data")]
     public Vector3 lastCheckpointPosition;
     public bool hasCheckpoint = false;
+    public float currentHealth;
 
     private void Awake()
     {
+        if (currentHealth <= 0f)
+            currentHealth = maxHealth;
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);

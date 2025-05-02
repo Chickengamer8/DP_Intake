@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class robotMovement : MonoBehaviour
@@ -11,6 +11,9 @@ public class robotMovement : MonoBehaviour
     [SerializeField] private float platformRotateTime = 1f;
 
     private bool shouldMove = false;
+
+    // 🔹 Referentie naar het aanroepende script
+    private robotSpawnAnimation callingAnimationScript;
 
     public void SetTarget(Transform newTarget)
     {
@@ -26,6 +29,11 @@ public class robotMovement : MonoBehaviour
     public void SetColliderToEnable(GameObject colliderObj)
     {
         colliderToEnable = colliderObj;
+    }
+
+    public void SetCallingAnimationScript(robotSpawnAnimation script)
+    {
+        callingAnimationScript = script;
     }
 
     private void Update()
@@ -44,6 +52,10 @@ public class robotMovement : MonoBehaviour
             if (platformToRotate != null)
             {
                 StartCoroutine(RotatePlatform());
+            }
+            else
+            {
+                NotifyAnimationComplete();
             }
         }
     }
@@ -68,6 +80,16 @@ public class robotMovement : MonoBehaviour
         {
             BoxCollider box = colliderToEnable.GetComponent<BoxCollider>();
             if (box != null) box.enabled = true;
+        }
+
+        NotifyAnimationComplete();
+    }
+
+    private void NotifyAnimationComplete()
+    {
+        if (callingAnimationScript != null)
+        {
+            callingAnimationScript.OnRobotAnimationComplete();
         }
     }
 }

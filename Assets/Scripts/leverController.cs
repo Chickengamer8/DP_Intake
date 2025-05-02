@@ -1,75 +1,118 @@
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 public class leverController : MonoBehaviour
 {
-    public GameObject targetObject; // Het object dat 90 graden draait
-    public RectTransform promptUI; // De UI prompt die naar beneden moet sliden
-    public Vector2 visiblePosition;
+    [Header("Prompt UI")]
+    public RectTransform promptTransform;
+    public TMPro.TextMeshProUGUI promptText;
+    public string promptMessage = "Press [E] to pull lever";
     public Vector2 hiddenPosition;
-    public float slideSpeed = 5f;
+    public Vector2 shownPosition;
+    public float slideDuration = 0.3f;
 
-    [Header("Teleport Settings")]
-    public GameObject objectToTeleport;
-    public Transform teleportTarget;
+    [Header("Lever Setup")]
+    public cameraFollow cameraFollowScript;
+    public Transform playerFollowTarget;
+    public Transform doorFocusPoint;
+    public Transform doorHinge;
+    public float panSpeed = 2f;
+    public float doorOpenSpeed = 1f;
+    public Vector3 cutsceneOffset = new Vector3(0f, 0f, -10f);
+    public float cutsceneZoom = 5f;
 
-    private bool playerInRange = false;
-    private bool isRotated = false;
-    private bool hasTeleported = false;
+    [Header("Audio")]
+    public AudioSource doorSound;
 
-    private void Start()
-    {
-        if (promptUI != null)
-            promptUI.anchoredPosition = hiddenPosition;
-    }
+    [Header("Sprites")]
+    public SpriteRenderer leverSpriteRenderer;
+    public Sprite inactiveSprite;
+    public Sprite activeSprite;
+
+    private bool isPlayerInZone = false;
+    private bool hasActivated = false;
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            RotateTarget();
-            TeleportObject();
-        }
+        if (!isPlayerInZone || hasActivated) return;
 
-        // Slide prompt in/out
-        if (promptUI != null)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Vector2 targetPos = playerInRange ? visiblePosition : hiddenPosition;
-            promptUI.anchoredPosition = Vector2.Lerp(promptUI.anchoredPosition, targetPos, Time.deltaTime * slideSpeed);
-        }
-    }
+            hasActivated = true;
+            if (doorSound != null)
+                doorSound.Play();
 
-    private void RotateTarget()
-    {
-        if (targetObject != null && !isRotated)
-        {
-            targetObject.transform.Rotate(0f, 0f, 90f);
-            isRotated = true;
-        }
-    }
-
-    private void TeleportObject()
-    {
-        if (!hasTeleported && objectToTeleport != null && teleportTarget != null)
-        {
-            objectToTeleport.transform.position = teleportTarget.position;
-            hasTeleported = true;
+            StartCoroutine(HandleLeverActivation());
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
+        if (!other.CompareTag("Player") || hasActivated) return;
+
+        isPlayerInZone = true;
+        promptText.text = promptMessage;
+        StartCoroutine(SlidePrompt(promptTransform, hiddenPosition, shownPosition, slideDuration));
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        isPlayerInZone = false;
+
+        if (!hasActivated)
+            StartCoroutine(SlidePrompt(promptTransform, shownPosition, hiddenPosition, slideDuration));
+    }
+
+    private IEnumerator HandleLeverActivation()
+    {
+        StartCoroutine(SlidePrompt(promptTransform, shownPosition, hiddenPosition, slideDuration));
+
+        if (leverSpriteRenderer != null && activeSprite != null)
+            leverSpriteRenderer.sprite = activeSprite;
+
+        // Laat camera de deur volgen
+        if (cameraFollowScript != null)
+            cameraFollowScript.SetCutsceneTargetWithOffset(doorFocusPoint, cutsceneZoom, cutsceneOffset);
+
+        // Wacht totdat deur volledig opent
+        yield return StartCoroutine(OpenDoor());
+
+        // Blijf 3 seconden bij de deur hangen
+        yield return new WaitForSeconds(3f);
+
+        // Zet camera terug naar speler
+        if (cameraFollowScript != null)
+            cameraFollowScript.ResetToDefault(playerFollowTarget);
+    }
+
+    private IEnumerator OpenDoor()
+    {
+        Quaternion startRot = doorHinge.localRotation;
+        Quaternion endRot = startRot * Quaternion.Euler(0f, 0f, 90f);
+
+        float t = 0f;
+        while (t < 1f)
         {
-            playerInRange = false;
+            t += Time.deltaTime * doorOpenSpeed;
+            doorHinge.localRotation = Quaternion.Lerp(startRot, endRot, t);
+            yield return null;
         }
+
+        doorHinge.localRotation = endRot; // zorg dat hij exact eindigt
+    }
+
+    private IEnumerator SlidePrompt(RectTransform target, Vector2 from, Vector2 to, float duration)
+    {
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            target.anchoredPosition = Vector2.Lerp(from, to, t / duration);
+            yield return null;
+        }
+        target.anchoredPosition = to;
     }
 }

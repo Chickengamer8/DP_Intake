@@ -72,6 +72,8 @@ public class sceneController : MonoBehaviour
         inCutscene = true;
         currentLine = 0;
         currentCameraIndex = 0;
+        dialogueText.gameObject.SetActive(true);
+        Debug.Log("Should be enabled");
 
         if (playerController != null)
             playerController.canMove = false;

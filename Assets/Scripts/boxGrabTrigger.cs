@@ -85,11 +85,20 @@ public class BoxGrabTrigger : MonoBehaviour
 
     private void AttachBoxToPlayer()
     {
+        if (playerScript.isGrabbing)
+        {
+            Debug.Log("BoxGrabTrigger: Player is already grabbing something, skipping.");
+            isGrabbed = false;
+            return;
+        }
+
         UnfreezeBox();
         grabJoint = boxObject.AddComponent<FixedJoint>();
         grabJoint.connectedBody = playerScript.GetComponent<Rigidbody>();
         grabJoint.breakForce = 1000f;
         grabJoint.breakTorque = 1000f;
+
+        playerScript.isGrabbing = true;
     }
 
     private void DetachBoxFromPlayer()
@@ -99,6 +108,8 @@ public class BoxGrabTrigger : MonoBehaviour
             Destroy(grabJoint);
             grabJoint = null;
         }
+
+        playerScript.isGrabbing = false;
 
         bool hasSupport = CheckSupportUnderBox();
 

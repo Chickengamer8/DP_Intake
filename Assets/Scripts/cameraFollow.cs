@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class cameraFollow : MonoBehaviour
 {
     [Header("Follow Target")]
-    public Transform target; // Default = CameraTarget (meebewegend met speler)
-    public Vector3 offset = new Vector3(0f, 0f, -10f);
+    public Transform target; // Default volgtarget, bijv. cameraTarget
+    public Vector3 defaultOffset = new Vector3(0f, 0f, -10f);
+    private Vector3 currentOffset;
+
     public float followSpeed = 5f;
 
     [Header("Zoom")]
@@ -21,37 +22,38 @@ public class cameraFollow : MonoBehaviour
         cam = GetComponent<Camera>();
         targetZoom = defaultZoom;
         cam.orthographicSize = defaultZoom;
+        currentOffset = defaultOffset;
     }
 
     void LateUpdate()
     {
         if (target == null) return;
 
-        // Smooth follow
-        Vector3 desiredPosition = target.position + offset;
+        Vector3 desiredPosition = target.position + currentOffset;
         transform.position = Vector3.Lerp(transform.position, desiredPosition, followSpeed * Time.deltaTime);
 
-        // Smooth zoom
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, zoomSpeed * Time.deltaTime);
     }
 
-    // 🔹 Call this to override the target (e.g. Automa Tom)
-    public void SetCutsceneTarget(Transform newTarget, float zoomLevel)
+    // 🔹 Call this to override camera for cutscene (with offset)
+    public void SetCutsceneTargetWithOffset(Transform newTarget, float zoomLevel, Vector3 customOffset)
     {
         target = newTarget;
         targetZoom = zoomLevel;
+        currentOffset = customOffset;
         overrideTarget = true;
     }
 
-    // 🔹 Call this to return to player follow
+    // 🔹 Reset camera back to player
     public void ResetToDefault(Transform defaultTarget)
     {
         target = defaultTarget;
         targetZoom = defaultZoom;
+        currentOffset = defaultOffset;
         overrideTarget = false;
     }
 
-    // 🔹 Optional: for smooth zoom only
+    // 🔹 Optional: change zoom only
     public void SetZoom(float newZoom)
     {
         targetZoom = newZoom;

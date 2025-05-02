@@ -5,10 +5,8 @@ using System.Collections;
 public class playerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    public float currentHealth;
     public float regenDelay = 3f;
     public float regenRate = 5f;
-    public string loadScene; // Niet meer gebruikt bij respawn, maar optioneel als fallback.
 
     [Header("Health UI")]
     public Image healthBarFill;
@@ -20,11 +18,15 @@ public class playerHealth : MonoBehaviour
 
     private void Start()
     {
-        float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
-        currentHealth = maxHealth;
-
         playerMovementScript = GetComponent<playerMovement>();
         rb = GetComponent<Rigidbody>();
+
+        // Initialiseer currentHealth als die nog niet gezet is
+        if (globalPlayerStats.instance != null)
+        {
+            if (globalPlayerStats.instance.currentHealth <= 0f)
+                globalPlayerStats.instance.currentHealth = globalPlayerStats.instance.maxHealth;
+        }
 
         // Spawn op checkpoint als die bestaat
         if (globalPlayerStats.instance != null && globalPlayerStats.instance.hasCheckpoint)
@@ -47,27 +49,30 @@ public class playerHealth : MonoBehaviour
 
         timeSinceLastDamage += Time.deltaTime;
 
-        float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
-
-        if (timeSinceLastDamage >= regenDelay && currentHealth < maxHealth)
+        if (globalPlayerStats.instance != null)
         {
-            RegenerateHealth();
-        }
+            float maxHealth = globalPlayerStats.instance.maxHealth;
 
-        UpdateHealthUI();
+            if (timeSinceLastDamage >= regenDelay && globalPlayerStats.instance.currentHealth < maxHealth)
+            {
+                RegenerateHealth();
+            }
+
+            UpdateHealthUI();
+        }
     }
 
     public void TakeDamage(float damage)
     {
-        if (isDead) return;
+        if (isDead || globalPlayerStats.instance == null) return;
 
-        float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
+        float maxHealth = globalPlayerStats.instance.maxHealth;
 
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        globalPlayerStats.instance.currentHealth -= damage;
+        globalPlayerStats.instance.currentHealth = Mathf.Clamp(globalPlayerStats.instance.currentHealth, 0f, maxHealth);
         timeSinceLastDamage = 0f;
 
-        if (currentHealth <= 0)
+        if (globalPlayerStats.instance.currentHealth <= 0)
         {
             Die();
         }
@@ -77,18 +82,18 @@ public class playerHealth : MonoBehaviour
 
     private void RegenerateHealth()
     {
-        float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
+        float maxHealth = globalPlayerStats.instance.maxHealth;
 
-        currentHealth += regenRate * Time.deltaTime;
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        globalPlayerStats.instance.currentHealth += regenRate * Time.deltaTime;
+        globalPlayerStats.instance.currentHealth = Mathf.Clamp(globalPlayerStats.instance.currentHealth, 0f, maxHealth);
     }
 
     private void UpdateHealthUI()
     {
-        if (healthBarFill != null)
+        if (healthBarFill != null && globalPlayerStats.instance != null)
         {
-            float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
-            healthBarFill.fillAmount = currentHealth / maxHealth;
+            float maxHealth = globalPlayerStats.instance.maxHealth;
+            healthBarFill.fillAmount = globalPlayerStats.instance.currentHealth / maxHealth;
         }
     }
 
@@ -113,12 +118,13 @@ public class playerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        // Gebruik respawnManager om te respawnen
         respawnManager.RespawnPlayer(transform);
 
-        // Reset local player health
-        float maxHealth = globalPlayerStats.instance != null ? globalPlayerStats.instance.maxHealth : 100f;
-        currentHealth = maxHealth;
+        if (globalPlayerStats.instance != null)
+        {
+            globalPlayerStats.instance.currentHealth = globalPlayerStats.instance.maxHealth;
+        }
+
         isDead = false;
 
         if (playerMovementScript != null)

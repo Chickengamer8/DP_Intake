@@ -54,6 +54,13 @@ public class cameraTravelAndTeleport : MonoBehaviour
             if (distanceToB > cameraAbortDistance)
             {
                 Debug.Log("cameraTravelAndTeleport: Beweging afgebroken, afstand tot pointB te groot.");
+
+                if (movingObject != null)
+                {
+                    movingObject.SetActive(false);
+                    Debug.Log("cameraTravelAndTeleport: MovingObject (watcher) is uitgeschakeld.");
+                }
+
                 break;
             }
 

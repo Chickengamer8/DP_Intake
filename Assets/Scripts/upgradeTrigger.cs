@@ -14,16 +14,6 @@ public class upgradeTrigger : MonoBehaviour
 
     private bool playerInTrigger = false;
     private bool upgradeCollected = false;
-    private TMPro.TextMeshProUGUI promptText;
-
-    private void Start()
-    {
-        if (promptUI != null)
-        {
-            promptUI.SetActive(false);
-            promptText = promptUI.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        }
-    }
 
     private void Update()
     {
@@ -40,11 +30,6 @@ public class upgradeTrigger : MonoBehaviour
         if (globalPlayerStats.instance != null)
         {
             globalPlayerStats.instance.IncreaseStats(healthBonus, staminaBonus);
-        }
-
-        if (promptText != null)
-        {
-            promptText.text = promptTextAfter;
         }
 
         // Je kunt hier eventueel een timer starten om de prompt weer uit te faden
@@ -64,14 +49,6 @@ public class upgradeTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !upgradeCollected)
         {
             playerInTrigger = true;
-            if (promptUI != null)
-            {
-                promptUI.SetActive(true);
-                if (promptText != null)
-                {
-                    promptText.text = promptTextEnter;
-                }
-            }
         }
     }
 
