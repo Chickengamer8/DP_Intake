@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 5740452700131719606}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.002, y: 0.001, z: 0}
+  m_LocalScale: {x: 0.061684214, y: 0.06531881, z: 0.060799673}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6605627456821245306}
@@ -76,14 +76,14 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8177471321811730583, guid: 87aaca0a643d54397ba969dab4fc8875, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25c6ed5c5e706b941b886796366d55da, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -164817001
   m_BackSortingLayerID: -2082165447
   m_FrontSortingLayer: -7
   m_BackSortingLayer: -8
-  m_FrontSortingOrder: 0
-  m_BackSortingOrder: 0
+  m_FrontSortingOrder: 10
+  m_BackSortingOrder: 10
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
   m_MaskSource: 0
@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5855624466825720809}
   - component: {fileID: 8845111185540486288}
+  - component: {fileID: 5321366509040750945}
   m_Layer: 9
   m_Name: pupil_sprite
   m_TagString: Untagged
@@ -114,7 +115,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.09755511, y: -0.09755511, z: -0.09755511}
+  m_LocalScale: {x: -0.06220114, y: -0.06220114, z: -0.06220114}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6605627456821245306}
@@ -163,7 +164,7 @@ SpriteRenderer:
   m_SortingLayerID: -164817001
   m_SortingLayer: -7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3360e6d1c1831ff45b5cb99d8df95997, type: 3}
+  m_Sprite: {fileID: 4620623933330471851, guid: 1bd813cb8d5e2cb4db04d71ca55b393d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -174,6 +175,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!114 &5321366509040750945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323001785625932259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05785094b1615734eb51eb7fb51e4230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7340027499921521526
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6605627456821245306}
   - component: {fileID: 1086956121639755338}
-  - component: {fileID: 7516514898184085612}
+  - component: {fileID: -3962101952079901686}
   m_Layer: 9
   m_Name: Watcher
   m_TagString: Untagged
@@ -201,8 +214,8 @@ Transform:
   m_GameObject: {fileID: 7340027499921521526}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -504.85, y: -221.26, z: 0}
-  m_LocalScale: {x: 7.4599547, y: 7.4599547, z: 7.4599547}
+  m_LocalPosition: {x: -419, y: -287.5, z: 0}
+  m_LocalScale: {x: 12.339511, y: 12.339511, z: 12.339511}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5855624466825720809}
@@ -254,18 +267,18 @@ SpriteRenderer:
   m_SortingLayerID: -1130453229
   m_SortingLayer: -9
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25c6ed5c5e706b941b886796366d55da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!114 &7516514898184085612
+--- !u!114 &-3962101952079901686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,22 +290,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2365f944b00f230419a05e29b7223acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  mainCamera: {fileID: 0}
+  player: {fileID: 3426362182216532465, guid: f4ee12fe7ef3d4d4e856efa627045e0d, type: 3}
+  mainCamera: {fileID: 8696333272318181897, guid: 1e3ac0b1cfd7c4a468d68a3bb01971f9, type: 3}
   eyePupil: {fileID: 5855624466825720809}
   lookRadius: 0.5
   followSpeed: 5
-  deadzoneSize: {x: 22, y: 3, z: 13.47}
-  deadzoneOffset: {x: 0, y: 4.5, z: 20.46}
+  deadzoneSize: {x: 4, y: 2, z: 4}
+  deadzoneOffset: {x: 0, y: 0, z: 0}
   deadzoneSmoothSpeed: 5
+  pupilWanderRadius: {x: 0.3, y: 0.3, z: 0.3}
   wanderInterval: 2
   wanderRange: 1
   moveSpeed: 2
-  wanderPupilSpeed: 1
+  wanderPupilSpeed: 3
   wanderFrequencyX: 1.5
   wanderFrequencyY: 1.3
-  wanderFrequencyZ: 1.1
-  wanderRadiusFactor: 0.5
   damageInterval: 1
   damagePerTick: 10
   damageIncreaseRate: 0.5
@@ -301,6 +313,9 @@ MonoBehaviour:
   hideLayer:
     serializedVersion: 2
     m_Bits: 256
+  visionBlockingLayers:
+    serializedVersion: 2
+    m_Bits: 4352
 --- !u!1 &8147140046852475900
 GameObject:
   m_ObjectHideFlags: 0

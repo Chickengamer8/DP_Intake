@@ -26,7 +26,7 @@ public class BoxGrabTrigger : MonoBehaviour
     {
         if (playerScript == null)
         {
-            Debug.LogError("BoxGrabTrigger: Geen playerMovement script toegewezen!");
+            Debug.LogError($"BoxGrabTrigger: Geen playerMovement script toegewezen op object '{transform.parent.gameObject.name}'!");
             enabled = false;
             return;
         }
@@ -36,7 +36,7 @@ public class BoxGrabTrigger : MonoBehaviour
             boxRb = boxObject.GetComponent<Rigidbody>();
             if (boxRb == null)
             {
-                Debug.LogError("BoxGrabTrigger: Het toegewezen Box-object heeft GEEN Rigidbody!");
+                Debug.LogError($"BoxGrabTrigger: Het toegewezen Box-object '{boxObject.name}' heeft GEEN Rigidbody!");
                 enabled = false;
                 return;
             }
@@ -46,7 +46,7 @@ public class BoxGrabTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogError("BoxGrabTrigger: Geen Box-object toegewezen! Sleep de juiste Box in de Inspector.");
+            Debug.LogError($"BoxGrabTrigger: Geen Box-object toegewezen op '{transform.parent.gameObject.name}'! Sleep de juiste Box in de Inspector.");
             enabled = false;
             return;
         }
@@ -212,5 +212,10 @@ public class BoxGrabTrigger : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(boxObject.transform.position, boxObject.transform.localScale);
+
+        // Nieuw: visualiseer de ground check lengte
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(boxObject.transform.position, boxObject.transform.position + Vector3.down * groundCheckLength);
+        Gizmos.DrawSphere(boxObject.transform.position + Vector3.down * groundCheckLength, 0.05f);
     }
 }

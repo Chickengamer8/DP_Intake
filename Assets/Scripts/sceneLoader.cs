@@ -4,11 +4,10 @@ public class sceneLoader : MonoBehaviour
 {
     public string sceneToLoad;
     public float fadeDuration = 1f;
-    private fadeManager fade;
+    public fadeManager fade;
 
     private void Start()
     {
-        fade = FindFirstObjectByType<fadeManager>();
         if (fade == null)
         {
             Debug.LogWarning("fadeManager not found in scene. Scene transition will be instant.");

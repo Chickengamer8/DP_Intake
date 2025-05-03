@@ -10,12 +10,12 @@ public class eyeController : MonoBehaviour
     public float followSpeed = 5f;
 
     [Header("Deadzone (Wander Area)")]
-    public Vector3 deadzoneSize = new Vector3(4f, 2f, 4f);
-    public Vector3 deadzoneOffset = Vector3.zero;
+    public Vector2 deadzoneSize = new Vector2(4f, 2f);
+    public Vector2 deadzoneOffset = Vector2.zero;
     public float deadzoneSmoothSpeed = 5f;
 
     [Header("Pupil Wander Area")]
-    public Vector3 pupilWanderRadius = new Vector3(0.3f, 0.3f, 0.3f); // nieuw
+    public Vector2 pupilWanderRadius = new Vector2(0.3f, 0.3f);
 
     [Header("Wander Settings")]
     public float wanderInterval = 2f;
@@ -24,7 +24,6 @@ public class eyeController : MonoBehaviour
     public float wanderPupilSpeed = 3f;
     public float wanderFrequencyX = 1.5f;
     public float wanderFrequencyY = 1.3f;
-    public float wanderFrequencyZ = 1.1f;
 
     [Header("Damage Settings")]
     public float damageInterval = 1f;
@@ -32,11 +31,13 @@ public class eyeController : MonoBehaviour
     public float damageIncreaseRate = 0.5f;
     public float maxDamageMultiplier = 5f;
     public float recoveryRate = 1f;
+    public float holeDamagePerTick = 20f; // ← NIEUW
     public LayerMask hideLayer;
+    public LayerMask visionBlockingLayers;
 
-    private Vector3 deadzoneCenter;
-    private Vector3 wanderTarget;
-    private Vector3 currentVelocity;
+    private Vector2 deadzoneCenter;
+    private Vector2 wanderTarget;
+    private Vector2 currentVelocity;
     private float wanderTimer;
     private float damageTimer;
     private float damageMultiplier = 1f;
@@ -71,23 +72,24 @@ public class eyeController : MonoBehaviour
         UpdateVision();
         UpdateEyeMovement();
         UpdateDamage();
+        CheckHoleOverlap();
     }
 
     void UpdateDeadzone()
     {
-        Vector3 desiredCenter = mainCamera.transform.position + deadzoneOffset;
-        deadzoneCenter = Vector3.Lerp(deadzoneCenter, desiredCenter, Time.deltaTime * deadzoneSmoothSpeed);
+        Vector2 desiredCenter = (Vector2)mainCamera.transform.position + deadzoneOffset;
+        deadzoneCenter = Vector2.Lerp(deadzoneCenter, desiredCenter, Time.deltaTime * deadzoneSmoothSpeed);
     }
 
     void UpdateVision()
     {
         canSeePlayer = false;
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        Vector2 directionToPlayer = ((Vector2)player.position - (Vector2)transform.position).normalized;
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         bool isInHideZone = Physics.OverlapSphere(player.position, 0.1f, hideLayer).Length > 0;
 
-        if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, distanceToPlayer))
+        if (Physics.Raycast(transform.position, player.position - transform.position, out RaycastHit hit, distanceToPlayer, visionBlockingLayers))
         {
             if (hit.collider.CompareTag("Player") && !isInHideZone)
             {
@@ -124,8 +126,7 @@ public class eyeController : MonoBehaviour
             wanderTimer -= Time.deltaTime;
             if (wanderTimer <= 0f)
             {
-                Vector3 offset = new Vector3(
-                    Random.Range(-wanderRange, wanderRange),
+                Vector2 offset = new Vector2(
                     Random.Range(-wanderRange, wanderRange),
                     Random.Range(-wanderRange, wanderRange)
                 );
@@ -133,21 +134,21 @@ public class eyeController : MonoBehaviour
                 wanderTimer = wanderInterval;
             }
 
-            transform.position = Vector3.SmoothDamp(transform.position, wanderTarget, ref currentVelocity, 0.2f);
+            Vector2 smoothPos = Vector2.SmoothDamp((Vector2)transform.position, wanderTarget, ref currentVelocity, 0.2f);
+            transform.position = new Vector3(smoothPos.x, smoothPos.y, transform.position.z);
 
             float wanderX = Mathf.Sin(Time.time * wanderFrequencyX) * pupilWanderRadius.x;
             float wanderY = Mathf.Cos(Time.time * wanderFrequencyY) * pupilWanderRadius.y;
-            float wanderZ = Mathf.Sin(Time.time * wanderFrequencyZ) * pupilWanderRadius.z;
-            Vector3 wanderOffset = new Vector3(wanderX, wanderY, wanderZ);
+            Vector2 wanderOffset = new Vector2(wanderX, wanderY);
             if (eyePupil != null)
-                eyePupil.localPosition = Vector3.Lerp(eyePupil.localPosition, wanderOffset, Time.deltaTime * wanderPupilSpeed);
+                eyePupil.localPosition = Vector3.Lerp(eyePupil.localPosition, new Vector3(wanderOffset.x, wanderOffset.y, eyePupil.localPosition.z), Time.deltaTime * wanderPupilSpeed);
         }
         else
         {
-            Vector3 dir = player.position - transform.position;
-            Vector3 clampedDir = Vector3.ClampMagnitude(dir, lookRadius);
+            Vector2 dir = ((Vector2)player.position - (Vector2)transform.position);
+            Vector2 clampedDir = Vector2.ClampMagnitude(dir, lookRadius);
             if (eyePupil != null)
-                eyePupil.localPosition = Vector3.Lerp(eyePupil.localPosition, clampedDir, Time.deltaTime * followSpeed);
+                eyePupil.localPosition = Vector3.Lerp(eyePupil.localPosition, new Vector3(clampedDir.x, clampedDir.y, eyePupil.localPosition.z), Time.deltaTime * followSpeed);
         }
     }
 
@@ -173,21 +174,66 @@ public class eyeController : MonoBehaviour
         }
     }
 
+    void CheckHoleOverlap()
+    {
+        Collider[] overlapping = Physics.OverlapSphere(player.position, 0.1f);
+        foreach (var col in overlapping)
+        {
+            if (col.CompareTag("hole"))
+            {
+                Collider playerCol = player.GetComponent<Collider>();
+                if (playerCol != null)
+                {
+                    Bounds holeBounds = col.bounds;
+                    Bounds playerBounds = playerCol.bounds;
+
+                    Bounds intersection = playerBounds;
+                    intersection.Encapsulate(holeBounds.min);
+                    intersection.Encapsulate(holeBounds.max);
+
+                    float intersectionVolume = intersection.size.x * intersection.size.y * intersection.size.z;
+                    float playerVolume = playerBounds.size.x * playerBounds.size.y * playerBounds.size.z;
+
+                    float overlapPercent = intersectionVolume / playerVolume;
+
+                    if (overlapPercent > 0.5f)
+                    {
+                        Vector3 direction = (col.transform.position - player.position).normalized;
+                        float distance = Vector3.Distance(player.position, col.transform.position);
+
+                        // Check if something on the Hide layer is between player and hole
+                        int hideLayerMask = 1 << LayerMask.NameToLayer("Hide");
+                        if (!Physics.Raycast(player.position, direction, distance, hideLayerMask))
+                        {
+                            playerHealth.TakeDamage(holeDamagePerTick * Time.deltaTime);
+                            Debug.Log("[eyeController] Player taking hole damage.");
+                            break;
+                        }
+                        else
+                        {
+                            Debug.Log("[eyeController] Hide layer blocking hole — no damage.");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     void OnDrawGizmos()
     {
         if (!Application.isPlaying && mainCamera == null)
             mainCamera = Camera.main;
 
-        Vector3 camPos = Application.isPlaying ? deadzoneCenter : mainCamera.transform.position;
-        Vector3 center = camPos + deadzoneOffset;
+        Vector2 camPos = Application.isPlaying ? deadzoneCenter : (Vector2)mainCamera.transform.position;
+        Vector2 center = camPos + deadzoneOffset;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(center, deadzoneSize);
+        Gizmos.DrawWireCube(new Vector3(center.x, center.y, transform.position.z), new Vector3(deadzoneSize.x, deadzoneSize.y, 0f));
 
         if (eyePupil != null)
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawWireCube(eyePupil.position, pupilWanderRadius * 2f);
+            Gizmos.DrawWireCube(eyePupil.position, new Vector3(pupilWanderRadius.x * 2f, pupilWanderRadius.y * 2f, 0f));
         }
     }
 }

@@ -19,9 +19,7 @@ public class ladderClimb : MonoBehaviour
             if (playerController != null)
             {
                 isPlayerOnLadder = true;
-                playerController.canMove = false; // Blokkeer normaal lopen
-                playerRb.useGravity = false;      // Zet zwaartekracht tijdelijk uit
-                playerRb.linearVelocity = Vector3.zero; // Stop snelheid
+                playerRb.useGravity = false;  // Alleen zwaartekracht uit
             }
         }
     }
@@ -31,8 +29,7 @@ public class ladderClimb : MonoBehaviour
         if (other.CompareTag("Player") && playerController != null)
         {
             isPlayerOnLadder = false;
-            playerController.canMove = true;    // Zet normaal lopen terug aan
-            playerRb.useGravity = true;         // Zet zwaartekracht terug aan
+            playerRb.useGravity = true;
         }
     }
 
@@ -41,20 +38,8 @@ public class ladderClimb : MonoBehaviour
         if (!isPlayerOnLadder || playerController == null) return;
 
         float verticalInput = Input.GetAxisRaw("Vertical"); // W/S of ↑/↓
-        float horizontalInput = Input.GetAxisRaw("Horizontal"); // A/D of ←/→
 
-        Vector3 climbDirection = Vector3.zero;
-
-        if (Mathf.Abs(verticalInput) > 0.1f)
-        {
-            climbDirection = new Vector3(0f, verticalInput, 0f);
-        }
-        else if (Mathf.Abs(horizontalInput) > 0.1f)
-        {
-            // Bepaal klimmen op basis van horizontale kant, bijv. voor zijkantladder
-            climbDirection = new Vector3(0f, Mathf.Abs(horizontalInput), 0f);
-        }
-
-        playerRb.linearVelocity = climbDirection * climbSpeed;
+        Vector3 climbVelocity = new Vector3(playerRb.linearVelocity.x, verticalInput * climbSpeed, playerRb.linearVelocity.z);
+        playerRb.linearVelocity = climbVelocity;
     }
 }

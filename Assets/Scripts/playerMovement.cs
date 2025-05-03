@@ -7,6 +7,12 @@ public class playerMovement : MonoBehaviour
     public float jumpForce = 16f;
     public float hideMoveSpeed = 4f;
     public float hideJumpForce = 10f;
+
+    [Header("Observed Movement")]
+    public float observedMoveSpeed = 6f;
+    public float observedJumpForce = 12f;
+
+    [Header("Default Movement")]
     public float defaultMoveSpeed;
     public float defaultJumpForce;
 
@@ -114,7 +120,7 @@ public class playerMovement : MonoBehaviour
         UpdateGroundAndWallStatus();
         HandleWallJumpLock();
         UpdateStamina();
-        ApplyHideEffects();
+        ApplyStateEffects();
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -129,7 +135,10 @@ public class playerMovement : MonoBehaviour
         }
         else if (rb.linearVelocity.y < 0) animator.SetBool("jump", false);
 
-        if (Input.GetKey(KeyCode.LeftShift) && inputX != 0 && !isGrabbing && currentStamina > 0f && isGrounded)
+        // Sprint alleen als NIET observed
+        bool canSprint = globalPlayerStats.instance != null && globalPlayerStats.instance.isHiding;
+
+        if (Input.GetKey(KeyCode.LeftShift) && inputX != 0 && !isGrabbing && currentStamina > 0f && isGrounded && canSprint)
         {
             if (!isSprinting && currentStamina > 20f)
             {
@@ -164,6 +173,7 @@ public class playerMovement : MonoBehaviour
     private void UpdateGroundAndWallStatus()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        Debug.Log(isGrounded);
         animator.SetBool("isGrounded", isGrounded);
 
         bool touchingLeft = Physics.CheckSphere(wallCheckLeft.position, wallCheckRadius, wallLayer);
@@ -181,7 +191,6 @@ public class playerMovement : MonoBehaviour
         }
         else
         {
-            // Reset stick timer als net nieuwe muur geraakt
             if (!wasOnWall) wallStickCounter = 0f;
             animator.SetBool("onWall", true);
         }
@@ -202,7 +211,6 @@ public class playerMovement : MonoBehaviour
             targetSpeed = input * boxMoveSpeed;
             animator.SetBool("isPushing", true);
 
-            // Geen acceleration bij grabbing: directe snelheid
             rb.linearVelocity = new Vector3(targetSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
             return;
         }
@@ -267,12 +275,20 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    private void ApplyHideEffects()
+    private void ApplyStateEffects()
     {
-        if (globalPlayerStats.instance != null && globalPlayerStats.instance.isHiding)
+        if (globalPlayerStats.instance != null)
         {
-            moveSpeed = hideMoveSpeed;
-            jumpForce = hideJumpForce;
+            if (globalPlayerStats.instance.isHiding)
+            {
+                moveSpeed = hideMoveSpeed;
+                jumpForce = hideJumpForce;
+            }
+            else
+            {
+                moveSpeed = observedMoveSpeed;
+                jumpForce = observedJumpForce;
+            }
         }
         else
         {

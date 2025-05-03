@@ -21,6 +21,7 @@ public class leverController : MonoBehaviour
     public float doorOpenSpeed = 1f;
     public Vector3 cutsceneOffset = new Vector3(0f, 0f, -10f);
     public float cutsceneZoom = 5f;
+    public float doorRotationAngle = -90f;  // 🔸 nieuw: instelbare rotatiehoek
 
     [Header("Audio")]
     public AudioSource doorSound;
@@ -73,17 +74,13 @@ public class leverController : MonoBehaviour
         if (leverSpriteRenderer != null && activeSprite != null)
             leverSpriteRenderer.sprite = activeSprite;
 
-        // Laat camera de deur volgen
         if (cameraFollowScript != null)
             cameraFollowScript.SetCutsceneTargetWithOffset(doorFocusPoint, cutsceneZoom, cutsceneOffset);
 
-        // Wacht totdat deur volledig opent
         yield return StartCoroutine(OpenDoor());
 
-        // Blijf 3 seconden bij de deur hangen
         yield return new WaitForSeconds(3f);
 
-        // Zet camera terug naar speler
         if (cameraFollowScript != null)
             cameraFollowScript.ResetToDefault(playerFollowTarget);
     }
@@ -91,7 +88,7 @@ public class leverController : MonoBehaviour
     private IEnumerator OpenDoor()
     {
         Quaternion startRot = doorHinge.localRotation;
-        Quaternion endRot = startRot * Quaternion.Euler(0f, 0f, 90f);
+        Quaternion endRot = startRot * Quaternion.Euler(0f, 0f, doorRotationAngle);
 
         float t = 0f;
         while (t < 1f)
@@ -101,7 +98,7 @@ public class leverController : MonoBehaviour
             yield return null;
         }
 
-        doorHinge.localRotation = endRot; // zorg dat hij exact eindigt
+        doorHinge.localRotation = endRot;
     }
 
     private IEnumerator SlidePrompt(RectTransform target, Vector2 from, Vector2 to, float duration)
