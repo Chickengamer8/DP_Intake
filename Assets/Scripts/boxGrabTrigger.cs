@@ -26,7 +26,6 @@ public class BoxGrabTrigger : MonoBehaviour
     {
         if (playerScript == null)
         {
-            Debug.LogError($"BoxGrabTrigger: Geen playerMovement script toegewezen op object '{transform.parent.gameObject.name}'!");
             enabled = false;
             return;
         }
@@ -36,7 +35,6 @@ public class BoxGrabTrigger : MonoBehaviour
             boxRb = boxObject.GetComponent<Rigidbody>();
             if (boxRb == null)
             {
-                Debug.LogError($"BoxGrabTrigger: Het toegewezen Box-object '{boxObject.name}' heeft GEEN Rigidbody!");
                 enabled = false;
                 return;
             }
@@ -46,7 +44,6 @@ public class BoxGrabTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"BoxGrabTrigger: Geen Box-object toegewezen op '{transform.parent.gameObject.name}'! Sleep de juiste Box in de Inspector.");
             enabled = false;
             return;
         }
@@ -56,11 +53,6 @@ public class BoxGrabTrigger : MonoBehaviour
     {
         HandleGrabInput();
         HandleFreezeTimer();
-
-        if (playerInCollider && playerScript.grabAttempt && !isGrabbed)
-        {
-            TeleportPlayerAroundBox();
-        }
 
         if (isGrabbed && !Input.GetMouseButton(1))
         {
@@ -179,20 +171,6 @@ public class BoxGrabTrigger : MonoBehaviour
         return centerSupported;
     }
 
-    private void TeleportPlayerAroundBox()
-    {
-        if (boxObject == null || playerScript == null) return;
-
-        Vector3 playerPos = playerScript.transform.position;
-        Vector3 boxPos = boxObject.transform.position;
-        float offset = 1f;
-
-        if (playerPos.x < boxPos.x)
-            playerScript.transform.position = new Vector3(boxPos.x - offset, playerPos.y, playerPos.z);
-        else
-            playerScript.transform.position = new Vector3(boxPos.x + offset, playerPos.y, playerPos.z);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -213,7 +191,7 @@ public class BoxGrabTrigger : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(boxObject.transform.position, boxObject.transform.localScale);
 
-        // Nieuw: visualiseer de ground check lengte
+        // Visualiseer de ground check lengte
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(boxObject.transform.position, boxObject.transform.position + Vector3.down * groundCheckLength);
         Gizmos.DrawSphere(boxObject.transform.position + Vector3.down * groundCheckLength, 0.05f);

@@ -177,6 +177,29 @@ public class eyeController : MonoBehaviour
     void CheckHoleOverlap()
     {
         Collider[] overlapping = Physics.OverlapSphere(player.position, 0.1f);
+        bool isInCoverWall = false;
+
+        // Check eerst of de speler in een coverWall zit
+        foreach (var col in overlapping)
+        {
+            if (col.gameObject.layer == LayerMask.NameToLayer("coverWall"))
+            {
+                isInCoverWall = true;
+                break;
+            }
+        }
+
+        if (globalPlayerStats.instance != null)
+            globalPlayerStats.instance.isInCoverWall = isInCoverWall;
+
+        // Als speler in coverWall zit → GEEN hole damage
+        if (isInCoverWall)
+        {
+            Debug.Log("[eyeController] Player is in coverWall — skipping hole damage.");
+            return;
+        }
+
+        // Anders check of speler in hole zit en meer dan 50% overlapt
         foreach (var col in overlapping)
         {
             if (col.CompareTag("hole"))
@@ -198,21 +221,9 @@ public class eyeController : MonoBehaviour
 
                     if (overlapPercent > 0.5f)
                     {
-                        Vector3 direction = (col.transform.position - player.position).normalized;
-                        float distance = Vector3.Distance(player.position, col.transform.position);
-
-                        // Check if something on the Hide layer is between player and hole
-                        int hideLayerMask = 1 << LayerMask.NameToLayer("Hide");
-                        if (!Physics.Raycast(player.position, direction, distance, hideLayerMask))
-                        {
-                            playerHealth.TakeDamage(holeDamagePerTick * Time.deltaTime);
-                            Debug.Log("[eyeController] Player taking hole damage.");
-                            break;
-                        }
-                        else
-                        {
-                            Debug.Log("[eyeController] Hide layer blocking hole — no damage.");
-                        }
+                        playerHealth.TakeDamage(holeDamagePerTick * Time.deltaTime);
+                        Debug.Log("[eyeController] Player taking hole damage.");
+                        break;
                     }
                 }
             }

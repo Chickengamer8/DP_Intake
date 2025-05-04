@@ -295,10 +295,10 @@ MonoBehaviour:
   eyePupil: {fileID: 5855624466825720809}
   lookRadius: 0.5
   followSpeed: 5
-  deadzoneSize: {x: 4, y: 2, z: 4}
-  deadzoneOffset: {x: 0, y: 0, z: 0}
+  deadzoneSize: {x: 4, y: 2}
+  deadzoneOffset: {x: 0, y: 0}
   deadzoneSmoothSpeed: 5
-  pupilWanderRadius: {x: 0.3, y: 0.3, z: 0.3}
+  pupilWanderRadius: {x: 0.3, y: 0.3}
   wanderInterval: 2
   wanderRange: 1
   moveSpeed: 2
@@ -310,6 +310,7 @@ MonoBehaviour:
   damageIncreaseRate: 0.5
   maxDamageMultiplier: 5
   recoveryRate: 1
+  holeDamagePerTick: 20
   hideLayer:
     serializedVersion: 2
     m_Bits: 256

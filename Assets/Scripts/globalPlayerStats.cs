@@ -8,6 +8,7 @@ public class globalPlayerStats : MonoBehaviour
     public float maxHealth = 100f;
     public float maxStamina = 100f;
     public bool isHiding = false;
+    public bool isInCoverWall;
 
     [Header("Checkpoint Data")]
     public Vector3 lastCheckpointPosition;

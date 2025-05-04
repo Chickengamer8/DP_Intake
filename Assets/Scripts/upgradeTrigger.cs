@@ -33,15 +33,6 @@ public class upgradeTrigger : MonoBehaviour
         }
 
         // Je kunt hier eventueel een timer starten om de prompt weer uit te faden
-        Invoke(nameof(HidePrompt), 2f);
-    }
-
-    private void HidePrompt()
-    {
-        if (promptUI != null)
-        {
-            promptUI.SetActive(false);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,10 +48,6 @@ public class upgradeTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInTrigger = false;
-            if (promptUI != null)
-            {
-                promptUI.SetActive(false);
-            }
         }
     }
 }

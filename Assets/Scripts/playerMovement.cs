@@ -173,7 +173,6 @@ public class playerMovement : MonoBehaviour
     private void UpdateGroundAndWallStatus()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
-        Debug.Log(isGrounded);
         animator.SetBool("isGrounded", isGrounded);
 
         bool touchingLeft = Physics.CheckSphere(wallCheckLeft.position, wallCheckRadius, wallLayer);

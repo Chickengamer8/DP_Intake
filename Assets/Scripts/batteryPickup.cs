@@ -6,10 +6,8 @@ public class batteryPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            prompt.ShowMessage("+1 Battery");
-            Destroy(gameObject);
-        }
+        Debug.Log("Battery picked up");
+        prompt.ShowMessage("+1 Battery");
+        Destroy(gameObject);
     }
 }
