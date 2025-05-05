@@ -25,7 +25,7 @@ TagManager:
   - Enemy
   - coverWall
   - boxBlockade
-  - 
+  - insideBox
   - 
   - 
   - 
@@ -65,6 +65,9 @@ TagManager:
     locked: 0
   - name: windowBG
     uniqueID: 4130150295
+    locked: 0
+  - name: tomArt
+    uniqueID: 4204610297
     locked: 0
   - name: Hide
     uniqueID: 2214297721

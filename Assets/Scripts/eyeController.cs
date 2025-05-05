@@ -182,7 +182,7 @@ public class eyeController : MonoBehaviour
         // Check eerst of de speler in een coverWall zit
         foreach (var col in overlapping)
         {
-            if (col.gameObject.layer == LayerMask.NameToLayer("coverWall"))
+            if (col.gameObject.layer == LayerMask.NameToLayer("coverWall") || col.gameObject.layer == LayerMask.NameToLayer("insideBox"))
             {
                 isInCoverWall = true;
                 break;

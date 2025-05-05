@@ -189,9 +189,6 @@ public class BoxGrabTrigger : MonoBehaviour
         if (boxObject == null)
             return;
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(boxObject.transform.position, boxObject.transform.localScale);
-
         // Visualiseer de ground check lengte
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(boxObject.transform.position, boxObject.transform.position + Vector3.down * groundCheckLength);
