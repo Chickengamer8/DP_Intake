@@ -24,7 +24,7 @@ TagManager:
   - NonSolid
   - Enemy
   - coverWall
-  - 
+  - boxBlockade
   - 
   - 
   - 
@@ -83,6 +83,9 @@ TagManager:
     locked: 0
   - name: Box
     uniqueID: 1620410825
+    locked: 0
+  - name: boxFore
+    uniqueID: 2096152929
     locked: 0
   - name: Default
     uniqueID: 0

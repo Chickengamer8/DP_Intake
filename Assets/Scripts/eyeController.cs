@@ -193,11 +193,7 @@ public class eyeController : MonoBehaviour
             globalPlayerStats.instance.isInCoverWall = isInCoverWall;
 
         // Als speler in coverWall zit → GEEN hole damage
-        if (isInCoverWall)
-        {
-            Debug.Log("[eyeController] Player is in coverWall — skipping hole damage.");
-            return;
-        }
+        if (isInCoverWall) return;
 
         // Anders check of speler in hole zit en meer dan 50% overlapt
         foreach (var col in overlapping)

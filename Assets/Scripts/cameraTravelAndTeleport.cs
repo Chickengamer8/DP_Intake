@@ -18,6 +18,11 @@ public class cameraTravelAndTeleport : MonoBehaviour
     public Image fadePanel;
     public Camera mainCamera;
 
+    [Header("Optional Zoom")]
+    public bool zoomOutEnabled = false;
+    public float zoomOutTargetSize = 7f;
+    public float zoomOutSpeed = 1f;
+
     [Header("Afbreekinstelling")]
     public float cameraAbortDistance = 10f;
 
@@ -82,10 +87,15 @@ public class cameraTravelAndTeleport : MonoBehaviour
                     objectReached = true;
             }
 
+            if (zoomOutEnabled && mainCamera != null && mainCamera.orthographic)
+            {
+                float currentSize = mainCamera.orthographicSize;
+                mainCamera.orthographicSize = Mathf.MoveTowards(currentSize, zoomOutTargetSize, zoomOutSpeed * Time.deltaTime);
+            }
+
             yield return null;
         }
 
-        // Fade out en in, ongeacht of het succesvol was
         yield return StartCoroutine(Fade(0f, 1f));
         yield return StartCoroutine(Fade(1f, 0f));
     }

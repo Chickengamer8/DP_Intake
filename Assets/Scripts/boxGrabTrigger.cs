@@ -147,13 +147,14 @@ public class BoxGrabTrigger : MonoBehaviour
 
     private void FreezeBox()
     {
-        boxRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        boxRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ |
+                            RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
 
     private void UnfreezeBox()
     {
-        boxRb.constraints = RigidbodyConstraints.None;
-        boxRb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        boxRb.constraints = RigidbodyConstraints.FreezePositionZ |
+                            RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
 
     private bool CheckSupportUnderBox()

@@ -21,7 +21,10 @@ public class leverController : MonoBehaviour
     public float doorOpenSpeed = 1f;
     public Vector3 cutsceneOffset = new Vector3(0f, 0f, -10f);
     public float cutsceneZoom = 5f;
-    public float doorRotationAngle = -90f;  // 🔸 nieuw: instelbare rotatiehoek
+    public float doorRotationAngle = -90f;
+
+    [Header("Optional Activation")]
+    public Collider optionalColliderToEnable;  // ← nieuw: optioneel GameObject
 
     [Header("Audio")]
     public AudioSource doorSound;
@@ -33,6 +36,7 @@ public class leverController : MonoBehaviour
 
     private bool isPlayerInZone = false;
     private bool hasActivated = false;
+    public bool noUI = false;
 
     private void Update()
     {
@@ -53,6 +57,8 @@ public class leverController : MonoBehaviour
         if (!other.CompareTag("Player") || hasActivated) return;
 
         isPlayerInZone = true;
+        if (noUI) return;
+
         promptText.text = promptMessage;
         StartCoroutine(SlidePrompt(promptTransform, hiddenPosition, shownPosition, slideDuration));
     }
@@ -69,10 +75,13 @@ public class leverController : MonoBehaviour
 
     private IEnumerator HandleLeverActivation()
     {
-        StartCoroutine(SlidePrompt(promptTransform, shownPosition, hiddenPosition, slideDuration));
+        if(!noUI) StartCoroutine(SlidePrompt(promptTransform, shownPosition, hiddenPosition, slideDuration));
 
         if (leverSpriteRenderer != null && activeSprite != null)
             leverSpriteRenderer.sprite = activeSprite;
+
+        if (optionalColliderToEnable != null)
+            optionalColliderToEnable.enabled = true;
 
         if (cameraFollowScript != null)
             cameraFollowScript.SetCutsceneTargetWithOffset(doorFocusPoint, cutsceneZoom, cutsceneOffset);
