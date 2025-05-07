@@ -42,6 +42,7 @@ public class tomParkourManager : MonoBehaviour
     private bool sequenceStarted = false;
     private bool hasSequenceRunBefore = false;
     private bool playerInInitializeTrigger = false;
+    private bool skipSequence = false;
 
     private void Update()
     {
@@ -62,10 +63,17 @@ public class tomParkourManager : MonoBehaviour
                 sequenceStarted = false;
             }
         }
+
+        // ✅ Check of G wordt ingedrukt om te skippen
+        if (sequenceStarted && Input.GetKeyDown(KeyCode.G))
+        {
+            skipSequence = true;
+        }
     }
 
     private IEnumerator RunSequence()
     {
+        skipSequence = false;
         playerScript.canMove = false;
         Rigidbody playerRb = playerScript.GetComponent<Rigidbody>();
         if (playerRb != null)
@@ -89,10 +97,21 @@ public class tomParkourManager : MonoBehaviour
 
         for (int i = 1; i < waypoints.Count; i++)
         {
-            yield return new WaitForSeconds(waypointWaitTime);
+            if (!skipSequence) yield return new WaitForSeconds(waypointWaitTime);
 
             StartCoroutine(SlideUI(countdownUI, countdownShowPosition, countdownSlideSpeed));
             yield return StartCoroutine(CountdownSequence(i));
+
+            if (skipSequence)
+            {
+                // Direct alles afmaken als geskiped
+                for (int j = i + 1; j < waypoints.Count; j++)
+                {
+                    Debug.Log($"[tomParkourManager] Skipping directly to waypoint {j}");
+                    yield return StartCoroutine(MoveToWaypoint(waypoints[j]));
+                }
+                break;
+            }
         }
 
         Debug.Log("[tomParkourManager] Parkour sequence completed.");
@@ -105,6 +124,7 @@ public class tomParkourManager : MonoBehaviour
         string[] countdowns = { "3", "2", "1", "GO" };
         foreach (string count in countdowns)
         {
+            if (skipSequence) break;
             countdownText.text = count;
             if (count != "GO") yield return new WaitForSeconds(countdownDelay);
         }
@@ -128,11 +148,22 @@ public class tomParkourManager : MonoBehaviour
         {
             dialogueText.text = lines[i];
 
-            // Wacht tot speler spatie loslaat als hij hem vasthoudt
             yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Space));
 
-            // Wacht op nieuwe spatie indruk
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            bool waitingForSpace = true;
+            while (waitingForSpace)
+            {
+                if (skipSequence)
+                {
+                    dialogueText.text = "";
+                    yield break;
+                }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    waitingForSpace = false;
+                }
+                yield return null;
+            }
         }
         dialogueText.text = "";
     }
@@ -141,6 +172,7 @@ public class tomParkourManager : MonoBehaviour
     {
         while (Vector3.Distance(uiElement.anchoredPosition, targetPosition) > 0.01f)
         {
+            if (skipSequence) break;
             uiElement.anchoredPosition = Vector3.Lerp(uiElement.anchoredPosition, targetPosition, Time.deltaTime * speed);
             yield return null;
         }

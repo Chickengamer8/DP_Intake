@@ -31,6 +31,8 @@ public class hornSummon : MonoBehaviour
 
     private bool playerInZone = false;
     private bool hasBeenUsed = false;
+    private bool isCutsceneRunning = false;
+    private bool skipCutscene = false;
     private AudioSource audioSource;
 
     void Start()
@@ -60,10 +62,19 @@ public class hornSummon : MonoBehaviour
             hasBeenUsed = true;
             StartCoroutine(StartCinematicSequence());
         }
+
+        // ✅ Check of G wordt ingedrukt om te skippen
+        if (isCutsceneRunning && Input.GetKeyDown(KeyCode.G))
+        {
+            skipCutscene = true;
+        }
     }
 
     private IEnumerator StartCinematicSequence()
     {
+        isCutsceneRunning = true;
+        skipCutscene = false;
+
         if (playerScript != null)
             playerScript.canMove = false;
 
@@ -72,14 +83,14 @@ public class hornSummon : MonoBehaviour
         if (dialogueLines.Count > 0)
             yield return StartCoroutine(ShowDialogueLines());
 
-        // ✅ Zodra de tekst klaar is, eerst UI weg
         yield return StartCoroutine(SlideBarsOut());
 
-        // ✅ Daarna robot starten zonder wachten op de UI
         yield return StartCoroutine(SummonRobot());
 
         if (playerScript != null)
             playerScript.canMove = true;
+
+        isCutsceneRunning = false;
     }
 
     private IEnumerator SlideBarsIn()
@@ -87,6 +98,8 @@ public class hornSummon : MonoBehaviour
         float t = 0f;
         while (t < barSlideDuration)
         {
+            if (skipCutscene) yield break;
+
             float lerp = t / barSlideDuration;
             if (topBar != null) topBar.anchoredPosition = Vector2.Lerp(topBarHidePos, topBarShowPos, lerp);
             if (bottomBar != null) bottomBar.anchoredPosition = Vector2.Lerp(bottomBarHidePos, bottomBarShowPos, lerp);
@@ -101,6 +114,15 @@ public class hornSummon : MonoBehaviour
     private IEnumerator SlideBarsOut()
     {
         float t = 0f;
+
+        // Als we skippen, sla de animatie over maar forceer de eindpositie
+        if (skipCutscene)
+        {
+            if (topBar != null) topBar.anchoredPosition = topBarHidePos;
+            if (bottomBar != null) bottomBar.anchoredPosition = bottomBarHidePos;
+            yield break;
+        }
+
         while (t < barSlideDuration)
         {
             float lerp = t / barSlideDuration;
@@ -123,6 +145,12 @@ public class hornSummon : MonoBehaviour
             bool waitingForInput = true;
             while (waitingForInput)
             {
+                if (skipCutscene)
+                {
+                    dialogueText.text = "";
+                    yield break;
+                }
+
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     waitingForInput = false;
@@ -141,7 +169,7 @@ public class hornSummon : MonoBehaviour
             audioSource.PlayOneShot(hornSound);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(skipCutscene ? 0f : 1f);
 
         GameObject robot = Instantiate(robotPrefab, robotSpawnPoint.position, Quaternion.identity);
         robotSummon behavior = robot.GetComponent<robotSummon>();

@@ -1,2 +1,2 @@
-LevelID: level1
-Checkpoint: -502.97,-327.01,0
+LevelID: level2
+Checkpoint: -420.0766,-230.6046,4.407018E-06

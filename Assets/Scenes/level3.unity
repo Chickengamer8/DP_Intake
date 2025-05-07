@@ -20956,7 +20956,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
+      propertyPath: objectsToEnable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
       propertyPath: objectsToRotate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
+      propertyPath: objectsToDisable.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
@@ -20972,6 +20980,10 @@ PrefabInstance:
       value: -115
       objectReference: {fileID: 0}
     - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
+      propertyPath: 'objectsToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1994608602}
+    - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
       propertyPath: 'objectsToRotate.Array.data[0]'
       value: 
       objectReference: {fileID: 1995249746}
@@ -20979,6 +20991,10 @@ PrefabInstance:
       propertyPath: objectsToTransform.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
+      propertyPath: 'objectsToDisable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1650442916}
     - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
       propertyPath: rotationAngles.Array.data[0].z
       value: 100
@@ -23594,6 +23610,22 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 771682747
       objectReference: {fileID: 0}
+    - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
+      propertyPath: objectsToEnable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
+      propertyPath: objectsToDisable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
+      propertyPath: 'objectsToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1994608602}
+    - target: {fileID: 7193610238687009105, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
+      propertyPath: 'objectsToDisable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1650442916}
     - target: {fileID: 8077156217143781650, guid: de8474c1769d5964d99d92698a48ec7f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.13480389
@@ -40562,7 +40594,7 @@ RectTransform:
   m_GameObject: {fileID: 1426658255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 785965404}
@@ -48030,7 +48062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7144414126796328630, guid: 0d3b6df2880ba8c49a2f1f1706b4d332, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8266484296263061492, guid: 0d3b6df2880ba8c49a2f1f1706b4d332, type: 3}
       propertyPath: m_Size.x
