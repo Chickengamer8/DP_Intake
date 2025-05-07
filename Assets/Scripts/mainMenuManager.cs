@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 
@@ -9,6 +9,13 @@ public class mainMenuManager : MonoBehaviour
 
     [Header("New Game Settings")]
     public Vector3 newGameSpawnPosition = new Vector3(0f, 1f, 0f); // Pas aan in Inspector of hardcode hier
+
+    private void Start()
+    {
+        // ✅ Zorg dat de cursor meteen unlocked & zichtbaar is in het menu
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
     public void NewGame()
     {

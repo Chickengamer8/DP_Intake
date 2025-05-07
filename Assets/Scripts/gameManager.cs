@@ -9,21 +9,4 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && !gamePaused)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            gamePaused = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && gamePaused)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            gamePaused = false;
-        }
-    }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class boxChangerTrigger : MonoBehaviour
 {
@@ -17,6 +17,13 @@ public class boxChangerTrigger : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("insideBox"))
         {
             hasActivated = true;
+
+            // ✅ Probeer eerst de box los te koppelen als hij wordt vastgehouden
+            BoxGrabTrigger grabTrigger = other.GetComponentInParent<BoxGrabTrigger>();
+            if (grabTrigger != null)
+            {
+                grabTrigger.ForceDetachBox();
+            }
 
             // Disable the incoming box object
             other.gameObject.SetActive(false);

@@ -85,15 +85,11 @@ public class playerMovement : MonoBehaviour
 
         if (globalPlayerStats.instance != null)
         {
-            // Zet stamina naar maxStamina van globalPlayerStats
             currentStamina = globalPlayerStats.instance.maxStamina;
-
-            // Start coroutine om speler na 1 frame te teleporteren naar checkpoint
             StartCoroutine(SetPlayerToCheckpoint());
         }
         else
         {
-            // Fallback voor als globalPlayerStats niet bestaat
             currentStamina = 100f;
         }
 
@@ -105,25 +101,32 @@ public class playerMovement : MonoBehaviour
 
     private System.Collections.IEnumerator SetPlayerToCheckpoint()
     {
-        yield return null; // wacht 1 frame
+        yield return null;
 
         if (globalPlayerStats.instance != null)
         {
             Debug.Log($"[Player] Teleporteert naar checkpoint: {globalPlayerStats.instance.lastCheckpointPosition}");
-
-            // Teleporteer de speler via physics
             rb.MovePosition(globalPlayerStats.instance.lastCheckpointPosition);
-
-            // Reset velocities om rare glitches te voorkomen
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
     }
 
-
     private void Update()
     {
-        if (!canMove) return;
+        if (!canMove || pauseMenuManager.isGamePaused)
+        {
+            bool blockedKey =
+                Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
+                Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||
+                Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) ||
+                Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow);
+
+            if (blockedKey)
+            {
+                return;
+            }
+        }
 
         inputX = Input.GetAxisRaw("Horizontal");
 
@@ -149,20 +152,37 @@ public class playerMovement : MonoBehaviour
         UpdateStamina();
         ApplyStateEffects();
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && canMove)
         {
-            if (isGrounded && !isGrabbing) Jump();
+            if (isGrabbing)
+            {
+                // Zoek een BoxGrabTrigger en forceer loslaten
+                BoxGrabTrigger grabTrigger = GetComponentInChildren<BoxGrabTrigger>();
+                if (grabTrigger != null)
+                {
+                    grabTrigger.ForceDetachBox();
+                }
+                isGrabbing = false;
+                Debug.Log("Jump while grabbing: Forced box release.");
+            }
+
+            if (isGrounded && !isGrabbing)
+            {
+                Jump();
+            }
             else if (isOnWall && !isGrabbing)
             {
-                inputX = 0f; // Voorkomt wall jump spam
+                inputX = 0f;
                 WallJump();
             }
 
             animator.SetBool("jump", true);
         }
-        else if (rb.linearVelocity.y < 0) animator.SetBool("jump", false);
+        else if (rb.linearVelocity.y < 0)
+        {
+            animator.SetBool("jump", false);
+        }
 
-        // Sprint alleen als NIET observed
         bool canSprint = globalPlayerStats.instance != null && globalPlayerStats.instance.isHiding;
 
         if (Input.GetKey(KeyCode.LeftShift) && inputX != 0 && !isGrabbing && currentStamina > 0f && isGrounded && canSprint)
@@ -287,7 +307,10 @@ public class playerMovement : MonoBehaviour
         {
             wallJumpLockCounter -= Time.deltaTime;
         }
-        else animator.SetBool("wallJumped", false);
+        else
+        {
+            animator.SetBool("wallJumped", false);
+        }
     }
 
     private void UpdateStamina()

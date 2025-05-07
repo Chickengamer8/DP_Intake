@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,7 +9,7 @@ public class pauseMenuManager : MonoBehaviour
     public Button continueButton;
     public Button quitButton;
 
-    private bool isPaused = false;
+    public static bool isGamePaused = false;  // 🔥 GLOBAL
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class pauseMenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
+            if (isGamePaused)
                 ResumeGame();
             else
                 PauseGame();
@@ -32,7 +32,7 @@ public class pauseMenuManager : MonoBehaviour
 
     public void PauseGame()
     {
-        isPaused = true;
+        isGamePaused = true;
         Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
@@ -43,7 +43,7 @@ public class pauseMenuManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        isPaused = false;
+        isGamePaused = false;
         Time.timeScale = 1f;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -54,7 +54,9 @@ public class pauseMenuManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        Time.timeScale = 1f; // Make sure time is running
+        isGamePaused = false;  // Zorg dat het reset!
+        globalPlayerStats.instance.currentHealth = 100f;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }

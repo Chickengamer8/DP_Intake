@@ -55,8 +55,17 @@ public class BoxGrabTrigger : MonoBehaviour
 
         int mouseButton = dragWithLeft ? 0 : 1;
 
+        // ✅ Loslaten als je de muisknop loslaat
         if (isGrabbed && !Input.GetMouseButton(mouseButton))
         {
+            isGrabbed = false;
+            DetachBoxFromPlayer();
+        }
+
+        // ✅ EXTRA: Check of de box niet meer ondersteund is terwijl je hem vasthebt
+        if (isGrabbed && !CheckSupportUnderBox())
+        {
+            Debug.Log("BoxGrabTrigger: Box lost support while grabbing, force detach!");
             isGrabbed = false;
             DetachBoxFromPlayer();
         }
@@ -199,5 +208,25 @@ public class BoxGrabTrigger : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(boxObject.transform.position, boxObject.transform.position + Vector3.down * groundCheckLength);
         Gizmos.DrawSphere(boxObject.transform.position + Vector3.down * groundCheckLength, 0.05f);
+    }
+
+    public void ForceDetachBox()
+    {
+        if (grabJoint != null)
+        {
+            Debug.Log("BoxGrabTrigger: Forced detach of box.");
+            Destroy(grabJoint);
+            grabJoint = null;
+        }
+
+        if (playerScript != null)
+        {
+            playerScript.isGrabbing = false;
+        }
+
+        isGrabbed = false;
+        waitingForFreeze = false;
+
+        Debug.Log("BoxGrabTrigger: ForceDetachBox completed.");
     }
 }

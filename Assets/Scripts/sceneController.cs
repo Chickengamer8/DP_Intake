@@ -45,6 +45,7 @@ public class sceneController : MonoBehaviour
     private bool inCutscene = false;
     private bool canSkipLine = true;
     private bool triggered = false;
+    private bool isSkipping = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -66,7 +67,7 @@ public class sceneController : MonoBehaviour
         currentLine = 0;
         currentCameraIndex = 0;
         dialogueText.gameObject.SetActive(true);
-        Debug.Log("Should be enabled");
+        Debug.Log("Cutscene started");
 
         if (playerController != null)
             playerController.canMove = false;
@@ -81,12 +82,18 @@ public class sceneController : MonoBehaviour
 
     private void Update()
     {
-        if (!inCutscene || !canSkipLine) return;
+        if (!inCutscene) return;
 
-        if (Input.GetKeyDown(KeyCode.Space) &&
+        if (canSkipLine && Input.GetKeyDown(KeyCode.Space) &&
             (autoNextDelay.Count <= currentLine || autoNextDelay[currentLine] <= 0f))
         {
             ShowNextLine();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G) && !isSkipping)
+        {
+            Debug.Log("[Cutscene] Skipping cutscene");
+            StartCoroutine(SkipEntireCutscene());
         }
     }
 
@@ -163,6 +170,31 @@ public class sceneController : MonoBehaviour
 
         onCutsceneEnd?.Invoke();
         StartCoroutine(SlideBarsOut());
+    }
+
+    private IEnumerator SkipEntireCutscene()
+    {
+        isSkipping = true;
+
+        // Trigger alle animatie scripts direct
+        for (int i = currentLine; i < textLines.Count; i++)
+        {
+            if (animationScripts.Count > i && animationScripts[i] != null)
+            {
+                animationScripts[i].Invoke("startAnimation", 0f);
+            }
+        }
+
+        // Zet camera naar laatste positie (optioneel)
+        if (cameraPositions.Count > 0)
+        {
+            TeleportCamera(cameraPositions.Count - 1);
+        }
+
+        // Even kort een frame wachten om te zorgen dat alles is uitgevoerd
+        yield return null;
+
+        EndCutscene();
     }
 
     private IEnumerator SlideBarsIn()
