@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: 21ef964b62e2d3e4cb7d5f32c6589201
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2980732864748705748
+    second: starryTrue_0
+  - first:
+      213: 1915062198673791940
+    second: starryTrue_1
+  - first:
+      213: 5626283190096554829
+    second: starryTrue_2
+  - first:
+      213: -7834555292531968964
+    second: starryTrue_3
+  - first:
+      213: -7449465328786469060
+    second: starryTrue_4
+  - first:
+      213: 7849634246272633702
+    second: starryTrue_5
+  - first:
+      213: 3836778809294282214
+    second: starryTrue_6
+  - first:
+      213: -2407340934647415158
+    second: starryTrue_7
+  - first:
+      213: -7677129773068320730
+    second: starryTrue_8
+  - first:
+      213: 5693994985956231426
+    second: starryTrue_9
+  - first:
+      213: -518962497494127178
+    second: starryTrue_10
+  - first:
+      213: 3924355095471646460
+    second: starryTrue_11
+  - first:
+      213: 3196921075880587725
+    second: starryTrue_12
+  - first:
+      213: -3038445769330850715
+    second: starryTrue_13
+  - first:
+      213: -144177303425423136
+    second: starryTrue_14
+  - first:
+      213: 5852130975200486448
+    second: starryTrue_15
+  - first:
+      213: 8016294565745574012
+    second: starryTrue_16
+  - first:
+      213: -2358284078578672847
+    second: starryTrue_17
+  - first:
+      213: 8831862797377200574
+    second: starryTrue_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: starryTrue_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 931
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d7dda57fb0bd5920800000000000000
+      internalID: 2980732864748705748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_1
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 935
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cbdaba5ceaa39a10800000000000000
+      internalID: 1915062198673791940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_2
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 929
+        width: 82
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4be47780c2941e40800000000000000
+      internalID: 5626283190096554829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_3
+      rect:
+        serializedVersion: 2
+        x: 1391
+        y: 957
+        width: 82
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c34b97f7871164390800000000000000
+      internalID: -7834555292531968964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_4
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 729
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3f081f90ce2e9890800000000000000
+      internalID: -7449465328786469060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_5
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 716
+        width: 81
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66b42d102c08fec60800000000000000
+      internalID: 7849634246272633702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_6
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 719
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ed5bb9bff9fe3530800000000000000
+      internalID: 3836778809294282214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_7
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 677
+        width: 82
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8e7511bc28679ed0800000000000000
+      internalID: -2407340934647415158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_8
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 617
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62000b5852b557590800000000000000
+      internalID: -7677129773068320730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_9
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 499
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 209c6ca8542250f40800000000000000
+      internalID: 5693994985956231426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_10
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 507
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bdec1dab564cc8f0800000000000000
+      internalID: -518962497494127178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_11
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 485
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf6e41eca2c167630800000000000000
+      internalID: 3924355095471646460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_12
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 343
+        width: 80
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc172dec7cebd5c20800000000000000
+      internalID: 3196921075880587725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_13
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 334
+        width: 80
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5640fb1dba545d5d0800000000000000
+      internalID: -3038445769330850715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_14
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 333
+        width: 80
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e867a4a187cffdf0800000000000000
+      internalID: -144177303425423136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_15
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 93
+        width: 81
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 034a2e3bd12f63150800000000000000
+      internalID: 5852130975200486448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_16
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 113
+        width: 82
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c70c8267f699f3f60800000000000000
+      internalID: 8016294565745574012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_17
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 76
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13bdbd01021b54fd0800000000000000
+      internalID: -2358284078578672847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: starryTrue_18
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 20
+        width: 81
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb1e7a6cb64119a70800000000000000
+      internalID: 8831862797377200574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      starryTrue_0: 2980732864748705748
+      starryTrue_1: 1915062198673791940
+      starryTrue_10: -518962497494127178
+      starryTrue_11: 3924355095471646460
+      starryTrue_12: 3196921075880587725
+      starryTrue_13: -3038445769330850715
+      starryTrue_14: -144177303425423136
+      starryTrue_15: 5852130975200486448
+      starryTrue_16: 8016294565745574012
+      starryTrue_17: -2358284078578672847
+      starryTrue_18: 8831862797377200574
+      starryTrue_2: 5626283190096554829
+      starryTrue_3: -7834555292531968964
+      starryTrue_4: -7449465328786469060
+      starryTrue_5: 7849634246272633702
+      starryTrue_6: 3836778809294282214
+      starryTrue_7: -2407340934647415158
+      starryTrue_8: -7677129773068320730
+      starryTrue_9: 5693994985956231426
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

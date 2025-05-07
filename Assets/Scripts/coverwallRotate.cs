@@ -36,7 +36,7 @@ public class coverwallRotate : MonoBehaviour
     {
         if (!playerInTrigger) return;
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             isHoldingRMB = true;
             if (playerScript != null)
@@ -46,7 +46,7 @@ public class coverwallRotate : MonoBehaviour
                 playerRb.linearVelocity = Vector3.zero;
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(0))
         {
             isHoldingRMB = false;
             if (playerScript != null)

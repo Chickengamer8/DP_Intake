@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -19,6 +21,12 @@ public class mainSpotlightManager : MonoBehaviour
     public Transform tomPointB;
     public float tomMoveSpeed = 2f;
 
+    [Header("Tom Arm Swing")]
+    public Transform leftArm;
+    public Transform rightArm;
+    public float armSwingSpeed = 50f; // degrees per second
+    public float armSwingAmount = 30f; // max swing angle
+
     [Header("Initial Sequence Changes (Start)")]
     public List<GameObject> objectsToEnableAtStart = new List<GameObject>();
     public List<GameObject> objectsToDisableAtStart = new List<GameObject>();
@@ -31,9 +39,16 @@ public class mainSpotlightManager : MonoBehaviour
     public Transform watcher;
     public float franticMoveRange = 0.2f;
 
+    [Header("Fade Settings")]
+    public Image fadePanel;
+    public float fadeDuration = 2f;
+    public string mainMenuSceneName = "MainMenu";
+
     private Vector3 watcherFranticStartPos;
     private bool isFrantic = false;
     private bool endSequenceStarted = false;
+    private bool armsSwinging = false;
+    public float armSwingingDelay = 5f;
 
     private void Start()
     {
@@ -55,6 +70,11 @@ public class mainSpotlightManager : MonoBehaviour
         {
             FranticMovement();
         }
+
+        if (armsSwinging)
+        {
+            StartCoroutine(SwingArms());
+        }
     }
 
     private IEnumerator EndSequence()
@@ -72,6 +92,12 @@ public class mainSpotlightManager : MonoBehaviour
                 obj.SetActive(false);
         }
 
+        // Spawn Tom IMMEDIATELY at point A
+        if (tomObject != null && tomPointA != null)
+        {
+            tomObject.transform.position = tomPointA.position;
+        }
+
         // Start frantic watcher movement
         isFrantic = true;
 
@@ -80,10 +106,8 @@ public class mainSpotlightManager : MonoBehaviour
         yield return new WaitForSeconds(zoomDuration);
 
         // Move Tom from A to B
-        if (tomObject != null && tomPointA != null && tomPointB != null)
+        if (tomObject != null && tomPointB != null)
         {
-            tomObject.transform.position = tomPointA.position;
-
             while (Vector3.Distance(tomObject.transform.position, tomPointB.position) > 0.1f)
             {
                 tomObject.transform.position = Vector3.MoveTowards(
@@ -106,6 +130,34 @@ public class mainSpotlightManager : MonoBehaviour
         isFrantic = false;
 
         Debug.Log("End sequence completed.");
+
+        // Start arm swinging
+        armsSwinging = true;
+
+        // Start fade-out and load main menu
+        if (fadePanel != null)
+        {
+            yield return StartCoroutine(FadeOut());
+        }
+
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    private IEnumerator FadeOut()
+    {
+        fadePanel.gameObject.SetActive(true);
+        Color c = fadePanel.color;
+        float t = 0f;
+
+        while (t < fadeDuration)
+        {
+            float alpha = Mathf.Lerp(0f, 1f, t / fadeDuration);
+            fadePanel.color = new Color(c.r, c.g, c.b, alpha);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        fadePanel.color = new Color(c.r, c.g, c.b, 1f);
     }
 
     private void FranticMovement()
@@ -117,6 +169,22 @@ public class mainSpotlightManager : MonoBehaviour
 
             Vector3 franticOffset = new Vector3(randomX, randomY, 0f);
             watcher.position = watcherFranticStartPos + franticOffset;
+        }
+    }
+
+    private IEnumerator SwingArms()
+    {
+        yield return new WaitForSeconds(armSwingingDelay);
+        if (leftArm != null)
+        {
+            float angle = Mathf.Sin(Time.time * armSwingSpeed) * armSwingAmount;
+            leftArm.localRotation = Quaternion.Euler(0f, 0f, angle);
+        }
+
+        if (rightArm != null)
+        {
+            float angle = Mathf.Sin(Time.time * armSwingSpeed) * armSwingAmount;
+            rightArm.localRotation = Quaternion.Euler(0f, 0f, -angle);
         }
     }
 }

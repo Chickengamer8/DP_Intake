@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.IO;
 
 public class checkpoint : MonoBehaviour
 {
@@ -39,6 +40,33 @@ public class checkpoint : MonoBehaviour
             globalPlayerStats.instance.SetCheckpoint(transform.position);
         }
 
+        SaveCheckpointToFile();
+
         Debug.Log($"[Checkpoint] Activated checkpoint {checkpointID} at {transform.position}");
+    }
+    private void SaveCheckpointToFile()
+    {
+        // Zorg dat de Data-folder bestaat
+        string folderPath = Path.Combine(Application.dataPath, "Data");
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        // Maak het volledige pad aan
+        string savePath = Path.Combine(folderPath, "checkpointSave.txt");
+
+        string levelID = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        Vector3 pos = globalPlayerStats.instance.lastCheckpointPosition;
+
+        string[] lines =
+        {
+        $"LevelID: {levelID}",
+        $"Checkpoint: {pos.x},{pos.y},{pos.z}"
+    };
+
+        File.WriteAllLines(savePath, lines);
+
+        Debug.Log($"[Checkpoint] Saved checkpoint to {savePath}");
     }
 }

@@ -1,0 +1,2 @@
+LevelID: level3
+Checkpoint: -409.7429,-499.899,0

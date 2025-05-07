@@ -84,15 +84,42 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         if (globalPlayerStats.instance != null)
+        {
+            // Zet stamina naar maxStamina van globalPlayerStats
             currentStamina = globalPlayerStats.instance.maxStamina;
+
+            // Start coroutine om speler na 1 frame te teleporteren naar checkpoint
+            StartCoroutine(SetPlayerToCheckpoint());
+        }
         else
+        {
+            // Fallback voor als globalPlayerStats niet bestaat
             currentStamina = 100f;
+        }
 
         defaultMoveSpeed = moveSpeed;
         defaultJumpForce = jumpForce;
 
         groundLayer = LayerMask.GetMask("Ground", "Box");
     }
+
+    private System.Collections.IEnumerator SetPlayerToCheckpoint()
+    {
+        yield return null; // wacht 1 frame
+
+        if (globalPlayerStats.instance != null)
+        {
+            Debug.Log($"[Player] Teleporteert naar checkpoint: {globalPlayerStats.instance.lastCheckpointPosition}");
+
+            // Teleporteer de speler via physics
+            rb.MovePosition(globalPlayerStats.instance.lastCheckpointPosition);
+
+            // Reset velocities om rare glitches te voorkomen
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+    }
+
 
     private void Update()
     {

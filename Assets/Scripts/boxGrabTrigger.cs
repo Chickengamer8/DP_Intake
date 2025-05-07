@@ -9,18 +9,17 @@ public class BoxGrabTrigger : MonoBehaviour
     public float groundCheckLength = 0.6f;
     public float groundSupportThreshold = 0.5f;
     public float freezeDelayAfterFall = 3f;
+    public bool dragWithLeft = false; // NEW: use left mouse button to drag
 
     [Header("References")]
     public playerMovement playerScript;
 
     private Rigidbody boxRb;
     private bool playerInCollider = false;
-    private FixedJoint grabJoint = null;
+    private ConfigurableJoint grabJoint = null;
     private bool waitingForFreeze = false;
     private float freezeTimer = 0f;
     private bool isGrabbed = false;
-    private float lastSupportRatio = 0f;
-    private bool lastHasSupport = false;
 
     private void Start()
     {
@@ -54,7 +53,9 @@ public class BoxGrabTrigger : MonoBehaviour
         HandleGrabInput();
         HandleFreezeTimer();
 
-        if (isGrabbed && !Input.GetMouseButton(1))
+        int mouseButton = dragWithLeft ? 0 : 1;
+
+        if (isGrabbed && !Input.GetMouseButton(mouseButton))
         {
             isGrabbed = false;
             DetachBoxFromPlayer();
@@ -65,7 +66,9 @@ public class BoxGrabTrigger : MonoBehaviour
     {
         if (!playerInCollider || !playerScript.isGrounded) return;
 
-        if (playerScript.grabAttempt)
+        int mouseButton = dragWithLeft ? 0 : 1;
+
+        if (Input.GetMouseButton(mouseButton))
         {
             if (!isGrabbed)
             {
@@ -85,10 +88,17 @@ public class BoxGrabTrigger : MonoBehaviour
         }
 
         UnfreezeBox();
-        grabJoint = boxObject.AddComponent<FixedJoint>();
+
+        grabJoint = boxObject.AddComponent<ConfigurableJoint>();
         grabJoint.connectedBody = playerScript.GetComponent<Rigidbody>();
-        grabJoint.breakForce = 1000f;
-        grabJoint.breakTorque = 1000f;
+
+        grabJoint.xMotion = ConfigurableJointMotion.Locked;
+        grabJoint.yMotion = ConfigurableJointMotion.Free;  // Keep Y free
+        grabJoint.zMotion = ConfigurableJointMotion.Locked;
+
+        grabJoint.angularXMotion = ConfigurableJointMotion.Locked;
+        grabJoint.angularYMotion = ConfigurableJointMotion.Locked;
+        grabJoint.angularZMotion = ConfigurableJointMotion.Locked;
 
         playerScript.isGrabbing = true;
     }
@@ -166,9 +176,6 @@ public class BoxGrabTrigger : MonoBehaviour
         Debug.DrawLine(centerCheckPos, centerCheckPos + Vector3.down * groundCheckLength, centerSupported ? Color.green : Color.red);
 #endif
 
-        lastSupportRatio = centerSupported ? 1f : 0f;
-        lastHasSupport = centerSupported;
-
         return centerSupported;
     }
 
@@ -189,7 +196,6 @@ public class BoxGrabTrigger : MonoBehaviour
         if (boxObject == null)
             return;
 
-        // Visualiseer de ground check lengte
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(boxObject.transform.position, boxObject.transform.position + Vector3.down * groundCheckLength);
         Gizmos.DrawSphere(boxObject.transform.position + Vector3.down * groundCheckLength, 0.05f);

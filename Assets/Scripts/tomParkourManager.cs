@@ -126,9 +126,12 @@ public class tomParkourManager : MonoBehaviour
     {
         for (int i = 0; i < lines.Count; i++)
         {
-            Debug.Log(i);
-            Debug.Log(lines.Count);
             dialogueText.text = lines[i];
+
+            // Wacht tot speler spatie loslaat als hij hem vasthoudt
+            yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Space));
+
+            // Wacht op nieuwe spatie indruk
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
         dialogueText.text = "";

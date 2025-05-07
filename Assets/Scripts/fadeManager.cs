@@ -10,22 +10,19 @@ public class fadeManager : MonoBehaviour
 
     void Start()
     {
-        // Start fade-in als de scene begint
         if (fadePanel != null)
         {
+            fadePanel.gameObject.SetActive(true);
             StartCoroutine(FadeIn());
         }
     }
 
-    public void StartSceneTransition(string sceneName)
-    {
-        StartCoroutine(FadeOutAndLoad(sceneName));
-    }
-
-    IEnumerator FadeIn()
+    public IEnumerator FadeIn()
     {
         float t = 0f;
         Color color = fadePanel.color;
+        color.a = 1f;
+        fadePanel.color = color;
 
         while (t < fadeDuration)
         {
@@ -39,10 +36,12 @@ public class fadeManager : MonoBehaviour
         fadePanel.color = color;
     }
 
-    IEnumerator FadeOutAndLoad(string sceneName)
+    public IEnumerator FadeOut()
     {
         float t = 0f;
         Color color = fadePanel.color;
+        color.a = 0f;
+        fadePanel.color = color;
 
         while (t < fadeDuration)
         {
@@ -54,7 +53,16 @@ public class fadeManager : MonoBehaviour
 
         color.a = 1f;
         fadePanel.color = color;
+    }
 
+    public void StartSceneTransition(string sceneName)
+    {
+        StartCoroutine(FadeOutAndLoad(sceneName));
+    }
+
+    IEnumerator FadeOutAndLoad(string sceneName)
+    {
+        yield return FadeOut();
         SceneManager.LoadScene(sceneName);
     }
 

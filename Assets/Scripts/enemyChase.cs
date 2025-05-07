@@ -18,7 +18,7 @@ public class enemyChase : MonoBehaviour
     public Animator enemyAnimator;
 
     [Header("Death Setup")]
-    public Collider triggerColliderToDisable;  // sleep hier in de specifieke trigger collider
+    public Collider triggerColliderToDisable;
 
     private Rigidbody rb;
     private bool hasHitPlayer = false;
@@ -39,7 +39,7 @@ public class enemyChase : MonoBehaviour
             if (enemyAnimator != null)
                 enemyAnimator.SetBool("isWalking", false);
 
-            rb.linearVelocity = Vector3.zero;  // stop beweging volledig
+            rb.linearVelocity = Vector3.zero;
             return;
         }
 
@@ -68,7 +68,7 @@ public class enemyChase : MonoBehaviour
     {
         if (hasHitPlayer || isDead) return;
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerMovement movement = other.GetComponent<playerMovement>();
             playerHealth health = other.GetComponent<playerHealth>();
@@ -105,9 +105,24 @@ public class enemyChase : MonoBehaviour
         yield return new WaitForSeconds(killAnimationDelay);
 
         if (enemyAnimator != null)
-            enemyAnimator.SetBool("killFinished", true);
+            enemyAnimator.SetTrigger("killPlayer");
+
+        // Start the coroutine to handle the killFinished flag timing
+        StartCoroutine(HandleKillFinishedFlag());
 
         DisableEnemy();
+    }
+
+    private IEnumerator HandleKillFinishedFlag()
+    {
+        if (enemyAnimator != null)
+        {
+            yield return new WaitForSeconds(5f);
+            enemyAnimator.SetBool("killFinished", true);
+
+            yield return new WaitForSeconds(5f);
+            enemyAnimator.SetBool("killFinished", false);
+        }
     }
 
     public void DisableEnemy()

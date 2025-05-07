@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -8,8 +8,11 @@ public class playerHealth : MonoBehaviour
     public float regenDelay = 3f;
     public float regenRate = 5f;
 
-    [Header("Health UI")]
-    public Image healthBarFill;
+    [Header("Fade Panel Settings")]
+    public Image fadePanel;
+
+    [Header("References")]
+    public Animator playerAnimator;
 
     private playerMovement playerMovementScript;
     private Rigidbody rb;
@@ -21,14 +24,9 @@ public class playerHealth : MonoBehaviour
         playerMovementScript = GetComponent<playerMovement>();
         rb = GetComponent<Rigidbody>();
 
-        // Initialiseer currentHealth als die nog niet gezet is
-        if (globalPlayerStats.instance != null)
-        {
-            if (globalPlayerStats.instance.currentHealth <= 0f)
-                globalPlayerStats.instance.currentHealth = globalPlayerStats.instance.maxHealth;
-        }
+        if (globalPlayerStats.instance != null && globalPlayerStats.instance.currentHealth <= 0f)
+            globalPlayerStats.instance.currentHealth = globalPlayerStats.instance.maxHealth;
 
-        // Spawn op checkpoint als die bestaat
         if (globalPlayerStats.instance != null && globalPlayerStats.instance.hasCheckpoint)
         {
             transform.position = globalPlayerStats.instance.lastCheckpointPosition;
@@ -58,7 +56,7 @@ public class playerHealth : MonoBehaviour
                 RegenerateHealth();
             }
 
-            UpdateHealthUI();
+            UpdateFadePanel();
         }
     }
 
@@ -77,7 +75,7 @@ public class playerHealth : MonoBehaviour
             Die();
         }
 
-        UpdateHealthUI();
+        UpdateFadePanel();
     }
 
     private void RegenerateHealth()
@@ -88,48 +86,75 @@ public class playerHealth : MonoBehaviour
         globalPlayerStats.instance.currentHealth = Mathf.Clamp(globalPlayerStats.instance.currentHealth, 0f, maxHealth);
     }
 
-    private void UpdateHealthUI()
+    private void UpdateFadePanel()
     {
-        if (healthBarFill != null && globalPlayerStats.instance != null)
-        {
-            float maxHealth = globalPlayerStats.instance.maxHealth;
-            healthBarFill.fillAmount = globalPlayerStats.instance.currentHealth / maxHealth;
-        }
+        if (fadePanel == null || globalPlayerStats.instance == null) return;
+
+        float maxHealth = globalPlayerStats.instance.maxHealth;
+        float currentHealth = globalPlayerStats.instance.currentHealth;
+
+        float healthRatio = Mathf.Clamp01(currentHealth / maxHealth);
+        float targetAlpha = 1f - healthRatio;
+
+        Color c = fadePanel.color;
+        fadePanel.color = new Color(c.r, c.g, c.b, targetAlpha);
     }
 
     public void Die()
     {
-        if (!isDead)
+        if (isDead) return;
+
+        isDead = true;
+
+        if (playerMovementScript != null)
+            playerMovementScript.canMove = false;
+
+        if (playerAnimator != null)
+            playerAnimator.SetBool("Death", true);
+
+        rb.linearVelocity = Vector3.zero;
+
+        gameOverManager gameOver = FindFirstObjectByType<gameOverManager>();
+        if (gameOver != null)
         {
-            isDead = true;
-            StartCoroutine(Respawn());
+            gameOver.ShowGameOverScreen(this);
+        }
+        else
+        {
+            Debug.LogWarning("[playerHealth] No gameOverManager found in scene!");
         }
     }
 
-    private IEnumerator Respawn()
+    public void Respawn()
     {
-        if (playerMovementScript != null)
+        if (playerAnimator != null)
         {
-            playerMovementScript.canMove = false;
+            playerAnimator.SetBool("Death", false);
+            playerAnimator.SetBool("Respawn", true);
         }
-
-        rb.linearVelocity = Vector3.zero;
-        rb.AddForce(Vector3.up * 5f, ForceMode.VelocityChange);
-
-        yield return new WaitForSeconds(1.5f);
-
-        respawnManager.RespawnPlayer(transform);
 
         if (globalPlayerStats.instance != null)
         {
             globalPlayerStats.instance.currentHealth = globalPlayerStats.instance.maxHealth;
         }
 
+        transform.position = globalPlayerStats.instance.lastCheckpointPosition;
         isDead = false;
 
         if (playerMovementScript != null)
-        {
             playerMovementScript.canMove = true;
+
+        UpdateFadePanel();
+
+        StartCoroutine(ResetRespawnBool());
+    }
+
+    private IEnumerator ResetRespawnBool()
+    {
+        yield return new WaitForSeconds(5f);
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("Respawn", false);
         }
     }
 }

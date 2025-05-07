@@ -13,12 +13,10 @@ public class sceneController : MonoBehaviour
 
     [Header("Instellingen per stap")]
     public List<int> cameraJumpIndices;
-    public float fadeDuration = 1f;
     public List<float> autoNextDelay;
 
     [Header("UI Referenties")]
     public Camera mainCamera;
-    public Image fadePanel;
     public TMPro.TextMeshProUGUI dialogueText;
     public UnityEvent onCutsceneEnd;
 
@@ -37,7 +35,10 @@ public class sceneController : MonoBehaviour
     public playerMovement playerController;
     public Rigidbody playerRB;
     public cameraFollow cameraFollowScript;
-    public Transform cameraTarget; // 🔹 originele target om terug te geven na cutscene
+    public Transform cameraTarget;
+
+    [Header("Fade Manager Reference")]
+    public fadeManager fadeManagerInstance;
 
     private int currentLine = 0;
     private int currentCameraIndex = 0;
@@ -54,14 +55,6 @@ public class sceneController : MonoBehaviour
 
     private void Start()
     {
-        if (fadePanel != null)
-        {
-            Color c = fadePanel.color;
-            c.a = 0f;
-            fadePanel.color = c;
-            fadePanel.gameObject.SetActive(false);
-        }
-
         if (topBar != null) topBar.anchoredPosition = topBarHidePos;
         if (bottomBar != null) bottomBar.anchoredPosition = bottomBarHidePos;
     }
@@ -135,35 +128,14 @@ public class sceneController : MonoBehaviour
     {
         canSkipLine = false;
 
-        if (fadePanel != null)
-            fadePanel.gameObject.SetActive(true);
-
-        float t = 0f;
-        Color c = fadePanel.color;
-
-        while (t < fadeDuration)
-        {
-            float a = Mathf.Lerp(0f, 1f, t / fadeDuration);
-            fadePanel.color = new Color(c.r, c.g, c.b, a);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        fadePanel.color = new Color(c.r, c.g, c.b, 1f);
+        if (fadeManagerInstance != null)
+            yield return fadeManagerInstance.FadeOut();
 
         TeleportCamera(camIndex);
 
-        t = 0f;
-        while (t < fadeDuration)
-        {
-            float a = Mathf.Lerp(1f, 0f, t / fadeDuration);
-            fadePanel.color = new Color(c.r, c.g, c.b, a);
-            t += Time.deltaTime;
-            yield return null;
-        }
+        if (fadeManagerInstance != null)
+            yield return fadeManagerInstance.FadeIn();
 
-        fadePanel.color = new Color(c.r, c.g, c.b, 0f);
-        fadePanel.gameObject.SetActive(false);
         canSkipLine = true;
     }
 
@@ -186,7 +158,6 @@ public class sceneController : MonoBehaviour
         if (playerController != null)
             playerController.canMove = true;
 
-        // ✅ Geef camera weer controle terug aan cameraFollow
         if (cameraFollowScript != null && cameraTarget != null)
             cameraFollowScript.target = cameraTarget;
 

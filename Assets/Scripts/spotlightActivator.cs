@@ -11,6 +11,7 @@ public class spotlightActivator : MonoBehaviour
     public watcherChaseController chaseController;
     public float franticMoveRange = 0.5f;
     public float franticMoveSpeed = 20f;
+    public Transform watcherTargetPositionB;  // ← nieuw: doelpositie B
 
     [Header("Disable On Activate")]
     public GameObject objectToDisable;
@@ -64,6 +65,14 @@ public class spotlightActivator : MonoBehaviour
 
         if (chaseController.watcher != null)
         {
+            // Forceer teleport naar locatie B
+            if (watcherTargetPositionB != null)
+            {
+                chaseController.watcher.position = watcherTargetPositionB.position;
+                Debug.Log("[SpotlightActivator] Watcher teleported to position B.");
+            }
+
+            // Start frantic beweging (optioneel)
             watcherFranticStartPos = chaseController.watcher.position;
             InvokeRepeating(nameof(FranticMovement), 0f, 0.02f);
         }
