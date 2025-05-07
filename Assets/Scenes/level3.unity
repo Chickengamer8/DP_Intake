@@ -5348,8 +5348,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.339796, y: 9.047466, z: 0.2}
-  m_Center: {x: -0.03599953, y: -0.59619737, z: 0}
+  m_Size: {x: 5.8359036, y: 9.047466, z: 0.2}
+  m_Center: {x: 0.06636222, y: -0.5961971, z: 0}
 --- !u!1 &167318438
 GameObject:
   m_ObjectHideFlags: 0
@@ -7042,8 +7042,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 12.468022, y: 10.799998, z: 0.2}
-  m_Center: {x: -0.07577517, y: 0, z: -0.00000001129171}
+  m_Size: {x: 15.483272, y: 10.799998, z: 0.2}
+  m_Center: {x: 0.15856536, y: -3.881933e-10, z: -0.00000001129171}
 --- !u!1 &226424503
 GameObject:
   m_ObjectHideFlags: 0
@@ -8203,8 +8203,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.339796, y: 9.047466, z: 0.2}
-  m_Center: {x: -0.03599953, y: -0.59619737, z: 0}
+  m_Size: {x: 6.591108, y: 6.247606, z: 0.2}
+  m_Center: {x: -0.097042814, y: -1.9961444, z: 0}
 --- !u!331 &268022977
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -23294,8 +23294,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.339796, y: 9.047466, z: 0.2}
-  m_Center: {x: -0.03599953, y: -0.59619737, z: 0}
+  m_Size: {x: 6.4672194, y: 9.047466, z: 0.2}
+  m_Center: {x: 0.04911305, y: -0.59619725, z: 0}
 --- !u!331 &813768042
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -32220,8 +32220,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.339796, y: 9.047466, z: 0.2}
-  m_Center: {x: -0.03599953, y: -0.59619737, z: 0}
+  m_Size: {x: 5.4521422, y: 7.257742, z: 0.2}
+  m_Center: {x: -0.23038243, y: -1.4910641, z: 0}
 --- !u!331 &1136199665
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -33681,7 +33681,7 @@ PrefabInstance:
       objectReference: {fileID: 1800528969}
     - target: {fileID: -3962101952079901686, guid: ffc9ca9e1025c7f4dbcdf111f5ec9bb5, type: 3}
       propertyPath: recoveryRate
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -3962101952079901686, guid: ffc9ca9e1025c7f4dbcdf111f5ec9bb5, type: 3}
       propertyPath: damagePerTick
@@ -48030,7 +48030,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7144414126796328630, guid: 0d3b6df2880ba8c49a2f1f1706b4d332, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266484296263061492, guid: 0d3b6df2880ba8c49a2f1f1706b4d332, type: 3}
+      propertyPath: m_Size.x
+      value: 16.542475
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266484296263061492, guid: 0d3b6df2880ba8c49a2f1f1706b4d332, type: 3}
+      propertyPath: m_Size.y
+      value: 16.430862
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266484296263061492, guid: 0d3b6df2880ba8c49a2f1f1706b4d332, type: 3}
+      propertyPath: m_Size.z
+      value: 0.19999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266484296263061492, guid: 0d3b6df2880ba8c49a2f1f1706b4d332, type: 3}
+      propertyPath: m_Center.x
+      value: 0.13940346
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266484296263061492, guid: 0d3b6df2880ba8c49a2f1f1706b4d332, type: 3}
+      propertyPath: m_Center.y
+      value: -0.1952853
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -53627,8 +53647,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.339796, y: 9.047466, z: 0.2}
-  m_Center: {x: -0.03599953, y: -0.59619737, z: 0}
+  m_Size: {x: 5.8660235, y: 7.2599444, z: 0.2}
+  m_Center: {x: 0.09719942, y: -1.4899714, z: 0}
 --- !u!331 &1938270021
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -55754,8 +55774,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.339796, y: 9.047466, z: 0.2}
-  m_Center: {x: -0.03599953, y: -0.59619737, z: 0}
+  m_Size: {x: 5.913465, y: 6.6778736, z: 0.2}
+  m_Center: {x: 0.14779744, y: -1.781002, z: 0}
 --- !u!331 &2022781515
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -57000,8 +57020,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.339796, y: 9.047466, z: 0.2}
-  m_Center: {x: -0.03599953, y: -0.59619737, z: 0}
+  m_Size: {x: 6.483558, y: 9.047466, z: 0.2}
+  m_Center: {x: -0.1307401, y: -0.59619766, z: 0}
 --- !u!331 &2067467787
 SpriteMask:
   m_ObjectHideFlags: 0
