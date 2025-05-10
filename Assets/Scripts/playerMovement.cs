@@ -64,6 +64,7 @@ public class playerMovement : MonoBehaviour
 
     [Header("Box movement")]
     public LayerMask boxLayer;
+    public Transform grabHitbox;
 
     [HideInInspector] public bool isGrounded = false;
 
@@ -145,7 +146,14 @@ public class playerMovement : MonoBehaviour
             }
         }
 
-        grabAttempt = Input.GetMouseButton(1) && !standingOnBox;
+        bool canGrabBox = false;
+        if (grabHitbox != null)
+        {
+            Collider[] grabHits = Physics.OverlapSphere(grabHitbox.position, 0.1f, LayerMask.GetMask("Box", "coverWall", "NonSolid"));
+            canGrabBox = grabHits.Length > 0;
+            Debug.Log(grabHits);
+        }
+        grabAttempt = Input.GetMouseButton(1) && !standingOnBox && canGrabBox;
 
         UpdateGroundAndWallStatus();
         HandleWallJumpLock();

@@ -82,8 +82,11 @@ public class spotlightActivator : MonoBehaviour
 
     private System.Collections.IEnumerator GrowBeam()
     {
-        Vector3 currentScale = spotlightBeam.transform.localScale;
-        Vector3 targetScale = new Vector3(currentScale.x, targetBeamScaleY, currentScale.z);
+        // Zet Y op 0 als hij start
+        Vector3 startScale = new Vector3(spotlightBeam.transform.localScale.x, 0f, spotlightBeam.transform.localScale.z);
+        Vector3 targetScale = new Vector3(startScale.x, targetBeamScaleY, startScale.z);
+
+        spotlightBeam.transform.localScale = startScale;
 
         while (spotlightBeam.transform.localScale.y < targetBeamScaleY)
         {
@@ -94,6 +97,9 @@ public class spotlightActivator : MonoBehaviour
             );
             yield return null;
         }
+
+        // Zorg dat het exact eindigt
+        spotlightBeam.transform.localScale = targetScale;
     }
 
     private void FranticMovement()

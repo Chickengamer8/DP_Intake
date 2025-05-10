@@ -2,34 +2,40 @@ using UnityEngine;
 
 public class flipSprite : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
     private Rigidbody rb;
+    private bool facingRight = true;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = transform.parent.GetComponent<Rigidbody>();
 
-        if (spriteRenderer == null)
-            Debug.LogError("playerFlip: SpriteRenderer niet gevonden op dit object!");
-
         if (rb == null)
-            Debug.LogError("playerFlip: Rigidbody2D niet gevonden op dit object!");
+            Debug.LogError("flipSprite: Rigidbody niet gevonden op het parent object!");
     }
 
     void Update()
     {
-        if (rb == null || spriteRenderer == null)
+        if (rb == null)
             return;
 
-        // Flip afhankelijk van snelheid op X-as
-        if (rb.linearVelocity.x > 0.1f)
+        float moveX = rb.linearVelocity.x;
+
+        if (moveX > 0.1f && !facingRight)
         {
-            spriteRenderer.flipX = false; // Rechts kijken
+            Flip();
         }
-        else if (rb.linearVelocity.x < -0.1f)
+        else if (moveX < -0.1f && facingRight)
         {
-            spriteRenderer.flipX = true; // Links kijken
+            Flip();
         }
+    }
+
+    private void Flip()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
+
+        facingRight = !facingRight;
     }
 }

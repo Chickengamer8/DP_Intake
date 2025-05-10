@@ -26,7 +26,7 @@ public class boxChangerTrigger : MonoBehaviour
             }
 
             // Disable the incoming box object
-            other.gameObject.SetActive(false);
+            other.transform.parent.gameObject.SetActive(false);
 
             // Enable the specified object
             if (objectToEnable != null)

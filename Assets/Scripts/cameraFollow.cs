@@ -14,6 +14,13 @@ public class cameraFollow : MonoBehaviour
     private float targetZoom;
     public float zoomSpeed = 3f;
 
+    [Header("Mouse Influence")]
+    public float mouseSensitivity = 0.1f;       // Hoeveel invloed muisbeweging heeft
+    public float maxMouseOffset = 1f;           // Max offset in units
+    public float mouseReturnSpeed = 2f;         // Hoe snel offset terug naar 0 gaat
+
+    private Vector3 mouseOffset = Vector3.zero; // Dynamische offset gebaseerd op muis
+
     private Camera cam;
     private bool overrideTarget = false;
 
@@ -29,9 +36,26 @@ public class cameraFollow : MonoBehaviour
     {
         if (target == null) return;
 
-        Vector3 desiredPosition = target.position + currentOffset;
+        // ✅ Lees muisinput
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        // ✅ Pas de mouseOffset aan
+        Vector3 mouseMovement = new Vector3(mouseX, mouseY, 0f) * mouseSensitivity;
+        mouseOffset += mouseMovement;
+
+        // ✅ Beperk tot max offset
+        mouseOffset.x = Mathf.Clamp(mouseOffset.x, -maxMouseOffset, maxMouseOffset);
+        mouseOffset.y = Mathf.Clamp(mouseOffset.y, -maxMouseOffset, maxMouseOffset);
+
+        // ✅ Smooth terug naar 0 als je stopt met bewegen
+        mouseOffset = Vector3.Lerp(mouseOffset, Vector3.zero, mouseReturnSpeed * Time.deltaTime);
+
+        // ✅ Bereken positie mét mouse offset
+        Vector3 desiredPosition = target.position + currentOffset + mouseOffset;
         transform.position = Vector3.Lerp(transform.position, desiredPosition, followSpeed * Time.deltaTime);
 
+        // ✅ Zoom bijwerken
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, zoomSpeed * Time.deltaTime);
     }
 

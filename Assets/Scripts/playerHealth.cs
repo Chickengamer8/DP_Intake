@@ -90,7 +90,7 @@ public class playerHealth : MonoBehaviour
     {
         if (fadePanel == null || globalPlayerStats.instance == null) return;
 
-        float maxHealth = globalPlayerStats.instance.maxHealth;
+        float maxHealth = (globalPlayerStats.instance.maxHealth / 2);
         float currentHealth = globalPlayerStats.instance.currentHealth;
 
         float healthRatio = Mathf.Clamp01(currentHealth / maxHealth);

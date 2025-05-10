@@ -21,6 +21,10 @@ public class checkpoint : MonoBehaviour
     public List<Transform> objectsToTransform = new List<Transform>();
     public List<Vector3> newPositions = new List<Vector3>();
 
+    [Header("Optional: Spotlight Manager")]
+    public bool setSpotlightValue = false;
+    public int spotlightValue = 0;
+
     private SpriteRenderer spriteRenderer;
     private bool isActive = false;
 
@@ -53,6 +57,21 @@ public class checkpoint : MonoBehaviour
 
         SaveCheckpointToFile();
         ApplyLevelStateChanges();
+
+        // ✅ Optioneel spotlightManager aanpassen
+        if (setSpotlightValue)
+        {
+            mainSpotlightManager spotlightManager = FindObjectOfType<mainSpotlightManager>();
+            if (spotlightManager != null)
+            {
+                spotlightManager.spotlightsActive = spotlightValue;
+                Debug.Log($"[Checkpoint] Set spotlightsActive to {spotlightValue}");
+            }
+            else
+            {
+                Debug.LogWarning("[Checkpoint] setSpotlightValue is true but no mainSpotlightManager found!");
+            }
+        }
 
         Debug.Log($"[Checkpoint] Activated checkpoint {checkpointID} at {transform.position}");
     }

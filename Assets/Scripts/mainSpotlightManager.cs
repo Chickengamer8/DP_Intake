@@ -24,12 +24,17 @@ public class mainSpotlightManager : MonoBehaviour
     [Header("Tom Arm Swing")]
     public Transform leftArm;
     public Transform rightArm;
-    public float armSwingSpeed = 50f; // degrees per second
-    public float armSwingAmount = 30f; // max swing angle
+    public float armSwingSpeed = 50f;
+    public float armSwingAmount = 30f;
 
     [Header("Initial Sequence Changes (Start)")]
     public List<GameObject> objectsToEnableAtStart = new List<GameObject>();
     public List<GameObject> objectsToDisableAtStart = new List<GameObject>();
+
+    [Header("Beam Growth")]
+    public List<Transform> beamsToGrow = new List<Transform>();
+    public float beamTargetScaleY = 5f;
+    public float beamGrowthSpeed = 2f;
 
     [Header("Final Changes (After Tom Reaches B)")]
     public GameObject objectToDisable;
@@ -92,6 +97,9 @@ public class mainSpotlightManager : MonoBehaviour
                 obj.SetActive(false);
         }
 
+        // Start growing the beams
+        StartCoroutine(GrowBeams());
+
         // Spawn Tom IMMEDIATELY at point A
         if (tomObject != null && tomPointA != null)
         {
@@ -141,6 +149,41 @@ public class mainSpotlightManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    private IEnumerator GrowBeams()
+    {
+        List<bool> beamsDone = new List<bool>(new bool[beamsToGrow.Count]);
+
+        while (true)
+        {
+            bool allDone = true;
+
+            for (int i = 0; i < beamsToGrow.Count; i++)
+            {
+                Transform beam = beamsToGrow[i];
+                if (beam == null || beamsDone[i])
+                    continue;
+
+                Vector3 currentScale = beam.localScale;
+                float newY = Mathf.MoveTowards(currentScale.y, beamTargetScaleY, beamGrowthSpeed * Time.deltaTime);
+                beam.localScale = new Vector3(currentScale.x, newY, currentScale.z);
+
+                if (Mathf.Approximately(newY, beamTargetScaleY))
+                {
+                    beamsDone[i] = true;
+                }
+                else
+                {
+                    allDone = false;
+                }
+            }
+
+            if (allDone)
+                yield break;
+
+            yield return null;
+        }
     }
 
     private IEnumerator FadeOut()

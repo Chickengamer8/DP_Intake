@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5693977829830380997}
   - component: {fileID: 2670270115515919800}
   - component: {fileID: 6835655460426997015}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: boxGrabHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   groundCheckLength: 2.5
   groundSupportThreshold: 0.5
   freezeDelayAfterFall: 3
+  dragWithLeft: 0
   playerScript: {fileID: 0}
 --- !u!1 &5540853115254173316
 GameObject:
@@ -195,7 +196,7 @@ GameObject:
   - component: {fileID: 1102761143905703925}
   - component: {fileID: 4438663277088549440}
   - component: {fileID: 2673096645830341013}
-  m_Layer: 14
+  m_Layer: 10
   m_Name: Box2DHide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +280,7 @@ GameObject:
   - component: {fileID: 3714260382824850974}
   - component: {fileID: 2302736253696407227}
   - component: {fileID: 8266484296263061492}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: boxVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

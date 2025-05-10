@@ -24,7 +24,7 @@ public class boxGrabHitbox : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Box"))
+        if (other.CompareTag("Box") || other.CompareTag("coverWall") || other.CompareTag("NonSolid"))
         {
             currentBox = other.GetComponent<movableBox>();
             playerScript.nearBox = true;
@@ -33,7 +33,7 @@ public class boxGrabHitbox : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Box") && currentBox != null && other.GetComponent<movableBox>() == currentBox)
+        if ((other.CompareTag("Box") || other.CompareTag("coverWall") || other.CompareTag("NonSolid")) && currentBox != null && other.GetComponent<movableBox>() == currentBox)
         {
             currentBox.SetMovable(false, null);
             playerScript.nearBox = false;

@@ -1,0 +1,3185 @@
+fileFormatVersion: 2
+guid: da4b146409b944f40a9c9b2753efe7c1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7262490973236099
+    second: Ahole1Outline_0
+  - first:
+      213: -5818623310842992473
+    second: Ahole1Outline_1
+  - first:
+      213: -8780521097532270105
+    second: Ahole1Outline_2
+  - first:
+      213: 4462311623990532669
+    second: Ahole1Outline_3
+  - first:
+      213: -4232265357704321468
+    second: Ahole1Outline_4
+  - first:
+      213: -1824239761312534495
+    second: Ahole1Outline_5
+  - first:
+      213: -4199908546079012086
+    second: Ahole1Outline_6
+  - first:
+      213: 471392991406053856
+    second: Ahole1Outline_7
+  - first:
+      213: -362364903345267043
+    second: Ahole1Outline_8
+  - first:
+      213: -3559776835306182199
+    second: Ahole1Outline_9
+  - first:
+      213: -6544862027434886035
+    second: Ahole1Outline_10
+  - first:
+      213: -8204628348648245656
+    second: Ahole1Outline_11
+  - first:
+      213: -3246313241060390426
+    second: Ahole1Outline_12
+  - first:
+      213: -4215976580952466409
+    second: Ahole1Outline_13
+  - first:
+      213: 1467723252822494509
+    second: Ahole1Outline_14
+  - first:
+      213: -1028571348899396689
+    second: Ahole1Outline_15
+  - first:
+      213: 623000103807287405
+    second: Ahole1Outline_16
+  - first:
+      213: 22508299984401827
+    second: Ahole1Outline_17
+  - first:
+      213: 6448166775935938488
+    second: Ahole1Outline_18
+  - first:
+      213: -8854260018076628247
+    second: Ahole1Outline_19
+  - first:
+      213: -2390302528526673318
+    second: Ahole1Outline_20
+  - first:
+      213: 104574068238652524
+    second: Ahole1Outline_21
+  - first:
+      213: -3019231132929371427
+    second: Ahole1Outline_22
+  - first:
+      213: -2010024687468658362
+    second: Ahole1Outline_23
+  - first:
+      213: 2464488077918819136
+    second: Ahole1Outline_24
+  - first:
+      213: 2616972199620449525
+    second: Ahole1Outline_25
+  - first:
+      213: -5508473790638124593
+    second: Ahole1Outline_26
+  - first:
+      213: -3373731688571040816
+    second: Ahole1Outline_27
+  - first:
+      213: -8563824413556687910
+    second: Ahole1Outline_28
+  - first:
+      213: 8282184604835413885
+    second: Ahole1Outline_29
+  - first:
+      213: -8375001635467882863
+    second: Ahole1Outline_30
+  - first:
+      213: 7895613823010126560
+    second: Ahole1Outline_31
+  - first:
+      213: -9019084740236268381
+    second: Ahole1Outline_32
+  - first:
+      213: -1123781679758066587
+    second: Ahole1Outline_33
+  - first:
+      213: -5886129936085390472
+    second: Ahole1Outline_34
+  - first:
+      213: -2679231103627620243
+    second: Ahole1Outline_35
+  - first:
+      213: 3160642039289682640
+    second: Ahole1Outline_36
+  - first:
+      213: -5917973564646521228
+    second: Ahole1Outline_37
+  - first:
+      213: 7127039446103315630
+    second: Ahole1Outline_38
+  - first:
+      213: 7108945058314502020
+    second: Ahole1Outline_39
+  - first:
+      213: 5796148980138677625
+    second: Ahole1Outline_40
+  - first:
+      213: 5664719694499268255
+    second: Ahole1Outline_41
+  - first:
+      213: 731416070728398526
+    second: Ahole1Outline_42
+  - first:
+      213: 6924781745357570169
+    second: Ahole1Outline_43
+  - first:
+      213: -2293266561274069748
+    second: Ahole1Outline_44
+  - first:
+      213: -4940813068684032139
+    second: Ahole1Outline_45
+  - first:
+      213: -7127451706394744057
+    second: Ahole1Outline_46
+  - first:
+      213: 3462507601432709137
+    second: Ahole1Outline_47
+  - first:
+      213: 2299443932948382429
+    second: Ahole1Outline_48
+  - first:
+      213: -5933452334583511364
+    second: Ahole1Outline_49
+  - first:
+      213: -70460454679374154
+    second: Ahole1Outline_50
+  - first:
+      213: 3416153798799872758
+    second: Ahole1Outline_51
+  - first:
+      213: 2002313695698736011
+    second: Ahole1Outline_52
+  - first:
+      213: -6890304390236305657
+    second: Ahole1Outline_53
+  - first:
+      213: 5562746120698110471
+    second: Ahole1Outline_54
+  - first:
+      213: 5617548590660862992
+    second: Ahole1Outline_55
+  - first:
+      213: 8303772478163333081
+    second: Ahole1Outline_56
+  - first:
+      213: -5988832628200340816
+    second: Ahole1Outline_57
+  - first:
+      213: -6388549176903583895
+    second: Ahole1Outline_58
+  - first:
+      213: -8682352511200355758
+    second: Ahole1Outline_59
+  - first:
+      213: -4366563126799842725
+    second: Ahole1Outline_60
+  - first:
+      213: 876440426048419883
+    second: Ahole1Outline_61
+  - first:
+      213: -260483935466814091
+    second: Ahole1Outline_62
+  - first:
+      213: -7644766111403685571
+    second: Ahole1Outline_63
+  - first:
+      213: -7543773800503302906
+    second: Ahole1Outline_64
+  - first:
+      213: -2689495850433313698
+    second: Ahole1Outline_65
+  - first:
+      213: 7625506453273846927
+    second: Ahole1Outline_66
+  - first:
+      213: -4265009604728814541
+    second: Ahole1Outline_67
+  - first:
+      213: -1194512471452150753
+    second: Ahole1Outline_68
+  - first:
+      213: -8334318434482755601
+    second: Ahole1Outline_69
+  - first:
+      213: -672925059258323804
+    second: Ahole1Outline_70
+  - first:
+      213: 7805657150890125601
+    second: Ahole1Outline_71
+  - first:
+      213: -2589053934731196224
+    second: Ahole1Outline_72
+  - first:
+      213: 2845649695595451445
+    second: Ahole1Outline_73
+  - first:
+      213: -8012333112740351690
+    second: Ahole1Outline_74
+  - first:
+      213: 3026614857360363338
+    second: Ahole1Outline_75
+  - first:
+      213: 3403629765761769297
+    second: Ahole1Outline_76
+  - first:
+      213: 4095675881880026612
+    second: Ahole1Outline_77
+  - first:
+      213: 4900881489502825328
+    second: Ahole1Outline_78
+  - first:
+      213: -767409153877684309
+    second: Ahole1Outline_79
+  - first:
+      213: 8678694032819149873
+    second: Ahole1Outline_80
+  - first:
+      213: -3377550281349541744
+    second: Ahole1Outline_81
+  - first:
+      213: -3957510228182838023
+    second: Ahole1Outline_82
+  - first:
+      213: 5121647041339858118
+    second: Ahole1Outline_83
+  - first:
+      213: -4956355033346165368
+    second: Ahole1Outline_84
+  - first:
+      213: -6824068843322716973
+    second: Ahole1Outline_85
+  - first:
+      213: -7940711092466905152
+    second: Ahole1Outline_86
+  - first:
+      213: -9097876057015300755
+    second: Ahole1Outline_87
+  - first:
+      213: -9155766303620706204
+    second: Ahole1Outline_88
+  - first:
+      213: 1048407579732545121
+    second: Ahole1Outline_89
+  - first:
+      213: 5000595478870670027
+    second: Ahole1Outline_90
+  - first:
+      213: -2507274592129627291
+    second: Ahole1Outline_91
+  - first:
+      213: 348326498978139505
+    second: Ahole1Outline_92
+  - first:
+      213: -1032182744702905236
+    second: Ahole1Outline_93
+  - first:
+      213: 6898452992002583667
+    second: Ahole1Outline_94
+  - first:
+      213: 754065214214315285
+    second: Ahole1Outline_95
+  - first:
+      213: -3531005618968539452
+    second: Ahole1Outline_96
+  - first:
+      213: -1957789661379985967
+    second: Ahole1Outline_97
+  - first:
+      213: -7452396206682178273
+    second: Ahole1Outline_98
+  - first:
+      213: -6146663864683180328
+    second: Ahole1Outline_99
+  - first:
+      213: -7358740426570165431
+    second: Ahole1Outline_100
+  - first:
+      213: 2396227372542262077
+    second: Ahole1Outline_101
+  - first:
+      213: 68109697517498200
+    second: Ahole1Outline_102
+  - first:
+      213: 4470123522290511834
+    second: Ahole1Outline_103
+  - first:
+      213: -7531116355882487048
+    second: Ahole1Outline_104
+  - first:
+      213: -5274706108355258231
+    second: Ahole1Outline_105
+  - first:
+      213: -301687544425483445
+    second: Ahole1Outline_106
+  - first:
+      213: -7959818256509414533
+    second: Ahole1Outline_107
+  - first:
+      213: 2982014305246905475
+    second: Ahole1Outline_108
+  - first:
+      213: -2403683154073049438
+    second: Ahole1Outline_109
+  - first:
+      213: 6555954490718098474
+    second: Ahole1Outline_110
+  - first:
+      213: 4938252114391309241
+    second: Ahole1Outline_111
+  - first:
+      213: -4265101778080668961
+    second: Ahole1Outline_112
+  - first:
+      213: -7825034181035883038
+    second: Ahole1Outline_113
+  - first:
+      213: 4106803042908813967
+    second: Ahole1Outline_114
+  - first:
+      213: -7631170867926682890
+    second: Ahole1Outline_115
+  - first:
+      213: -3691289208192698286
+    second: Ahole1Outline_116
+  - first:
+      213: 8996441293378745882
+    second: Ahole1Outline_117
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ahole1Outline_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1004
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d741b5d8dc236eff0800000000000000
+      internalID: -7262490973236099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_1
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 1019
+        width: 26
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a8656b5de8104fa0800000000000000
+      internalID: -5818623310842992473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1019
+        width: 16
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e914ce3592552680800000000000000
+      internalID: -8780521097532270105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1019
+        width: 12
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3a5d0997c05ded30800000000000000
+      internalID: 4462311623990532669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_4
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 446a7d6a419f345c0800000000000000
+      internalID: -4232265357704321468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_5
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1013
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 120b2d13a9ffea6e0800000000000000
+      internalID: -1824239761312534495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_6
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0b45dded6de6b5c0800000000000000
+      internalID: -4199908546079012086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_7
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e9dd5a9d69ba8600800000000000000
+      internalID: 471392991406053856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_8
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1013
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9e59015a0f98faf0800000000000000
+      internalID: -362364903345267043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_9
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 1013
+        width: 59
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c929eb24d1299ec0800000000000000
+      internalID: -3559776835306182199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_10
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1013
+        width: 37
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6cfcc689aafb25a0800000000000000
+      internalID: -6544862027434886035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_11
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1019
+        width: 33
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 866b8b4acfd432e80800000000000000
+      internalID: -8204628348648245656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_12
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 1019
+        width: 20
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e9c2f49e47c2f2d0800000000000000
+      internalID: -3246313241060390426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_13
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1013
+        width: 35
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71c56f603a7dd75c0800000000000000
+      internalID: -4215976580952466409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_14
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2dc019a5866e5410800000000000000
+      internalID: 1467723252822494509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_15
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 1019
+        width: 27
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa305bacec7c9b1f0800000000000000
+      internalID: -1028571348899396689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_16
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 1019
+        width: 14
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d60077a2b4755a800800000000000000
+      internalID: 623000103807287405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_17
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 1013
+        width: 30
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a57119fd27ff4000800000000000000
+      internalID: 22508299984401827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_18
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bf2324d48d7c7950800000000000000
+      internalID: 6448166775935938488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_19
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea4999ec695f1580800000000000000
+      internalID: -8854260018076628247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_20
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5a1371c380f3ded0800000000000000
+      internalID: -2390302528526673318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_21
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c64151e9f85837100800000000000000
+      internalID: 104574068238652524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_22
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd2d1faf7498916d0800000000000000
+      internalID: -3019231132929371427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_23
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6414aa14235fa14e0800000000000000
+      internalID: -2010024687468658362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_24
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 1013
+        width: 71
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 043598579de933220800000000000000
+      internalID: 2464488077918819136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_25
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 1013
+        width: 27
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f41379a95a515420800000000000000
+      internalID: 2616972199620449525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_26
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 1019
+        width: 15
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc11776c548fd83b0800000000000000
+      internalID: -5508473790638124593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_27
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 1019
+        width: 29
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0db8e3f67e81e21d0800000000000000
+      internalID: -3373731688571040816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_28
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1013
+        width: 29
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adbb227a11f272980800000000000000
+      internalID: -8563824413556687910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_29
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1013
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7f7c67640b30f270800000000000000
+      internalID: 8282184604835413885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_30
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19e0f9c926406cb80800000000000000
+      internalID: -8375001635467882863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_31
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eabe2470fad29d60800000000000000
+      internalID: 7895613823010126560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_32
+      rect:
+        serializedVersion: 2
+        x: 991
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac2213c636c5d280800000000000000
+      internalID: -9019084740236268381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_33
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 1019
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56cbdec24868760f0800000000000000
+      internalID: -1123781679758066587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_34
+      rect:
+        serializedVersion: 2
+        x: 1019
+        y: 1019
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87b66d95204405ea0800000000000000
+      internalID: -5886129936085390472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_35
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d601915a18571dad0800000000000000
+      internalID: -2679231103627620243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_36
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0da170e503bdcdb20800000000000000
+      internalID: 3160642039289682640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_37
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4768711d5622fdda0800000000000000
+      internalID: -5917973564646521228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_38
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea45f259d9458e260800000000000000
+      internalID: 7127039446103315630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_39
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48fba90addb08a260800000000000000
+      internalID: 7108945058314502020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_40
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 997
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9759862c9ce007050800000000000000
+      internalID: 5796148980138677625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_41
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f96c9c69c802d9e40800000000000000
+      internalID: 5664719694499268255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_42
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb637c68a03862a00800000000000000
+      internalID: 731416070728398526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_43
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 970c52fee44c91060800000000000000
+      internalID: 6924781745357570169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_44
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0d3af7763eac20e0800000000000000
+      internalID: -2293266561274069748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_45
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1005
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5770b7b01b4be6bb0800000000000000
+      internalID: -4940813068684032139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_46
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 997
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70be6969f64361d90800000000000000
+      internalID: -7127451706394744057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_47
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 992
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1188c7f715c4d0030800000000000000
+      internalID: 3462507601432709137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_48
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 989
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd2c054f21449ef10800000000000000
+      internalID: 2299443932948382429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_49
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 989
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb60079d98428ada0800000000000000
+      internalID: -5933452334583511364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_50
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 989
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b69f1cf69ca50ff0800000000000000
+      internalID: -70460454679374154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_51
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 989
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f2519bc7cd986f20800000000000000
+      internalID: 3416153798799872758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_52
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 989
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b83d50192b5a9cb10800000000000000
+      internalID: 2002313695698736011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_53
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 989
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70786a9d9a8b060a0800000000000000
+      internalID: -6890304390236305657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_54
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 989
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 702a4e3cf18d23d40800000000000000
+      internalID: 5562746120698110471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 964
+        width: 5
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01446de1eaa85fd40800000000000000
+      internalID: 5617548590660862992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_56
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 973
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9df2798d21dec3370800000000000000
+      internalID: 8303772478163333081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_57
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 973
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b289d0747463eca0800000000000000
+      internalID: -5988832628200340816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_58
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 973
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9673c802f505757a0800000000000000
+      internalID: -6388549176903583895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_59
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 981
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25a9e236466128780800000000000000
+      internalID: -8682352511200355758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_60
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 973
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b52c6c1a8f9d663c0800000000000000
+      internalID: -4366563126799842725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_61
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 973
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2878658cedb92c00800000000000000
+      internalID: 876440426048419883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_62
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 981
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5750ec4ad33926cf0800000000000000
+      internalID: -260483935466814091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_63
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 973
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39c6d2b9b558e590800000000000000
+      internalID: -7644766111403685571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_64
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 973
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6052a1372b12f4790800000000000000
+      internalID: -7543773800503302906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 956
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e54090a06cdfcaad0800000000000000
+      internalID: -2689495850433313698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_66
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 965
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8426d3b7bd33d960800000000000000
+      internalID: 7625506453273846927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_67
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 957
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 334828a8c54afc4c0800000000000000
+      internalID: -4265009604728814541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_68
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 957
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f14125b6c3d3c6fe0800000000000000
+      internalID: -1194512471452150753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_69
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 957
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe76aab7a8d865c80800000000000000
+      internalID: -8334318434482755601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_70
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 957
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ace272593a49a6f0800000000000000
+      internalID: -672925059258323804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_71
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 957
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1292b4592d3435c60800000000000000
+      internalID: 7805657150890125601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 948
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8050ce925d11cd0800000000000000
+      internalID: -2589053934731196224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_73
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 949
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5345a2d3257cd7720800000000000000
+      internalID: 2845649695595451445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_74
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 941
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 631f2013c797ec090800000000000000
+      internalID: -8012333112740351690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_75
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 949
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f42e45d22b00a20800000000000000
+      internalID: 3026614857360363338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_76
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 941
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15f1d2f1d3f1c3f20800000000000000
+      internalID: 3403629765761769297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_77
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 941
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fdf796c383c6d830800000000000000
+      internalID: 4095675881880026612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_78
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 941
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07b6a1cafbd630440800000000000000
+      internalID: 4900881489502825328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_79
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 928
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bafccb1c07d9955f0800000000000000
+      internalID: -767409153877684309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_80
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 0
+        width: 978
+        height: 940
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13cdc7cbd3ae07870800000000000000
+      internalID: 8678694032819149873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_81
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 933
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 090d3250ae78021d0800000000000000
+      internalID: -3377550281349541744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_82
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 933
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f4df2e4a691419c0800000000000000
+      internalID: -3957510228182838023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_83
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 915
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cc1ef339deb31740800000000000000
+      internalID: 5121647041339858118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 904
+        width: 5
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 885bea86b5d773bb0800000000000000
+      internalID: -4956355033346165368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_85
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 890
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc40feda890c41a0800000000000000
+      internalID: -6824068843322716973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_86
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 878
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cf8185455decc190800000000000000
+      internalID: -7940711092466905152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_87
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 866
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6d4213cde9ddb180800000000000000
+      internalID: -9097876057015300755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_88
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 792
+        width: 5
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46052326e0f20f080800000000000000
+      internalID: -9155766303620706204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_89
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 797
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16e09c99321bc8e00800000000000000
+      internalID: 1048407579732545121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 760
+        width: 5
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcab28ff71fa56540800000000000000
+      internalID: 5000595478870670027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_91
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 749
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56b40c5ea0f543dd0800000000000000
+      internalID: -2507274592129627291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_92
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 728
+        width: 5
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17d8275fa1185d400800000000000000
+      internalID: 348326498978139505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_93
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6412be2343fca1f0800000000000000
+      internalID: -1032182744702905236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_94
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 702
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c6b08527a3cbf50800000000000000
+      internalID: 6898452992002583667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_95
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 684
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d19be215af67a00800000000000000
+      internalID: 754065214214315285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_96
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 672
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cec87df8195ffec0800000000000000
+      internalID: -3531005618968539452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_97
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 669
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dd73800da884d4e0800000000000000
+      internalID: -1957789661379985967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 655
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1d7d3f6225c39890800000000000000
+      internalID: -7452396206682178273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_99
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 620
+        width: 5
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8de44df08c9a2baa0800000000000000
+      internalID: -6146663864683180328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_100
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 637
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9439afff19080e990800000000000000
+      internalID: -7358740426570165431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_101
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 5
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3bf27d791c114120800000000000000
+      internalID: 2396227372542262077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_102
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 528
+        width: 5
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f2a46b869f1f000800000000000000
+      internalID: 68109697517498200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_103
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 565
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf6e38e8a1190e30800000000000000
+      internalID: 4470123522290511834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_104
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 533
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f27d7d63991c7790800000000000000
+      internalID: -7531116355882487048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_105
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 508
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 988d6e4bdba7cc6b0800000000000000
+      internalID: -5274706108355258231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_106
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b43fb59d6c030dbf0800000000000000
+      internalID: -301687544425483445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_107
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 493
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b735618f77b098190800000000000000
+      internalID: -7959818256509414533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_108
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 396
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3840063163e326920800000000000000
+      internalID: 2982014305246905475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_109
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 365
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a6a2e818e664aed0800000000000000
+      internalID: -2403683154073049438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_110
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 333
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2411e6dfdd6bfa50800000000000000
+      internalID: 6555954490718098474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_111
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 302
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bb9d915222388440800000000000000
+      internalID: 4938252114391309241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_112
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 5
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd26d92c7805fc4c0800000000000000
+      internalID: -4265101778080668961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_113
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 238
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e501140fd4e76390800000000000000
+      internalID: -7825034181035883038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_114
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 198
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8ab217db9b4ef830800000000000000
+      internalID: 4106803042908813967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_115
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 158
+        width: 5
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f2bbecf682a81690800000000000000
+      internalID: -7631170867926682890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_116
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 5
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 258f07eb508e5ccc0800000000000000
+      internalID: -3691289208192698286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ahole1Outline_117
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 5
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a16fe7ee0b7c9dc70800000000000000
+      internalID: 8996441293378745882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Ahole1Outline_0: -7262490973236099
+      Ahole1Outline_1: -5818623310842992473
+      Ahole1Outline_10: -6544862027434886035
+      Ahole1Outline_100: -7358740426570165431
+      Ahole1Outline_101: 2396227372542262077
+      Ahole1Outline_102: 68109697517498200
+      Ahole1Outline_103: 4470123522290511834
+      Ahole1Outline_104: -7531116355882487048
+      Ahole1Outline_105: -5274706108355258231
+      Ahole1Outline_106: -301687544425483445
+      Ahole1Outline_107: -7959818256509414533
+      Ahole1Outline_108: 2982014305246905475
+      Ahole1Outline_109: -2403683154073049438
+      Ahole1Outline_11: -8204628348648245656
+      Ahole1Outline_110: 6555954490718098474
+      Ahole1Outline_111: 4938252114391309241
+      Ahole1Outline_112: -4265101778080668961
+      Ahole1Outline_113: -7825034181035883038
+      Ahole1Outline_114: 4106803042908813967
+      Ahole1Outline_115: -7631170867926682890
+      Ahole1Outline_116: -3691289208192698286
+      Ahole1Outline_117: 8996441293378745882
+      Ahole1Outline_12: -3246313241060390426
+      Ahole1Outline_13: -4215976580952466409
+      Ahole1Outline_14: 1467723252822494509
+      Ahole1Outline_15: -1028571348899396689
+      Ahole1Outline_16: 623000103807287405
+      Ahole1Outline_17: 22508299984401827
+      Ahole1Outline_18: 6448166775935938488
+      Ahole1Outline_19: -8854260018076628247
+      Ahole1Outline_2: -8780521097532270105
+      Ahole1Outline_20: -2390302528526673318
+      Ahole1Outline_21: 104574068238652524
+      Ahole1Outline_22: -3019231132929371427
+      Ahole1Outline_23: -2010024687468658362
+      Ahole1Outline_24: 2464488077918819136
+      Ahole1Outline_25: 2616972199620449525
+      Ahole1Outline_26: -5508473790638124593
+      Ahole1Outline_27: -3373731688571040816
+      Ahole1Outline_28: -8563824413556687910
+      Ahole1Outline_29: 8282184604835413885
+      Ahole1Outline_3: 4462311623990532669
+      Ahole1Outline_30: -8375001635467882863
+      Ahole1Outline_31: 7895613823010126560
+      Ahole1Outline_32: -9019084740236268381
+      Ahole1Outline_33: -1123781679758066587
+      Ahole1Outline_34: -5886129936085390472
+      Ahole1Outline_35: -2679231103627620243
+      Ahole1Outline_36: 3160642039289682640
+      Ahole1Outline_37: -5917973564646521228
+      Ahole1Outline_38: 7127039446103315630
+      Ahole1Outline_39: 7108945058314502020
+      Ahole1Outline_4: -4232265357704321468
+      Ahole1Outline_40: 5796148980138677625
+      Ahole1Outline_41: 5664719694499268255
+      Ahole1Outline_42: 731416070728398526
+      Ahole1Outline_43: 6924781745357570169
+      Ahole1Outline_44: -2293266561274069748
+      Ahole1Outline_45: -4940813068684032139
+      Ahole1Outline_46: -7127451706394744057
+      Ahole1Outline_47: 3462507601432709137
+      Ahole1Outline_48: 2299443932948382429
+      Ahole1Outline_49: -5933452334583511364
+      Ahole1Outline_5: -1824239761312534495
+      Ahole1Outline_50: -70460454679374154
+      Ahole1Outline_51: 3416153798799872758
+      Ahole1Outline_52: 2002313695698736011
+      Ahole1Outline_53: -6890304390236305657
+      Ahole1Outline_54: 5562746120698110471
+      Ahole1Outline_55: 5617548590660862992
+      Ahole1Outline_56: 8303772478163333081
+      Ahole1Outline_57: -5988832628200340816
+      Ahole1Outline_58: -6388549176903583895
+      Ahole1Outline_59: -8682352511200355758
+      Ahole1Outline_6: -4199908546079012086
+      Ahole1Outline_60: -4366563126799842725
+      Ahole1Outline_61: 876440426048419883
+      Ahole1Outline_62: -260483935466814091
+      Ahole1Outline_63: -7644766111403685571
+      Ahole1Outline_64: -7543773800503302906
+      Ahole1Outline_65: -2689495850433313698
+      Ahole1Outline_66: 7625506453273846927
+      Ahole1Outline_67: -4265009604728814541
+      Ahole1Outline_68: -1194512471452150753
+      Ahole1Outline_69: -8334318434482755601
+      Ahole1Outline_7: 471392991406053856
+      Ahole1Outline_70: -672925059258323804
+      Ahole1Outline_71: 7805657150890125601
+      Ahole1Outline_72: -2589053934731196224
+      Ahole1Outline_73: 2845649695595451445
+      Ahole1Outline_74: -8012333112740351690
+      Ahole1Outline_75: 3026614857360363338
+      Ahole1Outline_76: 3403629765761769297
+      Ahole1Outline_77: 4095675881880026612
+      Ahole1Outline_78: 4900881489502825328
+      Ahole1Outline_79: -767409153877684309
+      Ahole1Outline_8: -362364903345267043
+      Ahole1Outline_80: 8678694032819149873
+      Ahole1Outline_81: -3377550281349541744
+      Ahole1Outline_82: -3957510228182838023
+      Ahole1Outline_83: 5121647041339858118
+      Ahole1Outline_84: -4956355033346165368
+      Ahole1Outline_85: -6824068843322716973
+      Ahole1Outline_86: -7940711092466905152
+      Ahole1Outline_87: -9097876057015300755
+      Ahole1Outline_88: -9155766303620706204
+      Ahole1Outline_89: 1048407579732545121
+      Ahole1Outline_9: -3559776835306182199
+      Ahole1Outline_90: 5000595478870670027
+      Ahole1Outline_91: -2507274592129627291
+      Ahole1Outline_92: 348326498978139505
+      Ahole1Outline_93: -1032182744702905236
+      Ahole1Outline_94: 6898452992002583667
+      Ahole1Outline_95: 754065214214315285
+      Ahole1Outline_96: -3531005618968539452
+      Ahole1Outline_97: -1957789661379985967
+      Ahole1Outline_98: -7452396206682178273
+      Ahole1Outline_99: -6146663864683180328
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

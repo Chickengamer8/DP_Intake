@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2823414059257332463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7746279355017818972}
+  - component: {fileID: 8704756067198507884}
+  m_Layer: 18
+  m_Name: grabHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7746279355017818972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2823414059257332463}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 8.4734955, y: 3.2310705, z: 50.393177}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584168634569756485}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8704756067198507884
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2823414059257332463}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32046497, y: 1, z: 0.2}
+  m_Center: {x: 0.29099777, y: -0.000030525305, z: 0}
 --- !u!1 &3853758469460237129
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,7 +84,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1116602, y: 1.3036044, z: 0.12157598}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7746279355017818972}
   m_Father: {fileID: 3426362182216532465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4047475313644396485
@@ -257,6 +311,8 @@ MonoBehaviour:
   jumpForce: 6
   hideMoveSpeed: 5
   hideJumpForce: 6
+  observedMoveSpeed: 6
+  observedJumpForce: 12
   defaultMoveSpeed: 5
   defaultJumpForce: 6
   wallJumpForce: {x: 4, y: 5}
@@ -295,6 +351,7 @@ MonoBehaviour:
   boxLayer:
     serializedVersion: 2
     m_Bits: 1024
+  grabHitbox: {fileID: 7746279355017818972}
   isGrounded: 0
   animator: {fileID: 513729948529211308}
 --- !u!114 &9168480362754309419
@@ -309,11 +366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6745ef4306d24db4a93bc6c7c41e5c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
   regenDelay: 3
   regenRate: 5
-  loadScene: level1
-  healthBarFill: {fileID: 0}
+  fadePanel: {fileID: 0}
+  playerAnimator: {fileID: 0}
 --- !u!114 &594032821488446323
 MonoBehaviour:
   m_ObjectHideFlags: 0

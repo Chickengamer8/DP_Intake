@@ -2434,7 +2434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
-  isHiding: 0
+  isHiding: 1
   isInCoverWall: 0
   lastCheckpointPosition: {x: 0, y: 0, z: 0}
   hasCheckpoint: 0

@@ -7,7 +7,7 @@ public class globalPlayerStats : MonoBehaviour
     [Header("Player Stats")]
     public float maxHealth = 100f;
     public float maxStamina = 100f;
-    public bool isHiding = false;
+    public bool isHiding = true;
     public bool isInCoverWall;
 
     [Header("Checkpoint Data")]
