@@ -15164,7 +15164,7 @@ GameObject:
   - component: {fileID: 472150898}
   - component: {fileID: 472150897}
   - component: {fileID: 472150896}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ascaffolding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22070,7 +22070,7 @@ MonoBehaviour:
   doorOpenSpeed: 1
   cutsceneOffset: {x: 0, y: 0, z: -10}
   cutsceneZoom: 5
-  doorRotationAngle: -90
+  doorRotationAngle: 90
   optionalColliderToEnable: {fileID: 1676122562}
   doorSound: {fileID: 0}
   leverSpriteRenderer: {fileID: 723614084}
@@ -35958,7 +35958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3962101952079901686, guid: ffc9ca9e1025c7f4dbcdf111f5ec9bb5, type: 3}
       propertyPath: holeDamagePerTick
-      value: 200
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: -3962101952079901686, guid: ffc9ca9e1025c7f4dbcdf111f5ec9bb5, type: 3}
       propertyPath: pupilWanderRadius.x
@@ -45333,7 +45333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spotlightManager: {fileID: 1679958117}
   playerReference: {fileID: 5480724}
-  visualConfirmation: {fileID: 2109389813}
+  visualConfirmation: {fileID: 2098076658}
   batteryUI: {fileID: 1488627645}
   watcher: {fileID: 1803629603}
   wanderIntervalIncrease: -0.2
@@ -45797,7 +45797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8771866332903766741, guid: a99abe544e3d96742835e8acd2d70f01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 91.81
+      value: 92.72
       objectReference: {fileID: 0}
     - target: {fileID: 8771866332903766741, guid: a99abe544e3d96742835e8acd2d70f01, type: 3}
       propertyPath: m_LocalPosition.y
@@ -62016,7 +62016,7 @@ Transform:
   m_GameObject: {fileID: 2085994694}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.93, y: -7.22, z: 0}
+  m_LocalPosition: {x: -2, y: -7.22, z: 0}
   m_LocalScale: {x: 0.83706605, y: 0.6087752, z: 0.6087752}
   m_ConstrainProportionsScale: 0
   m_Children: []
